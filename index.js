@@ -9,6 +9,9 @@ const port = 3000
 app.set('views', path.join(__dirname, 'views')) // Set the views directory containing PUG files
 app.set('view engine', 'pug') // Set PUG as the view engine
 
+// Set up static files directory
+app.use(express.static(path.join(__dirname, 'public')))
+
 app.get('/', (req, res) => {
   res.render('client/pages/home', {
     pageTitle: 'Homepage'
