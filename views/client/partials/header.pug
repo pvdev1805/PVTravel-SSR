@@ -1,1 +1,73 @@
-div Header 
+// Top Header
+section.top-header
+  .container
+    .inner-wrap
+      .inner-item
+        i.fa-solid.fa-phone
+        | 0123.456.789
+      .inner-item
+        i.fa-solid.fa-envelope
+        | contact@pvtravel.com
+      .inner-item
+        i.fa-solid.fa-building
+        | 13 Obeirne Street, Kearneys Spring, QLD 4350
+// End Top Header
+// Header
+header.header
+  .container
+    .inner-wrap
+      button.inner-menu-mobile
+        i.fa-solid.fa-bars
+      .inner-logo
+        a(href="index.html")
+          img(
+            alt="PV.TRAVEL" 
+            src="/assets/images/logo.svg"
+            )
+      nav.inner-menu
+        ul
+          li
+            a.active(href="index.html") Home
+          li
+            a(href="#") Domestic Tours
+            i.fa-solid.fa-caret-down
+            ul
+              li
+                a(href="#") New South Wales
+              li
+                a(href="#") Victoria
+              li
+                a(href="#") Queensland
+              li
+                a(href="#") South Australia
+              li
+                a(href="#") Western Australia
+              li
+                a(href="#") Tasmania
+          li
+            a(href="#") International Tours
+            i.fa-solid.fa-caret-down
+            ul
+              li
+                a(href="#") Asian Tour
+              li
+                a(href="#") European Tour
+              li
+                a(href="#") American Tour
+              li
+                a(href="#") African Tour
+          li
+            a(href="#") News
+          li
+            a(href="#") Contact
+        // Hidden Overlay
+        .inner-overlay
+        // End Hidden Overlay
+      .inner-cart
+        a(href="#")
+          img(
+            alt="Cart" 
+            src="/assets/images/icon-cart.svg"
+            )
+          span 1
+// End Header
