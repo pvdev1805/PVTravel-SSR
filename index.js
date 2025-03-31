@@ -1,5 +1,16 @@
 const express = require('express')
 const path = require('path')
+const dotenv = require('dotenv')
+
+dotenv.config()
+
+const mongoose = require('mongoose')
+mongoose.connect(process.env.DATABASE)
+
+const Tour = mongoose.model('Tour', {
+  name: String,
+  vehicle: String
+})
 
 const app = express()
 
@@ -18,9 +29,13 @@ app.get('/', (req, res) => {
   })
 })
 
-app.get('/tours', (req, res) => {
+app.get('/tours', async (req, res) => {
+  const tourList = await Tour.find({})
+  console.log(tourList)
+
   res.render('client/pages/tour-list', {
-    pageTitle: 'Tour List'
+    pageTitle: 'Tour List',
+    tourList: tourList
   })
 })
 
