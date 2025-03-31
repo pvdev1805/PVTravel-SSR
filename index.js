@@ -4,14 +4,16 @@ const dotenv = require('dotenv')
 
 dotenv.config()
 
-const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE)
+const database = require('./config/database')
 
 const clientRoutes = require('./routes/client/index.route')
 
 const app = express()
 
 const port = 3000
+
+// Connect to the database
+database.connect()
 
 // Set up views directory and view engine PUG
 app.set('views', path.join(__dirname, 'views')) // Set the views directory containing PUG files
