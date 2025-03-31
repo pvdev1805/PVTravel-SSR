@@ -1,4 +1,1110 @@
 extends ../layouts/default.pug
 
 block main 
-  h1 #{pageTitle}
+  // Section 1
+  section.section-1
+    .container
+      .inner-wrap
+        h1.inner-title(
+          data-aos-duration="800" 
+          data-aos="fade-up"
+          )
+          | AU Travel - Explore Asia, EU, and US
+          br
+          | Go anywhere you want
+        p.inner-desc(
+          data-aos-delay="150" 
+          data-aos-duration="800" 
+          data-aos="fade-up"
+          )
+          | PVTravel is a travel agency that provides a variety of travel
+          |   services, including domestic and international tours. We are
+          |   committed to providing the best travel experience for our customers.
+        form.inner-form(
+          data-aos-delay="300" 
+          data-aos-duration="800" 
+          data-aos="fade-up" 
+          action=""
+          )
+          .inner-box.inner-address
+            .inner-input-group
+              img.inner-icon(
+                alt="Address Icon" 
+                src="/assets/images/icon-address.svg"
+                )
+              input.inner-input(
+                placeholder="Where do you want to go?" 
+                type="text"
+                )
+              i.fa-solid.fa-angle-down.inner-down
+            .inner-suggest
+              .inner-suggest-title
+                i.fa-solid.fa-location-dot
+                | Popular Destinations
+              .inner-suggest-list
+                .inner-item
+                  .inner-item-image
+                    img(
+                      alt="Sydney" 
+                      src="/assets/images/product-1.jpg"
+                      )
+                  .inner-item-content
+                    .inner-item-title Sydney
+                    .inner-item-desc 50 tours
+                .inner-item
+                  .inner-item-image
+                    img(
+                      alt="Melbourne" 
+                      src="/assets/images/product-2.jpg"
+                      )
+                  .inner-item-content
+                    .inner-item-title Melbourne
+                    .inner-item-desc 40 tours
+                .inner-item
+                  .inner-item-image
+                    img(
+                      alt="Queensland" 
+                      src="/assets/images/product-3.jpg"
+                      )
+                  .inner-item-content
+                    .inner-item-title Queensland
+                    .inner-item-desc 35 tours
+          .inner-box.inner-user
+            .inner-input-group
+              img.inner-icon(
+                alt="User Icon" 
+                src="/assets/images/icon-user.svg"
+                )
+              input.inner-input(
+                readonly="" 
+                placeholder="Quantity" 
+                type="text"
+                )
+              i.fa-solid.fa-angle-down.inner-down
+            .inner-quantity
+              .inner-item
+                .inner-label Adult
+                .inner-count
+                  span.inner-down -
+                  span.inner-number 1
+                  span.inner-up +
+              .inner-item
+                .inner-label Child
+                .inner-count
+                  span.inner-down -
+                  span.inner-number 0
+                  span.inner-up +
+              .inner-item
+                .inner-label Infant
+                .inner-count
+                  span.inner-down -
+                  span.inner-number 0
+                  span.inner-up +
+          .inner-box.inner-calendar
+            .inner-input-group
+              img.inner-icon(
+                alt="Calendar Icon" 
+                src="/assets/images/icon-calendar.svg"
+                )
+              input.inner-input(
+                placeholder="Departure Date" 
+                type="text"
+                )
+              i.fa-solid.fa-angle-down.inner-down
+          button.inner-button
+            i.fa-solid.fa-magnifying-glass
+            | Search
+  // End Section 1
+
+  // Section 2
+  section.section-2(
+    data-aos-delay="450" 
+    data-aos-duration="800" 
+    data-aos="fade-up"
+    )
+    .container
+      .inner-wrap
+        .inner-info
+          h2.inner-title
+            | 2025 Specials
+            br
+            | Last-Minute Tours
+          p.inner-desc
+            | PVTravel offers special tours for 2025. Book now to get the best
+            |   price.
+          .inner-clock-title Ending in
+          .inner-clock-number(clock-expire="2025-07-30T20:00:00")
+            .inner-item
+              .inner-number 00
+              .inner-label Days
+            .inner-item
+              .inner-number 00
+              .inner-label Hours
+            .inner-item
+              .inner-number 00
+              .inner-label Minutes
+            .inner-item
+              .inner-number 00
+              .inner-label Seconds
+          .inner-discount-title Discount up to
+          .inner-discount-price
+            span.inner-unit $
+            | 399.00
+        .inner-list
+          .swiper.swiper-section-2
+            .swiper-wrapper
+              .swiper-slide
+                .product-item
+                  .inner-image
+                    a(href="#")
+                      img(
+                        alt="Product 1" 
+                        src="/assets/images/product-1.jpg"
+                        )
+                  .inner-discount
+                    i.fa-solid.fa-bolt
+                    | -30% OFF
+                  .inner-content
+                    h3.inner-title
+                      a(href="#") New South Wales - 4D3N
+                    .inner-prices
+                      .inner-price-old
+                        span.inner-unit $
+                        | 899.00
+                      .inner-price-new
+                        span.inner-unit $
+                        | 700.00
+                    .inner-desc
+                      .inner-desc-item
+                        | Tour ID:
+                        b 123456780
+                      .inner-desc-item
+                        | Departure Date:
+                        b 01/08/2025
+                      .inner-desc-item
+                        | Duration:
+                        b 4 Days 3 Nights
+                    .inner-meta
+                      .inner-rating
+                        .inner-stars
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-regular.fa-star
+                        .inner-number (5)
+                      .inner-stock
+                        .inner-label Available Spots:
+                        .inner-number 10
+              .swiper-slide
+                .product-item
+                  .inner-image
+                    a(href="#")
+                      img(
+                        alt="Product 2" 
+                        src="/assets/images/product-2.jpg"
+                        )
+                  .inner-discount
+                    i.fa-solid.fa-bolt
+                    | -30% OFF
+                  .inner-content
+                    h3.inner-title
+                      a(href="#") Victoria - 3D2N
+                    .inner-prices
+                      .inner-price-old
+                        span.inner-unit $
+                        | 799.00
+                      .inner-price-new
+                        span.inner-unit $
+                        | 709.00
+                    .inner-desc
+                      .inner-desc-item
+                        | Tour ID:
+                        b 123456781
+                      .inner-desc-item
+                        | Departure Date:
+                        b 01/08/2025
+                      .inner-desc-item
+                        | Duration:
+                        b 3 Days 2 Nights
+                    .inner-meta
+                      .inner-rating
+                        .inner-stars
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-regular.fa-star
+                        .inner-number (5)
+                      .inner-stock
+                        .inner-label Available Spots:
+                        .inner-number 9
+              .swiper-slide
+                .product-item
+                  .inner-image
+                    a(href="#")
+                      img(
+                        alt="Product 3" 
+                        src="/assets/images/product-3.jpg"
+                        )
+                  .inner-discount
+                    i.fa-solid.fa-bolt
+                    | -30% OFF
+                  .inner-content
+                    h3.inner-title
+                      a(href="#") Queensland - 4D3N
+                    .inner-prices
+                      .inner-price-old
+                        span.inner-unit $
+                        | 859.00
+                      .inner-price-new
+                        span.inner-unit $
+                        | 749.00
+                    .inner-desc
+                      .inner-desc-item
+                        | Tour ID:
+                        b 123456782
+                      .inner-desc-item
+                        | Departure Date:
+                        b 01/08/2025
+                      .inner-desc-item
+                        | Duration:
+                        b 4 Days 3 Nights
+                    .inner-meta
+                      .inner-rating
+                        .inner-stars
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-regular.fa-star
+                        .inner-number (5)
+                      .inner-stock
+                        .inner-label Available Spots:
+                        .inner-number 11
+              .swiper-slide
+                .product-item
+                  .inner-image
+                    a(href="#")
+                      img(
+                        alt="Product 1" 
+                        src="/assets/images/product-1.jpg"
+                        )
+                  .inner-discount
+                    i.fa-solid.fa-bolt
+                    | -30% OFF
+                  .inner-content
+                    h3.inner-title
+                      a(href="#") New South Wales - 4D3N
+                    .inner-prices
+                      .inner-price-old
+                        span.inner-unit $
+                        | 899.00
+                      .inner-price-new
+                        span.inner-unit $
+                        | 700.00
+                    .inner-desc
+                      .inner-desc-item
+                        | Tour ID:
+                        b 123456780
+                      .inner-desc-item
+                        | Departure Date:
+                        b 01/08/2025
+                      .inner-desc-item
+                        | Duration:
+                        b 4 Days 3 Nights
+                    .inner-meta
+                      .inner-rating
+                        .inner-stars
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-regular.fa-star
+                        .inner-number (5)
+                      .inner-stock
+                        .inner-label Available Spots:
+                        .inner-number 10
+              .swiper-slide
+                .product-item
+                  .inner-image
+                    a(href="#")
+                      img(
+                        alt="Product 2" 
+                        src="/assets/images/product-2.jpg"
+                        )
+                  .inner-discount
+                    i.fa-solid.fa-bolt
+                    | -30% OFF
+                  .inner-content
+                    h3.inner-title
+                      a(href="#") Victoria - 3D2N
+                    .inner-prices
+                      .inner-price-old
+                        span.inner-unit $
+                        | 799.00
+                      .inner-price-new
+                        span.inner-unit $
+                        | 709.00
+                    .inner-desc
+                      .inner-desc-item
+                        | Tour ID:
+                        b 123456781
+                      .inner-desc-item
+                        | Departure Date:
+                        b 01/08/2025
+                      .inner-desc-item
+                        | Duration:
+                        b 3 Days 2 Nights
+                    .inner-meta
+                      .inner-rating
+                        .inner-stars
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-regular.fa-star
+                        .inner-number (5)
+                      .inner-stock
+                        .inner-label Available Spots:
+                        .inner-number 9
+              .swiper-slide
+                .product-item
+                  .inner-image
+                    a(href="#")
+                      img(
+                        alt="Product 3" 
+                        src="/assets/images/product-3.jpg"
+                        )
+                  .inner-discount
+                    i.fa-solid.fa-bolt
+                    | -30% OFF
+                  .inner-content
+                    h3.inner-title
+                      a(href="#") Queensland - 4D3N
+                    .inner-prices
+                      .inner-price-old
+                        span.inner-unit $
+                        | 859.00
+                      .inner-price-new
+                        span.inner-unit $
+                        | 749.00
+                    .inner-desc
+                      .inner-desc-item
+                        | Tour ID:
+                        b 123456782
+                      .inner-desc-item
+                        | Departure Date:
+                        b 01/08/2025
+                      .inner-desc-item
+                        | Duration:
+                        b 4 Days 3 Nights
+                    .inner-meta
+                      .inner-rating
+                        .inner-stars
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-regular.fa-star
+                        .inner-number (5)
+                      .inner-stock
+                        .inner-label Available Spots:
+                        .inner-number 11
+              .swiper-slide
+                .product-item
+                  .inner-image
+                    a(href="#")
+                      img(
+                        alt="Product 1" 
+                        src="/assets/images/product-1.jpg"
+                        )
+                  .inner-discount
+                    i.fa-solid.fa-bolt
+                    | -30% OFF
+                  .inner-content
+                    h3.inner-title
+                      a(href="#") New South Wales - 4D3N
+                    .inner-prices
+                      .inner-price-old
+                        span.inner-unit $
+                        | 899.00
+                      .inner-price-new
+                        span.inner-unit $
+                        | 700.00
+                    .inner-desc
+                      .inner-desc-item
+                        | Tour ID:
+                        b 123456780
+                      .inner-desc-item
+                        | Departure Date:
+                        b 01/08/2025
+                      .inner-desc-item
+                        | Duration:
+                        b 4 Days 3 Nights
+                    .inner-meta
+                      .inner-rating
+                        .inner-stars
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-solid.fa-star
+                          i.fa-regular.fa-star
+                        .inner-number (5)
+                      .inner-stock
+                        .inner-label Available Spots:
+                        .inner-number 10
+            .swiper-button-next
+            .swiper-button-prev
+            .swiper-pagination
+  // End Section 2
+  // Section 3
+  section.section-3
+    .container
+      h2.box-title(
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        ) Hot Deals - Chill Out Specials
+      .swiper.swiper-section-3(
+        data-aos-delay="150" 
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        )
+        .swiper-wrapper
+          .swiper-slide
+            .inner-item
+              a(href="#")
+                img(
+                  alt="New South Wales" 
+                  src="/assets/images/banner-1.png"
+                  )
+          .swiper-slide
+            .inner-item
+              a(href="#")
+                img(
+                  alt="Denmark" 
+                  src="/assets/images/banner-2.png"
+                  )
+          .swiper-slide
+            .inner-item
+              a(href="#")
+                img(
+                  alt="Paris" 
+                  src="/assets/images/banner-3.png"
+                  )
+          .swiper-slide
+            .inner-item
+              a(href="#")
+                img(
+                  alt="New South Wales" 
+                  src="/assets/images/banner-1.png"
+                  )
+          .swiper-slide
+            .inner-item
+              a(href="#")
+                img(
+                  alt="Denmark" 
+                  src="/assets/images/banner-2.png"
+                  )
+          .swiper-slide
+            .inner-item
+              a(href="#")
+                img(
+                  alt="Paris" 
+                  src="/assets/images/banner-3.png"
+                  )
+        .swiper-pagination
+  // End Section 3
+  // Section 4
+  section.section-4
+    .container
+      h2.box-title(
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        ) Domestic Tours
+      .inner-wrap(
+        data-aos-delay="150" 
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        )
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 1" 
+                src="/assets/images/product-1.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") New South Wales - 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 899.00
+              .inner-price-new
+                span.inner-unit $
+                | 700.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456780
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 10
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 2" 
+                src="/assets/images/product-2.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") Victoria - 3D2N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 799.00
+              .inner-price-new
+                span.inner-unit $
+                | 709.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456781
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 3 Days 2 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 9
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 3" 
+                src="/assets/images/product-3.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") Queensland - 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 859.00
+              .inner-price-new
+                span.inner-unit $
+                | 749.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456782
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 11
+      .inner-button(
+        data-aos-delay="150" 
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        )
+        a.button-outline(href="#") View All
+  // End Section 4
+  // Section 5
+  section.section-5(
+    data-aos-duration="800" 
+    data-aos="fade-up"
+    )
+    .container
+      .inner-image
+        a(href="#")
+          img(
+            alt="Domestic Tours" 
+            src="/assets/images/banner-4.jpeg"
+            )
+  // End Section 5
+  // Section 6
+  section.section-4
+    .container
+      h2.box-title(
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        ) International Tours
+      .inner-wrap(
+        data-aos-delay="150" 
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        )
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 1" 
+                src="/assets/images/product-1.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") New South Wales - 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 899.00
+              .inner-price-new
+                span.inner-unit $
+                | 700.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456780
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 10
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 2" 
+                src="/assets/images/product-2.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") Victoria - 3D2N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 799.00
+              .inner-price-new
+                span.inner-unit $
+                | 709.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456781
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 3 Days 2 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 9
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 3" 
+                src="/assets/images/product-3.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") Queensland - 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 859.00
+              .inner-price-new
+                span.inner-unit $
+                | 749.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456782
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 11
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 4" 
+                src="/assets/images/product-4.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") South Australia- 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 859.00
+              .inner-price-new
+                span.inner-unit $
+                | 749.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456783
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 11
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 5" 
+                src="/assets/images/product-5.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") Western Australia - 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 859.00
+              .inner-price-new
+                span.inner-unit $
+                | 749.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456784
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 11
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 6" 
+                src="/assets/images/product-6.jpeg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") Tasmania - 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 859.00
+              .inner-price-new
+                span.inner-unit $
+                | 749.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456785
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 11
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 3" 
+                src="/assets/images/product-3.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") Queensland - 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 859.00
+              .inner-price-new
+                span.inner-unit $
+                | 749.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456782
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 11
+        .product-item
+          .inner-image
+            a(href="#")
+              img(
+                alt="Product 3" 
+                src="/assets/images/product-3.jpg"
+                )
+          .inner-discount
+            i.fa-solid.fa-bolt
+            | -30% OFF
+          .inner-content
+            h3.inner-title
+              a(href="#") Queensland - 4D3N
+            .inner-prices
+              .inner-price-old
+                span.inner-unit $
+                | 859.00
+              .inner-price-new
+                span.inner-unit $
+                | 749.00
+            .inner-desc
+              .inner-desc-item
+                | Tour ID:
+                b 123456782
+              .inner-desc-item
+                | Departure Date:
+                b 01/08/2025
+              .inner-desc-item
+                | Duration:
+                b 4 Days 3 Nights
+            .inner-meta
+              .inner-rating
+                .inner-stars
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-solid.fa-star
+                  i.fa-regular.fa-star
+                .inner-number (5)
+              .inner-stock
+                .inner-label Available Spots:
+                .inner-number 11
+      .inner-button(
+        data-aos-delay="150" 
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        )
+        a.button-outline(href="#") View All
+  // End Section 6
+  // Section 7
+  section.section-5(
+    data-aos-duration="800" 
+    data-aos="fade-up"
+    )
+    .container
+      .inner-image
+        a(href="#")
+          img(
+            alt="International Tours" 
+            src="/assets/images/banner-5.jpeg"
+            )
+  // End Section 7
+  // Section 8
+  section.section-8
+    .container
+      h2.box-title(
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        ) Latest News
+      .inner-wrap(
+        data-aos-delay="150" 
+        data-aos-duration="800" 
+        data-aos="fade-up"
+        )
+        .blog-item
+          a(href="#")
+            .inner-image
+              img(
+                alt="Blog 1" 
+                src="/assets/images/blog-1.jpg"
+                )
+            .inner-content
+              .inner-date 23/02/2025
+              h3.inner-title Great homestays in New South Wales
+        .blog-item-2
+          a(href="#")
+            .inner-image
+              img(
+                alt="Blog 2" 
+                src="/assets/images/blog-2.jpg"
+                )
+            .inner-content
+              .inner-date 23/02/2025
+              h3.inner-title Top 5 check-in points in Queensland
+              .inner-desc
+                | Queensland is a state in northeastern Australia, famous for
+                |   its beaches, coral reefs, and rainforests. Here are the top 5
+                |   check-in points in Queensland.
+        .blog-item
+          a(href="#")
+            .inner-image
+              img(
+                alt="Blog 3" 
+                src="/assets/images/blog-3.jpg"
+                )
+            .inner-content
+              .inner-date 22/02/2025
+              h3.inner-title Gourmet food in Victoria - A culinary paradise
+        .blog-item
+          a(href="#")
+            .inner-image
+              img(
+                alt="Blog 4" 
+                src="/assets/images/blog-4.jpg"
+                )
+            .inner-content
+              .inner-date 22/02/2025
+              h3.inner-title The best time to visit Western Australia
+        .blog-item
+          a(href="#")
+            .inner-image
+              img(
+                alt="Blog 5" 
+                src="/assets/images/blog-5.jpg"
+                )
+            .inner-content
+              .inner-date 22/02/2025
+              h3.inner-title Hot trend: Traveling to Tasmania to see the aurora
+  // End Section 8
