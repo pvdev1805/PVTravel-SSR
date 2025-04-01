@@ -13,9 +13,10 @@ mixin product-item(item)
       h3.inner-title
         a(href="item.slug") #{item.name}
       .inner-prices
-        .inner-price-old
-          span.inner-unit $
-          | #{item.priceOld.toLocaleString("en-AU", {minimumFractionDigits: 2})}
+        if(item.discount > 0)
+          .inner-price-old
+            span.inner-unit $
+            | #{item.priceOld.toLocaleString("en-AU", {minimumFractionDigits: 2})}
         .inner-price-new
           span.inner-unit $
           | #{item.priceNew.toLocaleString("en-AU", {minimumFractionDigits: 2})}
