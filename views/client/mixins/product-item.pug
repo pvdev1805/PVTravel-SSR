@@ -1,0 +1,42 @@
+mixin product-item(item)
+  .product-item
+    .inner-image
+      a(href=item.slug)
+        img(
+          alt=item.name 
+          src=item.avatar
+          )
+    .inner-discount
+      i.fa-solid.fa-bolt
+      | -#{item.discount}% OFF
+    .inner-content
+      h3.inner-title
+        a(href="item.slug") #{item.name}
+      .inner-prices
+        .inner-price-old
+          span.inner-unit $
+          | #{item.priceOld.toLocaleString("en-AU", {minimumFractionDigits: 2})}
+        .inner-price-new
+          span.inner-unit $
+          | #{item.priceNew.toLocaleString("en-AU", {minimumFractionDigits: 2})}
+      .inner-desc
+        .inner-desc-item
+          | Tour ID:
+          b #{item.code}
+        .inner-desc-item
+          | Departure Date:
+          b #{item.departureDate}
+        .inner-desc-item
+          | Duration:
+          b #{item.time}
+      .inner-meta
+        .inner-rating
+          .inner-stars
+            - for(let i = 1; i <= item.ratingStars; i++)
+              i.fa-solid.fa-star
+            - for(let j = item.ratingStars + 1; j <= 5; j++)
+              i.fa-regular.fa-star
+          .inner-number (#{item.ratingTotal})
+        .inner-stock
+          .inner-label Available Spots:
+          .inner-number #{item.stock}

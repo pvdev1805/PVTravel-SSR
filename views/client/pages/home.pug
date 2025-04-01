@@ -1,4 +1,5 @@
 extends ../layouts/default.pug
+include ../mixins/product-item.pug
 
 block main 
   // Section 1
@@ -117,6 +118,94 @@ block main
   // End Section 1
 
   // Section 2
+  -
+    var productListSection2 = [
+      {
+        avatar: "/assets/images/product-1.jpg",
+        slug: '#',
+        discount: 30,
+        name: "New South Wales - 4D3N",
+        priceOld: 899.00,
+        priceNew: 700.00,
+        code: "123456780",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 10
+      },
+      {
+        avatar: "/assets/images/product-2.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Victoria - 3D2N",
+        priceOld: 799.00,
+        priceNew: 709.00,
+        code: "123456781",
+        departureDate: "01/08/2025",
+        time: "3 Days 2 Nights",
+        ratingStars: 4,
+        ratingTotal: 20,
+        stock: 9
+      },
+      {
+        avatar: "/assets/images/product-3.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Queensland - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456782",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      },
+      {
+        avatar: "/assets/images/product-1.jpg",
+        slug: '#',
+        discount: 30,
+        name: "New South Wales - 4D3N",
+        priceOld: 899.00,
+        priceNew: 700.00,
+        code: "123456780",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 10
+      },
+      {
+        avatar: "/assets/images/product-2.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Victoria - 3D2N",
+        priceOld: 799.00,
+        priceNew: 709.00,
+        code: "123456781",
+        departureDate: "01/08/2025",
+        time: "3 Days 2 Nights",
+        ratingStars: 4,
+        ratingTotal: 20,
+        stock: 9
+      },
+      {
+        avatar: "/assets/images/product-3.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Queensland - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456782",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      }
+    ]
+
   section.section-2(
     data-aos-delay="450" 
     data-aos-duration="800" 
@@ -153,307 +242,9 @@ block main
         .inner-list
           .swiper.swiper-section-2
             .swiper-wrapper
-              .swiper-slide
-                .product-item
-                  .inner-image
-                    a(href="#")
-                      img(
-                        alt="Product 1" 
-                        src="/assets/images/product-1.jpg"
-                        )
-                  .inner-discount
-                    i.fa-solid.fa-bolt
-                    | -30% OFF
-                  .inner-content
-                    h3.inner-title
-                      a(href="#") New South Wales - 4D3N
-                    .inner-prices
-                      .inner-price-old
-                        span.inner-unit $
-                        | 899.00
-                      .inner-price-new
-                        span.inner-unit $
-                        | 700.00
-                    .inner-desc
-                      .inner-desc-item
-                        | Tour ID:
-                        b 123456780
-                      .inner-desc-item
-                        | Departure Date:
-                        b 01/08/2025
-                      .inner-desc-item
-                        | Duration:
-                        b 4 Days 3 Nights
-                    .inner-meta
-                      .inner-rating
-                        .inner-stars
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-regular.fa-star
-                        .inner-number (5)
-                      .inner-stock
-                        .inner-label Available Spots:
-                        .inner-number 10
-              .swiper-slide
-                .product-item
-                  .inner-image
-                    a(href="#")
-                      img(
-                        alt="Product 2" 
-                        src="/assets/images/product-2.jpg"
-                        )
-                  .inner-discount
-                    i.fa-solid.fa-bolt
-                    | -30% OFF
-                  .inner-content
-                    h3.inner-title
-                      a(href="#") Victoria - 3D2N
-                    .inner-prices
-                      .inner-price-old
-                        span.inner-unit $
-                        | 799.00
-                      .inner-price-new
-                        span.inner-unit $
-                        | 709.00
-                    .inner-desc
-                      .inner-desc-item
-                        | Tour ID:
-                        b 123456781
-                      .inner-desc-item
-                        | Departure Date:
-                        b 01/08/2025
-                      .inner-desc-item
-                        | Duration:
-                        b 3 Days 2 Nights
-                    .inner-meta
-                      .inner-rating
-                        .inner-stars
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-regular.fa-star
-                        .inner-number (5)
-                      .inner-stock
-                        .inner-label Available Spots:
-                        .inner-number 9
-              .swiper-slide
-                .product-item
-                  .inner-image
-                    a(href="#")
-                      img(
-                        alt="Product 3" 
-                        src="/assets/images/product-3.jpg"
-                        )
-                  .inner-discount
-                    i.fa-solid.fa-bolt
-                    | -30% OFF
-                  .inner-content
-                    h3.inner-title
-                      a(href="#") Queensland - 4D3N
-                    .inner-prices
-                      .inner-price-old
-                        span.inner-unit $
-                        | 859.00
-                      .inner-price-new
-                        span.inner-unit $
-                        | 749.00
-                    .inner-desc
-                      .inner-desc-item
-                        | Tour ID:
-                        b 123456782
-                      .inner-desc-item
-                        | Departure Date:
-                        b 01/08/2025
-                      .inner-desc-item
-                        | Duration:
-                        b 4 Days 3 Nights
-                    .inner-meta
-                      .inner-rating
-                        .inner-stars
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-regular.fa-star
-                        .inner-number (5)
-                      .inner-stock
-                        .inner-label Available Spots:
-                        .inner-number 11
-              .swiper-slide
-                .product-item
-                  .inner-image
-                    a(href="#")
-                      img(
-                        alt="Product 1" 
-                        src="/assets/images/product-1.jpg"
-                        )
-                  .inner-discount
-                    i.fa-solid.fa-bolt
-                    | -30% OFF
-                  .inner-content
-                    h3.inner-title
-                      a(href="#") New South Wales - 4D3N
-                    .inner-prices
-                      .inner-price-old
-                        span.inner-unit $
-                        | 899.00
-                      .inner-price-new
-                        span.inner-unit $
-                        | 700.00
-                    .inner-desc
-                      .inner-desc-item
-                        | Tour ID:
-                        b 123456780
-                      .inner-desc-item
-                        | Departure Date:
-                        b 01/08/2025
-                      .inner-desc-item
-                        | Duration:
-                        b 4 Days 3 Nights
-                    .inner-meta
-                      .inner-rating
-                        .inner-stars
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-regular.fa-star
-                        .inner-number (5)
-                      .inner-stock
-                        .inner-label Available Spots:
-                        .inner-number 10
-              .swiper-slide
-                .product-item
-                  .inner-image
-                    a(href="#")
-                      img(
-                        alt="Product 2" 
-                        src="/assets/images/product-2.jpg"
-                        )
-                  .inner-discount
-                    i.fa-solid.fa-bolt
-                    | -30% OFF
-                  .inner-content
-                    h3.inner-title
-                      a(href="#") Victoria - 3D2N
-                    .inner-prices
-                      .inner-price-old
-                        span.inner-unit $
-                        | 799.00
-                      .inner-price-new
-                        span.inner-unit $
-                        | 709.00
-                    .inner-desc
-                      .inner-desc-item
-                        | Tour ID:
-                        b 123456781
-                      .inner-desc-item
-                        | Departure Date:
-                        b 01/08/2025
-                      .inner-desc-item
-                        | Duration:
-                        b 3 Days 2 Nights
-                    .inner-meta
-                      .inner-rating
-                        .inner-stars
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-regular.fa-star
-                        .inner-number (5)
-                      .inner-stock
-                        .inner-label Available Spots:
-                        .inner-number 9
-              .swiper-slide
-                .product-item
-                  .inner-image
-                    a(href="#")
-                      img(
-                        alt="Product 3" 
-                        src="/assets/images/product-3.jpg"
-                        )
-                  .inner-discount
-                    i.fa-solid.fa-bolt
-                    | -30% OFF
-                  .inner-content
-                    h3.inner-title
-                      a(href="#") Queensland - 4D3N
-                    .inner-prices
-                      .inner-price-old
-                        span.inner-unit $
-                        | 859.00
-                      .inner-price-new
-                        span.inner-unit $
-                        | 749.00
-                    .inner-desc
-                      .inner-desc-item
-                        | Tour ID:
-                        b 123456782
-                      .inner-desc-item
-                        | Departure Date:
-                        b 01/08/2025
-                      .inner-desc-item
-                        | Duration:
-                        b 4 Days 3 Nights
-                    .inner-meta
-                      .inner-rating
-                        .inner-stars
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-regular.fa-star
-                        .inner-number (5)
-                      .inner-stock
-                        .inner-label Available Spots:
-                        .inner-number 11
-              .swiper-slide
-                .product-item
-                  .inner-image
-                    a(href="#")
-                      img(
-                        alt="Product 1" 
-                        src="/assets/images/product-1.jpg"
-                        )
-                  .inner-discount
-                    i.fa-solid.fa-bolt
-                    | -30% OFF
-                  .inner-content
-                    h3.inner-title
-                      a(href="#") New South Wales - 4D3N
-                    .inner-prices
-                      .inner-price-old
-                        span.inner-unit $
-                        | 899.00
-                      .inner-price-new
-                        span.inner-unit $
-                        | 700.00
-                    .inner-desc
-                      .inner-desc-item
-                        | Tour ID:
-                        b 123456780
-                      .inner-desc-item
-                        | Departure Date:
-                        b 01/08/2025
-                      .inner-desc-item
-                        | Duration:
-                        b 4 Days 3 Nights
-                    .inner-meta
-                      .inner-rating
-                        .inner-stars
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-solid.fa-star
-                          i.fa-regular.fa-star
-                        .inner-number (5)
-                      .inner-stock
-                        .inner-label Available Spots:
-                        .inner-number 10
+              each item in productListSection2
+                .swiper-slide
+                  +product-item(item)
             .swiper-button-next
             .swiper-button-prev
             .swiper-pagination
@@ -515,7 +306,54 @@ block main
                   )
         .swiper-pagination
   // End Section 3
+  
   // Section 4
+  -
+    var productListSection4 = [
+      {
+        avatar: "/assets/images/product-1.jpg",
+        slug: '#',
+        discount: 30,
+        name: "New South Wales - 4D3N",
+        priceOld: 899.00,
+        priceNew: 700.00,
+        code: "123456780",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 10
+      },
+      {
+        avatar: "/assets/images/product-2.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Victoria - 3D2N",
+        priceOld: 799.00,
+        priceNew: 709.00,
+        code: "123456781",
+        departureDate: "01/08/2025",
+        time: "3 Days 2 Nights",
+        ratingStars: 4,
+        ratingTotal: 20,
+        stock: 9
+      },
+      {
+        avatar: "/assets/images/product-3.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Queensland - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456782",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      }
+    ]
+
   section.section-4
     .container
       h2.box-title(
@@ -527,132 +365,8 @@ block main
         data-aos-duration="800" 
         data-aos="fade-up"
         )
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 1" 
-                src="/assets/images/product-1.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") New South Wales - 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 899.00
-              .inner-price-new
-                span.inner-unit $
-                | 700.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456780
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 10
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 2" 
-                src="/assets/images/product-2.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") Victoria - 3D2N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 799.00
-              .inner-price-new
-                span.inner-unit $
-                | 709.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456781
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 3 Days 2 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 9
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 3" 
-                src="/assets/images/product-3.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") Queensland - 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 859.00
-              .inner-price-new
-                span.inner-unit $
-                | 749.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456782
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 11
+        each item in productListSection4
+          +product-item(item)
       .inner-button(
         data-aos-delay="150" 
         data-aos-duration="800" 
@@ -674,6 +388,122 @@ block main
             )
   // End Section 5
   // Section 6
+  -
+    var productListSection6 = [
+      {
+        avatar: "/assets/images/product-1.jpg",
+        slug: '#',
+        discount: 30,
+        name: "New South Wales - 4D3N",
+        priceOld: 899.00,
+        priceNew: 700.00,
+        code: "123456780",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 10
+      },
+      {
+        avatar: "/assets/images/product-2.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Victoria - 3D2N",
+        priceOld: 799.00,
+        priceNew: 709.00,
+        code: "123456781",
+        departureDate: "01/08/2025",
+        time: "3 Days 2 Nights",
+        ratingStars: 4,
+        ratingTotal: 20,
+        stock: 9
+      },
+      {
+        avatar: "/assets/images/product-3.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Queensland - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456782",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      },
+      {
+        avatar: "/assets/images/product-4.jpg",
+        slug: '#',
+        discount: 30,
+        name: "South Australia - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456783",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      },
+      {
+        avatar: "/assets/images/product-5.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Western Australia - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456784",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      },
+      {
+        avatar: "/assets/images/product-6.jpeg",
+        slug: '#',
+        discount: 30,
+        name: "Tasmania - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456785",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      },
+      {
+        avatar: "/assets/images/product-3.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Queensland - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456782",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      },
+      {
+        avatar: "/assets/images/product-3.jpg",
+        slug: '#',
+        discount: 30,
+        name: "Queensland - 4D3N",
+        priceOld: 859.00,
+        priceNew: 749.00,
+        code: "123456782",
+        departureDate: "01/08/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 30,
+        stock: 11
+      }
+    ]
+
   section.section-4
     .container
       h2.box-title(
@@ -685,342 +515,8 @@ block main
         data-aos-duration="800" 
         data-aos="fade-up"
         )
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 1" 
-                src="/assets/images/product-1.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") New South Wales - 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 899.00
-              .inner-price-new
-                span.inner-unit $
-                | 700.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456780
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 10
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 2" 
-                src="/assets/images/product-2.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") Victoria - 3D2N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 799.00
-              .inner-price-new
-                span.inner-unit $
-                | 709.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456781
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 3 Days 2 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 9
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 3" 
-                src="/assets/images/product-3.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") Queensland - 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 859.00
-              .inner-price-new
-                span.inner-unit $
-                | 749.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456782
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 11
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 4" 
-                src="/assets/images/product-4.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") South Australia- 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 859.00
-              .inner-price-new
-                span.inner-unit $
-                | 749.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456783
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 11
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 5" 
-                src="/assets/images/product-5.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") Western Australia - 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 859.00
-              .inner-price-new
-                span.inner-unit $
-                | 749.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456784
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 11
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 6" 
-                src="/assets/images/product-6.jpeg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") Tasmania - 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 859.00
-              .inner-price-new
-                span.inner-unit $
-                | 749.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456785
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 11
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 3" 
-                src="/assets/images/product-3.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") Queensland - 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 859.00
-              .inner-price-new
-                span.inner-unit $
-                | 749.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456782
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 11
-        .product-item
-          .inner-image
-            a(href="#")
-              img(
-                alt="Product 3" 
-                src="/assets/images/product-3.jpg"
-                )
-          .inner-discount
-            i.fa-solid.fa-bolt
-            | -30% OFF
-          .inner-content
-            h3.inner-title
-              a(href="#") Queensland - 4D3N
-            .inner-prices
-              .inner-price-old
-                span.inner-unit $
-                | 859.00
-              .inner-price-new
-                span.inner-unit $
-                | 749.00
-            .inner-desc
-              .inner-desc-item
-                | Tour ID:
-                b 123456782
-              .inner-desc-item
-                | Departure Date:
-                b 01/08/2025
-              .inner-desc-item
-                | Duration:
-                b 4 Days 3 Nights
-            .inner-meta
-              .inner-rating
-                .inner-stars
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-solid.fa-star
-                  i.fa-regular.fa-star
-                .inner-number (5)
-              .inner-stock
-                .inner-label Available Spots:
-                .inner-number 11
+        each item in productListSection6 
+          +product-item(item)
       .inner-button(
         data-aos-delay="150" 
         data-aos-duration="800" 

@@ -1,9 +1,8 @@
 extends ../layouts/default.pug
 include ../mixins/box-breadcrumb.pug
+include ../mixins/product-item.pug
 
-block main 
-  h1 #{pageTitle}
-
+block main
   //- Box Breadcrumb
   -
     var breadcrumb = {
@@ -25,6 +24,49 @@ block main
   //- End Box Breadcrumb
 
   // Section 9
+  -
+    var productListSection9 = [
+      {
+        code: "PVTR001",
+        name: "Tokyo - Kyoto - Osaka 4D3N",
+        avatar: "/assets/images/product-7.jpeg",
+        priceOld: 849.0,
+        priceNew: 649.0,
+        discount: 30,
+        departureDate: "01/09/2025",
+        time: "4 Days 3 Nights",
+        ratingStars: 5,
+        ratingTotal: 5,
+        stock: 10
+      },
+      {
+        code: "PVKR002",
+        name: "Jeju Island - Seoul - Busan 5D4N",
+        avatar: "/assets/images/product-8.jpeg",
+        priceOld: 799.0,
+        priceNew: 709.0,
+        discount: 30,
+        departureDate: "02/09/2025",
+        time: "5 Days 4 Nights",
+        ratingStars: 5,
+        ratingTotal: 5,
+        stock: 9
+      },
+      {
+        code: "PVCN003",
+        name: "Beijing - Shanghai - Hangzhou - Suzhou 6D5N",
+        avatar: "/assets/images/product-9.jpeg",
+        priceOld: 799.0,
+        priceNew: 709.0,
+        discount: 30,
+        departureDate: "08/09/2025",
+        time: "6 Days 5 Nights",
+        ratingStars: 5,
+        ratingTotal: 5,
+        stock: 9
+      }
+    ]
+
   section.section-9
     .container
       .inner-wrap
@@ -130,132 +172,8 @@ block main
               span.inner-title Filter
               i.fa-solid.fa-filter
           .inner-list-tour
-            .product-item
-              .inner-image
-                a(href="#")
-                  img(
-                    alt="Product 7" 
-                    src="/assets/images/product-7.jpeg"
-                    )
-              .inner-discount
-                i.fa-solid.fa-bolt
-                | -30% OFF
-              .inner-content
-                h3.inner-title
-                  a(href="#") Tokyo - Kyoto - Osaka 4D3N
-                .inner-prices
-                  .inner-price-old
-                    span.inner-unit $
-                    | 849.00
-                  .inner-price-new
-                    span.inner-unit $
-                    | 649.00
-                .inner-desc
-                  .inner-desc-item
-                    | Tour ID:
-                    b PVTR001
-                  .inner-desc-item
-                    | Departure Date:
-                    b 01/09/2025
-                  .inner-desc-item
-                    | Duration:
-                    b 4 Days 3 Nights
-                .inner-meta
-                  .inner-rating
-                    .inner-stars
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-regular.fa-star
-                    .inner-number (5)
-                  .inner-stock
-                    .inner-label Available Spots:
-                    .inner-number 10
-            .product-item
-              .inner-image
-                a(href="#")
-                  img(
-                    alt="Product 8" 
-                    src="/assets/images/product-8.jpeg"
-                    )
-              .inner-discount
-                i.fa-solid.fa-bolt
-                | -30% OFF
-              .inner-content
-                h3.inner-title
-                  a(href="#") Jeju Island - Seoul - Busan 5D4N
-                .inner-prices
-                  .inner-price-old
-                    span.inner-unit $
-                    | 799.00
-                  .inner-price-new
-                    span.inner-unit $
-                    | 709.00
-                .inner-desc
-                  .inner-desc-item
-                    | Tour ID:
-                    b PVKR002
-                  .inner-desc-item
-                    | Departure Date:
-                    b 02/09/2025
-                  .inner-desc-item
-                    | Duration:
-                    b 5 Days 4 Nights
-                .inner-meta
-                  .inner-rating
-                    .inner-stars
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-regular.fa-star
-                    .inner-number (5)
-                  .inner-stock
-                    .inner-label Available Spots:
-                    .inner-number 9
-            .product-item
-              .inner-image
-                a(href="#")
-                  img(
-                    alt="Product 9" 
-                    src="/assets/images/product-9.jpeg"
-                    )
-              .inner-discount
-                i.fa-solid.fa-bolt
-                | -30% OFF
-              .inner-content
-                h3.inner-title
-                  a(href="#") Beijing - Shanghai - Hangzhou - Suzhou 6D5N
-                .inner-prices
-                  .inner-price-old
-                    span.inner-unit $
-                    | 799.00
-                  .inner-price-new
-                    span.inner-unit $
-                    | 709.00
-                .inner-desc
-                  .inner-desc-item
-                    | Tour ID:
-                    b PVCN003
-                  .inner-desc-item
-                    | Departure Date:
-                    b 08/09/2025
-                  .inner-desc-item
-                    | Duration:
-                    b 6 Days 5 Nights
-                .inner-meta
-                  .inner-rating
-                    .inner-stars
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-solid.fa-star
-                      i.fa-regular.fa-star
-                    .inner-number (5)
-                  .inner-stock
-                    .inner-label Available Spots:
-                    .inner-number 9
+            each item in productListSection9
+              +product-item(item)
           // Box Pagination
           .box-pagination
             button
