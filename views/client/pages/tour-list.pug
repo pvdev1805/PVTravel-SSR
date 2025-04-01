@@ -1,8 +1,273 @@
 extends ../layouts/default.pug
+include ../mixins/box-breadcrumb.pug
 
 block main 
   h1 #{pageTitle}
 
-  ul 
-    each item in tourList 
-      li #{item.name} (Vehicle: #{item.vehicle})
+  //- Box Breadcrumb
+  -
+    var breadcrumb = {
+      image: "/assets/images/banner-6.jpg",
+      title: "International Tour",
+      list: [
+        {
+          link: "/",
+          title: "Home"
+        },
+        {
+          link: "/tours",
+          title: "International Tours"
+        }
+      ]
+    }
+
+  +box-breadcrumb(breadcrumb)
+  //- End Box Breadcrumb
+
+  // Section 9
+  section.section-9
+    .container
+      .inner-wrap
+        .inner-left
+          // Box Filter
+          .box-filter
+            .inner-head
+              .inner-title Filter
+              i.fa-solid.fa-filter
+            .inner-body
+              .inner-group
+                label.inner-label(for="") Departure
+                select(name="")
+                  option(value="") -- Select Departure --
+                  option(value="") Perth
+                  option(value="") Sydney
+                  option(value="") Melbourne
+              .inner-group
+                label.inner-label(for="") Destination
+                select(name="")
+                  option(value="") -- Select Destination --
+                  option(value="") Perth
+                  option(value="") Sydney
+                  option(value="") Melbourne
+              .inner-group
+                label.inner-label(for="") Departure Date
+                input(
+                  name="" 
+                  type="date"
+                  )
+              .inner-group
+                label.inner-label(for="") Number of Passengers
+                .inner-input-list
+                  .inner-input-item
+                    span Adult:
+                    input(
+                      value="0" 
+                      name="" 
+                      type="number"
+                      )
+                  .inner-input-item
+                    span Child:
+                    input(
+                      value="0" 
+                      name="" 
+                      type="number"
+                      )
+                  .inner-input-item
+                    span Infant:
+                    input(
+                      value="0" 
+                      name="" 
+                      type="number"
+                      )
+              .inner-group
+                label.inner-label(for="") Price Range ($)
+                select(name="")
+                  option(value="") -- Select Price Range --
+                  option(value="") Under $300
+                  option(value="") $300 - $500
+                  option(value="") $500 - $700
+                  option(value="") Over $700
+              .inner-group
+                button.inner-button Apply
+          .inner-overlay
+          // End Box Filter
+        .inner-right
+          .inner-info
+            h2.inner-title International Tours
+            .inner-desc
+              | Asia Traveling: Asia is the largest continent in the world by a
+              |   considerable margin, and it is rich in natural resources, such
+              |   as petroleum, forests, fish, water, rice, copper and silver.
+              |   Manufacturing in Asia has traditionally been strongest in East
+              |   and Southeast Asia, particularly in China, Taiwan, South Korea,
+              |   Japan, India, the Philippines, and Singapore. Asia is the
+              |   largest continent in the world by a considerable margin, and it
+              |   is rich in natural resources, such as petroleum, forests, fish,
+              |   water, rice, copper and silver. Manufacturing in Asia has
+              |   traditionally been strongest in East and Southeast Asia,
+              |   particularly in China, Taiwan, South Korea, Japan, India, the
+              |   Philippines, and Singapore.
+          .inner-info-2
+            .inner-sort
+              .inner-label Sort by:
+              .inner-list
+                button
+                  | Price: Low to High
+                  i.fa-solid.fa-square-caret-up
+                button
+                  | Price: High to Low
+                  i.fa-solid.fa-square-caret-down
+                button.active
+                  | Hot Deals
+                  i.fa-solid.fa-tag
+                button
+                  | Most Viewed
+                  i.fa-solid.fa-eye
+            .inner-count-record
+              | All:
+              b 101 Tours
+            button.inner-filter-mobile
+              span.inner-title Filter
+              i.fa-solid.fa-filter
+          .inner-list-tour
+            .product-item
+              .inner-image
+                a(href="#")
+                  img(
+                    alt="Product 7" 
+                    src="/assets/images/product-7.jpeg"
+                    )
+              .inner-discount
+                i.fa-solid.fa-bolt
+                | -30% OFF
+              .inner-content
+                h3.inner-title
+                  a(href="#") Tokyo - Kyoto - Osaka 4D3N
+                .inner-prices
+                  .inner-price-old
+                    span.inner-unit $
+                    | 849.00
+                  .inner-price-new
+                    span.inner-unit $
+                    | 649.00
+                .inner-desc
+                  .inner-desc-item
+                    | Tour ID:
+                    b PVTR001
+                  .inner-desc-item
+                    | Departure Date:
+                    b 01/09/2025
+                  .inner-desc-item
+                    | Duration:
+                    b 4 Days 3 Nights
+                .inner-meta
+                  .inner-rating
+                    .inner-stars
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-regular.fa-star
+                    .inner-number (5)
+                  .inner-stock
+                    .inner-label Available Spots:
+                    .inner-number 10
+            .product-item
+              .inner-image
+                a(href="#")
+                  img(
+                    alt="Product 8" 
+                    src="/assets/images/product-8.jpeg"
+                    )
+              .inner-discount
+                i.fa-solid.fa-bolt
+                | -30% OFF
+              .inner-content
+                h3.inner-title
+                  a(href="#") Jeju Island - Seoul - Busan 5D4N
+                .inner-prices
+                  .inner-price-old
+                    span.inner-unit $
+                    | 799.00
+                  .inner-price-new
+                    span.inner-unit $
+                    | 709.00
+                .inner-desc
+                  .inner-desc-item
+                    | Tour ID:
+                    b PVKR002
+                  .inner-desc-item
+                    | Departure Date:
+                    b 02/09/2025
+                  .inner-desc-item
+                    | Duration:
+                    b 5 Days 4 Nights
+                .inner-meta
+                  .inner-rating
+                    .inner-stars
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-regular.fa-star
+                    .inner-number (5)
+                  .inner-stock
+                    .inner-label Available Spots:
+                    .inner-number 9
+            .product-item
+              .inner-image
+                a(href="#")
+                  img(
+                    alt="Product 9" 
+                    src="/assets/images/product-9.jpeg"
+                    )
+              .inner-discount
+                i.fa-solid.fa-bolt
+                | -30% OFF
+              .inner-content
+                h3.inner-title
+                  a(href="#") Beijing - Shanghai - Hangzhou - Suzhou 6D5N
+                .inner-prices
+                  .inner-price-old
+                    span.inner-unit $
+                    | 799.00
+                  .inner-price-new
+                    span.inner-unit $
+                    | 709.00
+                .inner-desc
+                  .inner-desc-item
+                    | Tour ID:
+                    b PVCN003
+                  .inner-desc-item
+                    | Departure Date:
+                    b 08/09/2025
+                  .inner-desc-item
+                    | Duration:
+                    b 6 Days 5 Nights
+                .inner-meta
+                  .inner-rating
+                    .inner-stars
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-solid.fa-star
+                      i.fa-regular.fa-star
+                    .inner-number (5)
+                  .inner-stock
+                    .inner-label Available Spots:
+                    .inner-number 9
+          // Box Pagination
+          .box-pagination
+            button
+              i.fa-solid.fa-angles-left
+            button.active 1
+            button 2
+            button 3
+            button 4
+            button 5
+            button
+              i.fa-solid.fa-angles-right
+          // End Box Pagination
+  // End Section 9
+
+  
