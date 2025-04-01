@@ -1,0 +1,302 @@
+extend ../layouts/default.pug
+include ../mixins/box-breadcrumb.pug
+
+block main 
+  //- Box Breadcrumb
+  -
+    var breadcrumb = {
+      image: "/assets/images/banner-7.jpg",
+      title: "Tour Sunshine Coast - Brisbane - Gold Coast 4D3N",
+      list: [
+        {
+          link: "/",
+          title: "Home"
+        },
+        {
+          link: "/tours",
+          title: "Domestic Tours"
+        },
+        {
+          link: "/tours",
+          title: "Queensland"
+        },
+        {
+          link: "/tours/detail",
+          title: "Tour Sunshine Coast - Brisbane - Gold Coast 4D3N"
+        }
+      ]
+    }
+
+  +box-breadcrumb(breadcrumb)
+  //- End Box Breadcrumb
+
+  // Section 10
+  section.section-10
+    .container
+      .inner-wrap
+        .inner-left
+          .box-images
+            .inner-images-main
+              .swiper.swiper-box-images-main
+                .swiper-wrapper
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Beach in Sunshine Coast" 
+                        src="/assets/images/banner-8.jpeg"
+                        )
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Playground in Sunshine Coast" 
+                        src="/assets/images/banner-9.jpeg"
+                        )
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Playground in Brisbane" 
+                        src="/assets/images/banner-10.jpeg"
+                        )
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Sight in Brisbane" 
+                        src="/assets/images/banner-11.jpeg"
+                        )
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Beach in Gold Coast" 
+                        src="/assets/images/banner-12.jpeg"
+                        )
+                .swiper-button-next
+                .swiper-button-prev
+            .inner-images-thumb
+              .swiper.swiper-box-images-thumb
+                .swiper-wrapper
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Beach in Sunshine Coast" 
+                        src="/assets/images/banner-8.jpeg"
+                        )
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Playground in Sunshine Coast" 
+                        src="/assets/images/banner-9.jpeg"
+                        )
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Playground in Brisbane" 
+                        src="/assets/images/banner-10.jpeg"
+                        )
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Sight in Brisbane" 
+                        src="/assets/images/banner-11.jpeg"
+                        )
+                  .swiper-slide
+                    .inner-image
+                      img(
+                        alt="Beach in Gold Coast" 
+                        src="/assets/images/banner-12.jpeg"
+                        )
+          .box-tour-info
+            .inner-title Tour Details
+            .inner-content
+              p
+                | The Sunshine Coast is a beautiful region located in the
+                |   southeastern part of Queensland, Australia. It is known for
+                |   its stunning beaches, lush rainforests, and charming towns.
+                |   This 4 day, 3 night tour will take you to some of the best
+                |   spots on the Sunshine Coast, Brisbane, and the Gold Coast. You
+                |   will have the opportunity to explore the stunning beaches,
+                |   visit the famous Australia Zoo, and enjoy the vibrant
+                |   nightlife of the Gold Coast. This tour is perfect for those
+                |   looking to experience the best of what Queensland has to
+                |   offer.
+              img(
+                alt="Premium Hotel in Sunshine Coast" 
+                src="/assets/images/banner-14.jpeg"
+                )
+              p
+                | The tour includes accommodation in a premium hotel, all
+                |   transportation, and guided tours of the top attractions in the
+                |   region. You will also have the opportunity to enjoy delicious
+                |   meals at some of the best restaurants in the area. Don't miss
+                |   out on this amazing opportunity to explore the Sunshine Coast,
+                |   Brisbane, and the Gold Coast in style!
+              img(
+                alt="Beautiful View in Gold Coast" 
+                src="/assets/images/banner-19.jpeg"
+                )
+              p
+                | The Gold Coast is a vibrant city located in the southeastern
+                |   part of Queensland, Australia. It is known for its beautiful
+                |   beaches, exciting theme parks, and lively nightlife. This 4
+                |   day, 3 night tour will take you to some of the best spots on
+                |   the Gold Coast, Brisbane, and the Sunshine Coast.
+              p
+                | You will have the opportunity to explore the stunning beaches,
+                |   visit the famous Australia Zoo, and enjoy the vibrant
+                |   nightlife of the Gold Coast. This tour is perfect for those
+                |   looking to experience the best of what Queensland has to
+                |   offer. The tour includes accommodation in a premium hotel, all
+                |   transportation, and guided tours of the top attractions in the
+                |   region. You will also have the opportunity to enjoy delicious
+                |   meals at some of the best restaurants in the area. Don't miss
+                |   out on this amazing opportunity to explore the Gold Coast in
+                |   style!
+            .inner-read-more
+              button.button-outline View More
+          .box-tour-schedule
+            .inner-title-main Tour Schedule & Itinerary
+            .inner-list
+              .inner-item
+                .inner-title Day 1 | Arrival in Sunshine Coast
+                .inner-content
+                  p
+                    | Upon arrival in the Sunshine Coast, you will be greeted by
+                    |   your tour guide and transferred to your hotel. After
+                    |   checking in, you will have the rest of the day to relax
+                    |   and explore the area at your own pace. You may choose to
+                    |   visit the local markets, take a stroll along the beach, or
+                    |   simply relax by the pool.
+                  p
+                    | In the evening, you will enjoy a welcome dinner at a local
+                    |   restaurant, where you will have the opportunity to sample
+                    |   some of the region's best cuisine.
+                  img(
+                    alt="" 
+                    src="/assets/images/banner-15.jpeg"
+                    )
+                  p
+                    | Overnight in Sunshine Coast. Meals included: Dinner at a
+                    |   local restaurant.
+                  p
+                    | Then, you will have the opportunity to explore the
+                    |   stunning beaches, visit the famous Australia Zoo, and
+                    |   enjoy the vibrant nightlife of the Sunshine Coast. This
+                    |   tour is perfect for those looking to experience the best
+                    |   of what Queensland has to offer. The tour includes
+                    |   accommodation in a premium hotel, all transportation, and
+                    |   guided tours of the top attractions in the region. You
+                    |   will also have the opportunity to enjoy delicious meals at
+                    |   some of the best restaurants in the area. Don't miss out
+                    |   on this amazing opportunity to explore the Sunshine Coast
+                    |   in style!
+              .inner-item
+                .inner-title Day 2 | Sunshine Coast to Brisbane
+                .inner-content
+                  p
+                    | After breakfast, you will depart the Sunshine Coast and
+                    |   head to Brisbane, the capital of Queensland. Upon arrival,
+                    |   you will embark on a guided tour of the city, where you
+                    |   will visit some of the top attractions, including South
+                    |   Bank Parklands, the Queensland Museum, and the Brisbane
+                    |   Botanic Gardens.
+                  p
+                    | In the afternoon, you will have free time to explore the
+                    |   city at your own pace. You may choose to visit the
+                    |   Queensland Art Gallery, take a cruise along the Brisbane
+                    |   River, or simply relax in one of the city's many parks.
+                  img(
+                    alt="" 
+                    src="/assets/images/banner-16.jpeg"
+                    )
+                  p
+                    | Overnight in Brisbane. Meals included: Breakfast at the
+                    |   hotel.
+        .inner-right
+          .box-tour-detail
+            .inner-title-main Your Tour Details
+            .inner-product
+              .inner-image
+                img(
+                  alt="Tour Image" 
+                  src="/assets/images/banner-13.jpeg"
+                  )
+              .inner-info
+                .inner-title Tour Sunshine Coast - Brisbane - Gold Coast 4D3N
+                .inner-rating
+                  .inner-stars
+                    i.fa-solid.fa-star
+                    i.fa-solid.fa-star
+                    i.fa-solid.fa-star
+                    i.fa-solid.fa-star
+                    i.fa-solid.fa-star
+                .inner-number 500 Reviews
+            .inner-meta
+              .inner-item
+                i.fa-solid.fa-ticket-simple
+                span Tour ID:
+                span.inner-highlight PVQLD001
+              .inner-item
+                i.fa-solid.fa-calendar-days
+                span Duration:
+                span.inner-highlight 4 Days 3 Nights
+              .inner-item
+                i.fa-solid.fa-car
+                span Vehicle:
+                span.inner-highlight 45 seater car
+              .inner-item
+                i.fa-solid.fa-calendar-days
+                span Departure Date:
+                span.inner-highlight 01/08/2025
+            form.inner-form(action="")
+              .inner-group
+                label.inner-label(for="") Departure at:
+                select(name="")
+                  option(value="") Toowoomba
+                  option(value="") Ipswich
+                  option(value="") Springfield
+              .inner-group
+                label.inner-label(for="") Number of Passengers:
+                .inner-list
+                  .inner-item
+                    .inner-item-label Adult:
+                    .inner-item-input
+                      input(
+                        min="0" 
+                        value="1" 
+                        name="" 
+                        type="number"
+                        )
+                    .inner-item-price
+                      span 1
+                      span x
+                      span.inner-highlight $300.00
+                  .inner-item
+                    .inner-item-label Child:
+                    .inner-item-input
+                      input(
+                        min="0" 
+                        value="0" 
+                        name="" 
+                        type="number"
+                        )
+                    .inner-item-price
+                      span 1
+                      span x
+                      span.inner-highlight $100.00
+                  .inner-item
+                    .inner-item-label Infant:
+                    .inner-item-input
+                      input(
+                        min="0" 
+                        value="0" 
+                        name="" 
+                        type="number"
+                        )
+                    .inner-item-price
+                      span 1
+                      span x
+                      span.inner-highlight $50.00
+              .inner-total
+                .inner-total-label Total Price:
+                .inner-total-price $450.00
+              button.inner-button-add-cart Add To Cart
+  // End Section 10
