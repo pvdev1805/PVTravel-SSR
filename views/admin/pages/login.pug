@@ -48,7 +48,7 @@ block main
           ) Remember password
 
         a(
-          href="/admin/account/forgot-password"
+          href=`/${pathAdmin}/account/forgot-password`
           class="inner-forgot-password"
         ) Forgot password?
 
@@ -56,5 +56,5 @@ block main
 
     .inner-more 
       span Don't have an account?
-      a(href="/admin/account/register") Sign Up
+      a(href=`/${pathAdmin}/account/register`) Sign Up
         

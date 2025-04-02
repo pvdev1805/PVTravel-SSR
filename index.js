@@ -9,6 +9,8 @@ const database = require('./config/database')
 const adminRoutes = require('./routes/admin/index.route')
 const clientRoutes = require('./routes/client/index.route')
 
+const variableConfig = require('./config/variable')
+
 const app = express()
 
 const port = 3000
@@ -23,8 +25,11 @@ app.set('view engine', 'pug') // Set PUG as the view engine
 // Set up static files directory
 app.use(express.static(path.join(__dirname, 'public')))
 
+// Set up local variables for PUG templates
+app.locals.pathAdmin = variableConfig.pathAdmin
+
 // Set up admin routes
-app.use('/admin', adminRoutes)
+app.use(`/${variableConfig.pathAdmin}`, adminRoutes)
 
 // Set up client routes
 app.use('/', clientRoutes)
