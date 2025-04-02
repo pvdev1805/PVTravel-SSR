@@ -1,0 +1,47 @@
+extends ../layouts/default.pug
+
+block title
+  title Create Admin Account
+
+block main 
+  h1.box-title Create Admin Account
+  
+  //- Section 8
+  section.section-8 
+    form#setting-account-admin-create-form
+      .inner-group 
+        label(class="inner-label" for="fullName") Full Name
+        input(type="text" id="fullName" name="fullName")
+      .inner-group 
+        label(class="inner-label" for="email") Email
+        input(type="email" id="email" name="email")
+      .inner-group 
+        label(class="inner-label" for="phone") Phone
+        input(type="text" id="phone" name="phone")
+      .inner-group
+        label(class="inner-label" for="role") Role
+        select(id="role" name="role")
+          option(value="") -- Select Role --
+          option(value="Admin") Admin
+          option(value="Tour Manager") Tour Manager
+          option(value="Order Manager") Order Manager
+      .inner-group
+        label(class="inner-label" for="positionCompany") Position 
+        input(type="text" id="positionCompany" name="positionCompany")
+      .inner-group 
+        label(class="inner-label" for="status") Status 
+        select(id="status" name="status")
+          option(value="active") Active
+          option(value="inactive") Inactive
+      .inner-group
+        label(class="inner-label" for="password") Password
+        input(type="text" id="password" name="password")
+      .inner-group.inner-two-col 
+        label(class="inner-label" for="avatar") Avatar
+        div(class="inner-upload-image")
+          input(type="file" id="avatar" name="avatar" accept="image/*" filepond-image)
+      .inner-button.inner-two-col 
+        button Create 
+    .inner-back 
+      a(href="#") Back to Settings List
+  //- End Section 8

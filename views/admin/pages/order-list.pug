@@ -1,0 +1,111 @@
+extends ../layouts/default.pug
+
+block title 
+  title Order List
+
+block main
+  h1.box-title Order List 
+  
+  //- Section 4
+  section.section-4 
+    .inner-wrap 
+      .inner-item.inner-label
+        <i class="fa-solid fa-filter"></i> Filter
+      .inner-item
+        select
+          option(value="") Status 
+          option(value="") Initial 
+          option(value="") Completed 
+          option(value="") Cancelled 
+      .inner-item.inner-date
+        input(type="date" placeholder="From")
+        span -
+        input(type="date" placeholder="To") 
+      .inner-item
+        select
+          option(value="") Payment Method
+          option(value="") Cash 
+          option(value="") Credit Card
+          option(value="") Bank Transfer
+      .inner-item
+        select
+          option(value="") Payment Status
+          option(value="") Paid 
+          option(value="") Pending
+      .inner-item.inner-reset 
+        <i class="fa-solid fa-rotate-left"></i> Clear Filter
+  //- End Section 4
+
+  //- Section 5
+  section.section-5 
+    .inner-wrap 
+      .inner-search
+        <i class="fa-solid fa-magnifying-glass"></i>
+        input(type="text" placeholder="Search")
+  //- End Section 5
+
+  //- Section 6
+  section.section-6 
+    .table-2 
+      table 
+        thead 
+          tr 
+            th Order ID
+            th Customer Info
+            th Tour List
+            th Payment
+            th Status
+            th(class="inner-center") Ordered Date
+            th Actions
+        tbody
+          tr 
+            td 
+              .inner-code PVGST001
+            td
+              div Full Name: Nicholas Cage
+              div Phone: 0123456789
+              div Note: Test...
+            td 
+              .inner-list 
+                .inner-item 
+                  .inner-image 
+                    img(src="assets/images/tour-1.jpeg" alt="Order 1")
+                  .inner-content 
+                    .inner-name Tour Gold Coast
+                    .inner-quantity Adult: 3 x $200
+                    .inner-quantity Child: 2 x $100
+                    .inner-quantity Infant: 1 x $50
+                .inner-item
+                  .inner-image 
+                    img(src="assets/images/tour-1.jpeg" alt="Order 2")
+                  .inner-content 
+                    .inner-name Tour Gold Coast
+                    .inner-quantity Adult: 3 x $200
+                    .inner-quantity Child: 2 x $100
+                    .inner-quantity Infant: 1 x $50
+            td
+              div Total: $900
+              div Discount: $300
+              div Coupon: SUMMERTOUR2025
+              div Checkout: $600
+              div Payment Method: Credit Card
+              div Payment Status: Paid
+            td
+              .badge.badge-orange Initial
+            td(class="inner-center") 
+              div 16:20
+              div 01/09/2025
+            td
+              .inner-buttons 
+                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
+                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+  //- End Section 6
+
+  //- Section 7
+  section.section-7 
+    span(class="inner-label") Showing 1 - 9 of 78 entries
+    select(class="inner-pagination")
+      option Page 1
+      option Page 2
+      option Page 3
+  //- End Section 7

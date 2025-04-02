@@ -1,0 +1,71 @@
+extends ../layouts/account.pug
+
+block title 
+  title Sign Up
+
+block main 
+  .form-account
+    h2.inner-title Sign Up
+    p.inner-desc Create your account to access admin panel
+
+    form.inner-form#register-form
+      .inner-group 
+        label(
+          for="fullName"
+          class="inner-label"
+        ) Full Name
+
+        input(
+          type="text"
+          id="fullName"
+          name="fullName"
+          placeholder="Example: John Smith"
+          class="inner-control"
+        )
+      
+      .inner-group 
+        label(
+          for="email"
+          class="inner-label"
+        ) Email
+
+        input(
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Example: johnsmith@gmail.com"
+          class="inner-control"
+        )
+
+      .inner-group 
+        label(
+          for="password"
+          class="inner-label"
+        ) Password
+
+        input(
+          type="password"
+          id="password"
+          name="password"
+          class="inner-control"
+        )
+
+      .inner-meta
+        .inner-confirm 
+          input(
+            type="checkbox"
+            id="agree"
+            name="agree"
+            class="inner-check"
+          )
+
+          label(
+            for="agree"
+            class="inner-label"
+          ) I agree to the terms and conditions
+
+      button(class="inner-button") Sign Up
+
+    .inner-more 
+      span Already have an account?
+      a(href="#") Sign In

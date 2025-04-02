@@ -1,0 +1,67 @@
+extends ../layouts/default.pug
+
+block title
+  title Contact List
+
+block main 
+  h1.box-title Contact List
+
+  //- Section 4
+  section.section-4 
+    .inner-wrap 
+      .inner-item.inner-label
+        <i class="fa-solid fa-filter"></i> Filter
+      .inner-item.inner-date
+        input(type="date" placeholder="From")
+        span -
+        input(type="date" placeholder="To") 
+      .inner-item.inner-reset 
+        <i class="fa-solid fa-rotate-left"></i> Clear Filter
+  //- End Section 4
+
+  //- Section 5
+  section.section-5 
+    .inner-wrap 
+      .inner-change-status
+        .inner-item
+          select
+            option(value="") -- Actions --
+            option(value="") Deleted
+        .inner-item
+          button Apply 
+      
+      .inner-search
+        <i class="fa-solid fa-magnifying-glass"></i>
+        input(type="text" placeholder="Search")
+  //- End Section 5
+
+  //- Section 6
+  section.section-6 
+    .table-2 
+      table 
+        thead 
+          tr 
+            th(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            th Email
+            th Created Date
+            th(class="inner-center") Actions
+        tbody
+          tr 
+            td(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            td nicholascage@gmail.com
+            td 16:40 - 20/08/2025
+            td(class="inner-center")
+              .inner-buttons 
+                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+  //- End Section 6
+
+  //- Section 7
+  section.section-7 
+    span(class="inner-label") Showing 1 - 9 of 78 entries
+    select(class="inner-pagination")
+      option Page 1
+      option Page 2
+      option Page 3
+  //- End Section 7

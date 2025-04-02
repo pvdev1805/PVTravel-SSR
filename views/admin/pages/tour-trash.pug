@@ -1,0 +1,107 @@
+extends ../layouts/default.pug
+
+block title 
+  title Tour Trash
+
+block main 
+  h1.box-title Tour Trash
+
+  //- Section 5
+  section.section-5 
+    .inner-wrap 
+      .inner-change-status
+        .inner-item
+          select
+            option(value="") -- Actions --
+            option(value="") Restore
+            option(value="") Delete Permanently 
+        .inner-item
+          button Apply 
+      
+      .inner-search
+        <i class="fa-solid fa-magnifying-glass"></i>
+        input(type="text" placeholder="Search")
+  //- End Section 5
+
+  //- Section 6
+  section.section-6 
+    .table-2 
+      table 
+        thead 
+          tr 
+            th(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            th Tour Name
+            th Thumbnail
+            th Price
+            th Availability
+            th(class="inner-center") Position
+            th(class="inner-center") Status
+            th Created By
+            th Updated By
+            th Actions
+        tbody
+          tr 
+            td(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            td Tour Gold Coast
+            td 
+              img(src="assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
+            td 
+              div Adult: $200
+              div Child: $100
+              div Infant: $50
+            td 
+              div Adult: 10
+              div Child: 20
+              div Infant: 5
+            td(class="inner-center") 1
+            td(class="inner-center")
+              .badge.badge-green Active
+            td 
+              div John Doe 
+              div.inner-time 16:30 - 20/07/2025
+            td 
+              div John Doe 
+              div.inner-time 10:30 - 22/07/2025
+            td
+              .inner-buttons 
+                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
+                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+          tr 
+            td(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            td Tour Gold Coast
+            td 
+              img(src="assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
+            td 
+              div Adult: $200
+              div Child: $100
+              div Infant: $50
+            td 
+              div Adult: 10
+              div Child: 20
+              div Infant: 5
+            td(class="inner-center") 2
+            td(class="inner-center")
+              .badge.badge-red Inactive
+            td 
+              div John Doe 
+              div.inner-time 16:30 - 20/07/2025
+            td 
+              div Jane Doe 
+              div.inner-time 10:30 - 22/07/2025
+            td
+              .inner-buttons 
+                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
+                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+  //- End Section 6
+
+  //- Section 7
+  section.section-7 
+    span(class="inner-label") Showing 1 - 9 of 78 entries
+    select(class="inner-pagination")
+      option Page 1
+      option Page 2
+      option Page 3
+  //- End Section 7

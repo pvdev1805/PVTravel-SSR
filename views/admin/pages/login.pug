@@ -1,0 +1,63 @@
+extends ../layouts/account.pug
+
+block title 
+  title Sign In 
+
+block main 
+  .form-account 
+    h2.inner-title Sign In
+    p.inner-desc Enter your email and password to access admin panel
+
+    form.inner-form#login-form
+      .inner-group 
+        label(
+          for="email" 
+          class="inner-label"
+        ) Email
+
+        input(
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Example: johnsmith@gmail.com"
+          class="inner-control"
+        ) 
+
+      .inner-group 
+        label(
+          for="password" 
+          class="inner-label"
+        ) Password
+
+        input(
+          type="password"
+          id="password"
+          name="password"
+          class="inner-control"
+        )
+
+      .inner-meta 
+        .inner-confirm 
+          input(
+            type="checkbox"
+            id="remember-password"
+            name="rememberPassword"
+            class="inner-check"
+          )
+
+          label(
+            for="remember-password"
+            class="inner-label"
+          ) Remember password
+
+        a(
+          href="#"
+          class="inner-forgot-password"
+        ) Forgot password?
+
+      button(class="inner-button") Sign In
+
+    .inner-more 
+      span Don't have an account?
+      a(href="#") Sign Up
+        

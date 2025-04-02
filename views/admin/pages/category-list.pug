@@ -1,0 +1,116 @@
+extends ../layouts/default.pug
+
+block title 
+  title Category List
+
+block main 
+  h1.box-title Category List
+
+  //- Section 4
+  section.section-4 
+    .inner-wrap 
+      .inner-item.inner-label
+        <i class="fa-solid fa-filter"></i> Filter
+      .inner-item
+        select
+          option(value="") Status 
+          option(value="") Active 
+          option(value="") Inactive  
+      .inner-item
+        select
+          option(value="") Creator 
+          option(value="") John Doe 
+          option(value="") Jane Doe 
+      .inner-item.inner-date
+        input(type="date" placeholder="From")
+        span -
+        input(type="date" placeholder="To") 
+      .inner-item.inner-reset 
+        <i class="fa-solid fa-rotate-left"></i> Clear Filter
+  //- End Section 4
+
+  //- Section 5
+  section.section-5 
+    .inner-wrap 
+      .inner-change-status
+        .inner-item
+          select
+            option(value="") -- Actions --
+            option(value="") Active 
+            option(value="") Inactive 
+            option(value="") Deleted 
+        .inner-item
+          button Apply 
+      
+      .inner-search
+        <i class="fa-solid fa-magnifying-glass"></i>
+        input(type="text" placeholder="Search")
+      
+      .inner-button-create 
+        button <i class="fa-solid fa-plus"></i> Create Category
+  //- End Section 5
+
+  //- Section 6
+  section.section-6 
+    .table-2 
+      table 
+        thead 
+          tr 
+            th(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            th Category Name
+            th Thumbnail
+            th(class="inner-center") Position
+            th(class="inner-center") Status
+            th Created By
+            th Updated By
+            th Actions
+        tbody
+          tr 
+            td(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            td Category 1
+            td 
+              img(src="assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
+            td(class="inner-center") 1
+            td(class="inner-center")
+              .badge.badge-green Active
+            td 
+              div John Doe 
+              div.inner-time 16:30 - 20/07/2025
+            td 
+              div John Doe 
+              div.inner-time 10:30 - 22/07/2025
+            td
+              .inner-buttons 
+                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
+                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+          tr 
+            td(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            td Category 2
+            td 
+              img(src="assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
+            td(class="inner-center") 2
+            td(class="inner-center")
+              .badge.badge-red Inactive
+            td 
+              div John Doe 
+              div.inner-time 16:30 - 20/07/2025
+            td 
+              div Jane Doe 
+              div.inner-time 10:30 - 22/07/2025
+            td
+              .inner-buttons 
+                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
+                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+  //- End Section 6
+
+  //- Section 7
+  section.section-7 
+    span(class="inner-label") Showing 1 - 9 of 78 entries
+    select(class="inner-pagination")
+      option Page 1
+      option Page 2
+      option Page 3
+  //- End Section 7

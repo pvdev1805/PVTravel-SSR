@@ -1,0 +1,85 @@
+extends ../layouts/default.pug
+
+block title
+  title User List 
+
+block main 
+  h1.box-title User List 
+
+  //- Section 4
+  section.section-4 
+    .inner-wrap 
+      .inner-item.inner-label
+        <i class="fa-solid fa-filter"></i> Filter
+      .inner-item
+        select
+          option(value="") Status 
+          option(value="") Active 
+          option(value="") Inactive
+      .inner-item.inner-date
+        input(type="date" placeholder="From")
+        span -
+        input(type="date" placeholder="To") 
+      .inner-item.inner-reset 
+        <i class="fa-solid fa-rotate-left"></i> Clear Filter
+  //- End Section 4
+
+  //- Section 5
+  section.section-5 
+    .inner-wrap 
+      .inner-change-status
+        .inner-item
+          select
+            option(value="") -- Actions --
+            option(value="") Active 
+            option(value="") Inactive 
+            option(value="") Deleted 
+        .inner-item
+          button Apply 
+      
+      .inner-search
+        <i class="fa-solid fa-magnifying-glass"></i>
+        input(type="text" placeholder="Search")
+  //- End Section 5
+
+  //- Section 6
+  section.section-6 
+    .table-2 
+      table 
+        thead 
+          tr 
+            th(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            th Full Name
+            th(class="inner-center") Avatar
+            th Email
+            th Phone
+            th Address
+            th Status
+            th Actions
+        tbody
+          tr 
+            td(class="inner-center")
+              input(type="checkbox" class="inner-check")
+            td Nicholas Cage
+            td(class="inner-center") 
+              img(src="assets/images/avatar.png" alt="User 1" class="inner-avatar")
+            td nicholascage@gmail.com
+            td 0123456789
+            td 123 Alderley St, Brisbane, QLD
+            td
+              .badge.badge-green Active
+            td
+              .inner-buttons 
+                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
+                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+  //- End Section 6
+
+  //- Section 7
+  section.section-7 
+    span(class="inner-label") Showing 1 - 9 of 78 entries
+    select(class="inner-pagination")
+      option Page 1
+      option Page 2
+      option Page 3
+  //- End Section 7

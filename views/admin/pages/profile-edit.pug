@@ -1,0 +1,35 @@
+extends ../layouts/default.pug
+
+block title
+  title User Profile
+
+block main 
+  h1.box-title User Profile 
+  
+  //- Section 8
+  section.section-8 
+    form#profile-edit-form
+      .inner-group 
+        label(class="inner-label" for="fullName") Full Name
+        input(type="text" id="fullName" name="fullName" value="Nicholas Cage")
+      .inner-group 
+        label(class="inner-label" for="email") Email
+        input(type="email" id="email" name="email" value="nicholascage@gmail.com")
+      .inner-group 
+        label(class="inner-label" for="phone") Phone
+        input(type="text" id="phone" name="phone" value="0123456789")
+      .inner-group 
+        label(class="inner-label" for="positionCompany") Position
+        input(type="text" id="positionCompany" name="positionCompany" value="President" readonly)
+      .inner-group 
+        label(class="inner-label" for="role") Role
+        input(type="text" id="role" name="role" value="Admin" readonly)
+      .inner-group.inner-two-col 
+        label(class="inner-label" for="avatar") Avatar 
+        div(class="inner-upload-image")
+          input(type="file" id="avatar" name="avatar" accept="image/*" filepond-image)
+      .inner-button.inner-two-col 
+        button Update
+    .inner-back 
+      a(href="#") Change Password
+  //- End Section 8
