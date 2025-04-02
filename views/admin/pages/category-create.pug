@@ -1,8 +1,5 @@
 extends ../layouts/default.pug
 
-block title 
-  title Create Category
-
 block main 
   h1.box-title Create Category
 
@@ -38,5 +35,5 @@ block main
       .inner-button.inner-two-col 
         button Create
     .inner-back 
-      a(href="#") Back to Category List 
+      a(href=`/${pathAdmin}/category/list`) Back to Category List 
   //- End Section 8

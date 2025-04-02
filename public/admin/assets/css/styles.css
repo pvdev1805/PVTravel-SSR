@@ -924,7 +924,8 @@ a {
   color: #979797;
 }
 
-.section-5 .inner-button-create button {
+.section-5 .inner-button-create button,
+.section-5 .inner-button-create a {
   background-color: var(--primary-color);
   color: #fff;
   border: 0;
@@ -939,13 +940,17 @@ a {
   align-items: center;
   gap: 4px;
   min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-5 .inner-button-create button i {
   font-size: 20px;
 }
 
-.section-5 .inner-button-delete button {
+.section-5 .inner-button-delete button,
+.section-5 .inner-button-delete a {
   background-color: #ef382633;
   color: #ef3826;
   border: 0;
@@ -960,6 +965,9 @@ a {
   align-items: center;
   gap: 4px;
   min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .section-5 .inner-button-delete button i {
