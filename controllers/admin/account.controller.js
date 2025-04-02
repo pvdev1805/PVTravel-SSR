@@ -9,3 +9,9 @@ module.exports.register = async (req, res) => {
     pageTitle: 'Sign Up'
   })
 }
+
+module.exports.forgotPassword = async (req, res) => {
+  res.render('admin/pages/forgot-password', {
+    pageTitle: 'Forgot Password'
+  })
+}
