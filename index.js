@@ -6,6 +6,7 @@ dotenv.config()
 
 const database = require('./config/database')
 
+const adminRoutes = require('./routes/admin/index.route')
 const clientRoutes = require('./routes/client/index.route')
 
 const app = express()
@@ -21,6 +22,9 @@ app.set('view engine', 'pug') // Set PUG as the view engine
 
 // Set up static files directory
 app.use(express.static(path.join(__dirname, 'public')))
+
+// Set up admin routes
+app.use('/admin', adminRoutes)
 
 // Set up client routes
 app.use('/', clientRoutes)
