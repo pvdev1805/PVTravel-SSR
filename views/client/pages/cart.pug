@@ -1,0 +1,226 @@
+extends ../layouts/default.pug
+
+block main 
+  // Section 11
+  section.section-11
+    .container
+      .inner-wrap
+        .inner-head
+          .inner-title Cart
+          a.inner-back(href="#")
+            | Back to Shop
+            i.fa-solid.fa-angle-right
+        .inner-tour-list
+          .inner-tour-item
+            .inner-actions
+              button.inner-delete
+                i.fa-solid.fa-xmark
+              input.inner-check(type="checkbox")
+            .inner-product
+              .inner-image
+                a(href="#")
+                  img(
+                    alt="Product 1" 
+                    src="/assets/images/banner-17.jpeg"
+                    )
+              .inner-content
+                .inner-title
+                  a(href="#") European Tour | France - Switzerland - Italy | 11D10N
+                .inner-meta
+                  .inner-meta-item
+                    | Tour ID:
+                    b EUFSI001
+                  .inner-meta-item
+                    | Departure Date:
+                    b 21/09/2025
+                  .inner-meta-item
+                    | Departure Location:
+                    b Sydney
+            .inner-quantity
+              .inner-label Number of Passengers
+              .inner-list
+                .inner-item
+                  .inner-item-label Adult:
+                  .inner-item-input
+                    input(
+                      value="1" 
+                      min="0" 
+                      type="number"
+                      )
+                  .inner-item-price
+                    span 1
+                    span x
+                    span.inner-highlight $300.00
+                .inner-item
+                  .inner-item-label Child:
+                  .inner-item-input
+                    input(
+                      value="0" 
+                      min="0" 
+                      type="number"
+                      )
+                  .inner-item-price
+                    span 1
+                    span x
+                    span.inner-highlight $100.00
+                .inner-item
+                  .inner-item-label Infant:
+                  .inner-item-input
+                    input(
+                      value="0" 
+                      min="0" 
+                      type="number"
+                      )
+                  .inner-item-price
+                    span 1
+                    span x
+                    span.inner-highlight $50.00
+          .inner-tour-item
+            .inner-actions
+              button.inner-delete
+                i.fa-solid.fa-xmark
+              input.inner-check(type="checkbox")
+            .inner-product
+              .inner-image
+                a(href="#")
+                  img(
+                    alt="Product 2" 
+                    src="/assets/images/banner-18.jpeg"
+                    )
+              .inner-content
+                .inner-title
+                  a(href="#") European Tour | Berlin - Madrid - Lisbon | 11D10N
+                .inner-meta
+                  .inner-meta-item
+                    | Tour ID:
+                    b EUBML001
+                  .inner-meta-item
+                    | Departure Date:
+                    b 21/09/2025
+                  .inner-meta-item
+                    | Departure Location:
+                    b Sydney
+            .inner-quantity
+              .inner-label Number of Passengers
+              .inner-list
+                .inner-item
+                  .inner-item-label Adult:
+                  .inner-item-input
+                    input(
+                      value="1" 
+                      min="0" 
+                      type="number"
+                      )
+                  .inner-item-price
+                    span 1
+                    span x
+                    span.inner-highlight $300.00
+                .inner-item
+                  .inner-item-label Child:
+                  .inner-item-input
+                    input(
+                      value="0" 
+                      min="0" 
+                      type="number"
+                      )
+                  .inner-item-price
+                    span 1
+                    span x
+                    span.inner-highlight $100.00
+                .inner-item
+                  .inner-item-label Infant:
+                  .inner-item-input
+                    input(
+                      value="0" 
+                      min="0" 
+                      type="number"
+                      )
+                  .inner-item-price
+                    span 1
+                    span x
+                    span.inner-highlight $50.00
+        .inner-coupon
+          form#coupon-form(action="")
+            input#coupon-input(
+              placeholder="Enter your coupon code..." 
+              type="text" 
+              name="coupon"
+              )
+            button Apply Coupon
+        .inner-list-price
+          .inner-item
+            .inner-label Total Amount:
+            .inner-price $600.00
+          .inner-item
+            .inner-label Discount:
+            .inner-price $150.00
+          .inner-item
+            .inner-label Checkout:
+            .inner-price-highlight $450.00
+  // End Section 11
+  
+  // Section 12
+  section.section-12
+    .container
+      .inner-wrap
+        form#order-form(action="")
+          .inner-info
+            .inner-title-main Customer Information
+            .inner-inputs
+              .inner-input
+                input#full-name-input(
+                  placeholder="Full Name" 
+                  name="fullName" 
+                  type="text"
+                  )
+              .inner-input
+                input#phone-input(
+                  placeholder="Phone Number" 
+                  name="phone" 
+                  type="text"
+                  )
+            textarea(
+              placeholder="Note..." 
+              name="note"
+              )
+          .inner-method
+            .inner-title-main Payment Method
+            .inner-list
+              .inner-item
+                input#methodCash(
+                  checked="" 
+                  value="cash" 
+                  name="method" 
+                  type="radio"
+                  )
+                label(for="methodCash") Cash
+              .inner-item
+                input#methodCard(
+                  value="card" 
+                  name="method" 
+                  type="radio"
+                  )
+                label(for="methodCard") Credit/Debit Card
+              .inner-item
+                input#methodPaypal(
+                  value="paypal" 
+                  name="method" 
+                  type="radio"
+                  )
+                label(for="methodPaypal") PayPal
+              .inner-item
+                input#methodBank(
+                  value="bank" 
+                  name="method" 
+                  type="radio"
+                  )
+                label(for="methodBank") Bank Transfer
+            .inner-info-bank
+              .inner-title Account Transfer Details
+              .inner-text Bank: Heritage Bank
+              .inner-text Account Name: PVTravel
+              .inner-text BSB: 638-010
+              .inner-text Account Number: 123456789
+          .inner-button
+            button Checkout
+  // End Section 12
