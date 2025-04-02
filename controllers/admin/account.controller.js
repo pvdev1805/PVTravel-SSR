@@ -15,3 +15,9 @@ module.exports.forgotPassword = async (req, res) => {
     pageTitle: 'Forgot Password'
   })
 }
+
+module.exports.otpPassword = async (req, res) => {
+  res.render('admin/pages/otp-password', {
+    pageTitle: 'Enter OTP Password'
+  })
+}
