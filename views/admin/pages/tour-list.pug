@@ -1,8 +1,5 @@
 extends ../layouts/default.pug
 
-block title 
-  title Tour List 
-
 block main 
   h1.box-title Tour List
 
@@ -61,9 +58,9 @@ block main
         input(type="text" placeholder="Search")
       
       .inner-button-create 
-        button <i class="fa-solid fa-plus"></i> Create Category
+        a(href=`/${pathAdmin}/tour/create`) <i class="fa-solid fa-plus"></i> Create Category
       .inner-button-delete 
-        button <i class="fa-solid fa-trash"></i> Trash Bin
+        a(href=`/${pathAdmin}/tour/trash`) <i class="fa-solid fa-trash"></i> Trash Bin
   //- End Section 5
 
   //- Section 6
@@ -89,7 +86,7 @@ block main
               input(type="checkbox" class="inner-check")
             td Tour Gold Coast
             td 
-              img(src="assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
+              img(src="/admin/assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
             td 
               div Adult: $200
               div Child: $100
@@ -116,7 +113,7 @@ block main
               input(type="checkbox" class="inner-check")
             td Tour Gold Coast
             td 
-              img(src="assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
+              img(src="/admin/assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
             td 
               div Adult: $200
               div Child: $100
