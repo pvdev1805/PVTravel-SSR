@@ -1,8 +1,5 @@
 extends ../layouts/default.pug
 
-block title 
-  title Create Tour 
-
 block main 
   h1.box-title Create Tour
 
@@ -114,5 +111,5 @@ block main
       .inner-button.inner-two-col 
         button Create
     .inner-back 
-      a(href="#") Back to Category List 
+      a(href=`/${pathAdmin}/tour/list`) Back to Tour List 
   //- End Section 8
