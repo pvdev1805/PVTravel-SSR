@@ -1,10 +1,7 @@
 extends ../layouts/default.pug
 
-block title 
-  title Admin Info 
-
 block main 
-  h1.box-title Admin Info 
+  h1.box-title Admin Account List
 
   //- Section 4
   section.section-4 
@@ -48,7 +45,7 @@ block main
         input(type="text" placeholder="Search")
       
       .inner-button-create 
-        button <i class="fa-solid fa-plus"></i> Create
+        a(href=`/${pathAdmin}/setting/account-admin/create`)  <i class="fa-solid fa-plus"></i> Create
   //- End Section 5
 
   //- Section 6
@@ -73,7 +70,7 @@ block main
               input(type="checkbox" class="inner-check")
             td John Doe
             td(class="inner-center") 
-              img(src="assets/images/avatar.png" alt="User 1" class="inner-avatar")
+              img(src="/admin/assets/images/avatar.png" alt="User 1" class="inner-avatar")
             td johndoe@gmail.com
             td 0123456789
             td Admin

@@ -9,3 +9,9 @@ module.exports.websiteInfo = async (req, res) => {
     pageTitle: 'Website Info'
   })
 }
+
+module.exports.accountAdminList = async (req, res) => {
+  res.render('admin/pages/setting-account-admin-list', {
+    pageTitle: 'Admin Account List'
+  })
+}
