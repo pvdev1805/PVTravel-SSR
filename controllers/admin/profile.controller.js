@@ -3,3 +3,9 @@ module.exports.edit = async (req, res) => {
     pageTitle: 'Profile'
   })
 }
+
+module.exports.changePassword = async (req, res) => {
+  res.render('admin/pages/profile-change-password', {
+    pageTitle: 'Change Password'
+  })
+}
