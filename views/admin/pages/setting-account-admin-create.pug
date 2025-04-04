@@ -1,8 +1,5 @@
 extends ../layouts/default.pug
 
-block title
-  title Create Admin Account
-
 block main 
   h1.box-title Create Admin Account
   
@@ -43,5 +40,5 @@ block main
       .inner-button.inner-two-col 
         button Create 
     .inner-back 
-      a(href="#") Back to Settings List
+      a(href=`/${pathAdmin}/setting/account-admin/list`) Back to Admin Account List
   //- End Section 8

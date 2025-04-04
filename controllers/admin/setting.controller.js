@@ -15,3 +15,9 @@ module.exports.accountAdminList = async (req, res) => {
     pageTitle: 'Admin Account List'
   })
 }
+
+module.exports.accountAdminCreate = async (req, res) => {
+  res.render('admin/pages/setting-account-admin-create', {
+    pageTitle: 'Create Admin Account'
+  })
+}
