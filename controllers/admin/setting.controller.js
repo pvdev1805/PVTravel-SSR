@@ -3,3 +3,9 @@ module.exports.list = async (req, res) => {
     pageTitle: 'Settings'
   })
 }
+
+module.exports.websiteInfo = async (req, res) => {
+  res.render('admin/pages/setting-website-info', {
+    pageTitle: 'Website Info'
+  })
+}

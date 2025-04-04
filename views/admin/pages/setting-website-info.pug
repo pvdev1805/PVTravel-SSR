@@ -1,8 +1,5 @@
 extends ../layouts/default.pug
 
-block title
-  title Website Info
-
 block main 
   h1.box-title Website Info 
   
@@ -32,5 +29,5 @@ block main
       .inner-button.inner-two-col 
         button Update 
     .inner-back 
-      a(href="#") Back to Settings List
+      a(href=`/${pathAdmin}/setting/list`) Back to Settings
   //- End Section 8
