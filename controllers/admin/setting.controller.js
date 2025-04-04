@@ -27,3 +27,9 @@ module.exports.roleList = async (req, res) => {
     pageTitle: 'Role List'
   })
 }
+
+module.exports.roleCreate = async (req, res) => {
+  res.render('admin/pages/setting-role-create', {
+    pageTitle: 'Create Role'
+  })
+}
