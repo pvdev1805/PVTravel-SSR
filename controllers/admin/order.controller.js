@@ -3,3 +3,9 @@ module.exports.list = async (req, res) => {
     pageTitle: 'Order List'
   })
 }
+
+module.exports.edit = async (req, res) => {
+  res.render('admin/pages/order-edit', {
+    pageTitle: 'Order: PVGST001'
+  })
+}

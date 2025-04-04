@@ -1,8 +1,5 @@
 extends ../layouts/default.pug
 
-block title
-  title Order: PVGST001
-
 block main 
   h1.box-title Order: PVGST001
   
@@ -44,7 +41,7 @@ block main
         .inner-order-list
           .inner-order-item
             .inner-order-image
-              img(src="assets/images/tour-1.jpeg" alt="Order 1")
+              img(src="/admin/assets/images/tour-1.jpeg" alt="Order 1")
             .inner-order-content 
               .inner-order-name Tour Gold Coast
               .inner-order-text Adult: 3 x $200
@@ -54,7 +51,7 @@ block main
               .inner-order-text Departure Location: Brisbane 
           .inner-order-item
             .inner-order-image
-              img(src="assets/images/tour-1.jpeg" alt="Order 2")
+              img(src="/admin/assets/images/tour-1.jpeg" alt="Order 2")
             .inner-order-content 
               .inner-order-name Tour Gold Coast
               .inner-order-text Adult: 3 x $200
@@ -72,5 +69,5 @@ block main
       .inner-button.inner-two-col 
         button Update
     .inner-back 
-      a(href="#") Back to Order List
+      a(href=`/${pathAdmin}/order/list`) Back to Order List
   //- End Section 8
