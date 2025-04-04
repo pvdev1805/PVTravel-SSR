@@ -1,10 +1,7 @@
 extends ../layouts/default.pug
 
-block title
-  title User Profile
-
 block main 
-  h1.box-title User Profile 
+  h1.box-title Profile 
   
   //- Section 8
   section.section-8 
@@ -31,5 +28,5 @@ block main
       .inner-button.inner-two-col 
         button Update
     .inner-back 
-      a(href="#") Change Password
+      a(href=`/${pathAdmin}/profile/change-password`) Change Password
   //- End Section 8
