@@ -9,3 +9,9 @@ module.exports.create = async (req, res) => {
     pageTitle: 'Create Tour'
   })
 }
+
+module.exports.trash = async (req, res) => {
+  res.render('admin/pages/tour-trash', {
+    pageTitle: 'Tour Trash'
+  })
+}
