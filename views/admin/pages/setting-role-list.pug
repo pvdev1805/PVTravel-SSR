@@ -1,8 +1,5 @@
 extends ../layouts/default.pug
 
-block title
-  title Role List
-
 block main 
   h1.box-title Role List
 
@@ -22,7 +19,7 @@ block main
         input(type="text" placeholder="Search")
       
       .inner-button-create 
-        button <i class="fa-solid fa-plus"></i> Create
+        a(href=`/${pathAdmin}/setting/role/create`)  <i class="fa-solid fa-plus"></i> Create
   //- End Section 5
 
   //- Section 6

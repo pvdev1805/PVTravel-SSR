@@ -11,4 +11,6 @@ router.get('/account-admin/list', settingController.accountAdminList)
 
 router.get('/account-admin/create', settingController.accountAdminCreate)
 
+router.get('/role/list', settingController.roleList)
+
 module.exports = router
