@@ -28,6 +28,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Set up local variables for PUG templates
 app.locals.pathAdmin = variableConfig.pathAdmin
 
+// Parse JSON request body
+app.use(express.json())
+
 // Set up admin routes
 app.use(`/${variableConfig.pathAdmin}`, adminRoutes)
 
