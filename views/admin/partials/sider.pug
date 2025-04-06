@@ -1,25 +1,25 @@
 nav.sider 
   ul.inner-menu 
     li
-      a(href="#" class="active") <i class="fa-solid fa-gauge-high"></i> Dashboard 
+      a(href=`/${pathAdmin}/dashboard`) <i class="fa-solid fa-gauge-high"></i> Dashboard 
     li
-      a(href="#") <i class="fa-solid fa-table-list"></i> Category Management
+      a(href=`/${pathAdmin}/category/list`) <i class="fa-solid fa-table-list"></i> Category Management
     li
-      a(href="#") <i class="fa-solid fa-box"></i> Tour Management
+      a(href=`/${pathAdmin}/tour/list`) <i class="fa-solid fa-box"></i> Tour Management
     li
-      a(href="#") <i class="fa-solid fa-list-check"></i> Order Management
+      a(href=`/${pathAdmin}/order/list`) <i class="fa-solid fa-list-check"></i> Order Management
     li
-      a(href="#") <i class="fa-solid fa-user"></i> User Management
+      a(href=`/${pathAdmin}/user/list`) <i class="fa-solid fa-user"></i> User Management
     li
-      a(href="#") <i class="fa-solid fa-user-group"></i> Contact Information
+      a(href=`/${pathAdmin}/contact/list`) <i class="fa-solid fa-user-group"></i> Contact Information
 
   hr
 
   ul.inner-menu 
     li 
-      a(href="#") <i class="fa-solid fa-gear"></i> Settings
+      a(href=`/${pathAdmin}/setting/list`) <i class="fa-solid fa-gear"></i> Settings
     li 
-      a(href="#") <i class="fa-solid fa-user-gear"></i> User Profile
+      a(href=`/${pathAdmin}/profile/edit`) <i class="fa-solid fa-user-gear"></i> User Profile
     li
-      a(href="#" class="inner-logout") <i class="fa-solid fa-power-off"></i> Logout
+      a(href="javascript:;" class="inner-logout") <i class="fa-solid fa-power-off"></i> Logout
 .sider-overlay  
