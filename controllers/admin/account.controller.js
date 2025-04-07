@@ -8,6 +8,47 @@ module.exports.login = async (req, res) => {
   })
 }
 
+module.exports.loginPost = async (req, res) => {
+  const { email, password } = req.body
+
+  // Check whether the account exists or not
+  const existAccount = await AccountAdmin.findOne({
+    email: email
+  })
+
+  if (!existAccount) {
+    res.status(404).json({
+      code: 'error',
+      message: 'Account does not exist!'
+    })
+    return
+  }
+
+  // Check whether the password is correct or not
+  const isPasswordValid = await bcrypt.compare(password, existAccount.password)
+  if (!isPasswordValid) {
+    res.status(401).json({
+      code: 'error',
+      message: 'Password is incorrect!'
+    })
+    return
+  }
+
+  // Check whether the account is activated or not
+  if (existAccount.status !== 'active') {
+    res.status(403).json({
+      code: 'error',
+      message: 'Account is not activated!'
+    })
+    return
+  }
+
+  res.status(200).json({
+    code: 'success',
+    message: 'Login successfully!'
+  })
+}
+
 module.exports.register = async (req, res) => {
   res.render('admin/pages/register', {
     pageTitle: 'Sign Up'

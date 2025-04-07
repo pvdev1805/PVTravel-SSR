@@ -24,9 +24,29 @@ if (loginForm) {
       const email = event.target.email.value
       const password = event.target.password.value
       const rememberPassword = event.target.rememberPassword.checked
-      console.log('Email:', email)
-      console.log('Password:', password)
-      console.log('Remember Password:', rememberPassword)
+
+      const dataFinal = {
+        email: email,
+        password: password
+      }
+
+      fetch(`/${pathAdmin}/account/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataFinal)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code === 'error') {
+            alert(data.message)
+          }
+
+          if (data.code === 'success') {
+            window.location.href = `/${pathAdmin}/dashboard`
+          }
+        })
     })
 }
 // End JustValidate - Login Form Validation
