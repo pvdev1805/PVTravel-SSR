@@ -76,7 +76,7 @@ module.exports.register = async (req, res) => {
 }
 
 module.exports.registerPost = async (req, res) => {
-  const { username, email, password } = req.body
+  const { fullName, email, password } = req.body
 
   const existEmail = await AccountAdmin.findOne({
     email: email
@@ -95,7 +95,7 @@ module.exports.registerPost = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt)
 
   const newAccount = new AccountAdmin({
-    username: username,
+    fullName: fullName,
     email: email,
     password: hashedPassword,
     status: 'initial'
