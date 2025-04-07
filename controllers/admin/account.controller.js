@@ -1,6 +1,7 @@
 const AccountAdmin = require('../../models/accounts-admin.model')
 
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 module.exports.login = async (req, res) => {
   res.render('admin/pages/login', {
@@ -42,6 +43,25 @@ module.exports.loginPost = async (req, res) => {
     })
     return
   }
+
+  // Generate JWT token
+  const token = jwt.sign(
+    {
+      id: existAccount._id,
+      email: existAccount.email
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: '1d' // Token will expire in 1 day
+    }
+  )
+
+  // Set the token in the cookie
+  res.cookie('token', token, {
+    maxAge: 24 * 60 * 60 * 1000, // Token will be saved in the cookie for 1 day
+    httpOnly: true, // Only accessible by the web server
+    sameSite: 'strict' // CSRF protection
+  })
 
   res.status(200).json({
     code: 'success',
