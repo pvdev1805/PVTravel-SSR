@@ -132,3 +132,13 @@ module.exports.resetPassword = async (req, res) => {
     pageTitle: 'Reset Password'
   })
 }
+
+module.exports.logout = async (req, res) => {
+  // Clear the cookie
+  res.clearCookie('token')
+
+  res.status(200).json({
+    code: 'success',
+    message: 'Logout successfully!'
+  })
+}
