@@ -11,6 +11,8 @@ const clientRoutes = require('./routes/client/index.route')
 
 const variableConfig = require('./config/variable')
 
+const cookieParser = require('cookie-parser')
+
 const app = express()
 
 const port = 3000
@@ -28,8 +30,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Set up local variables for PUG templates
 app.locals.pathAdmin = variableConfig.pathAdmin
 
+// Set up global variables for JS files from Backend
+global.pathAdmin = variableConfig.pathAdmin
+
 // Parse JSON request body
 app.use(express.json())
+
+// Use cookieParser middleware to parse cookies
+app.use(cookieParser())
 
 // Set up admin routes
 app.use(`/${variableConfig.pathAdmin}`, adminRoutes)
