@@ -62,7 +62,8 @@ module.exports.loginPost = (req, res, next) => {
     }),
     password: Joi.string().required().messages({
       'string.empty': 'Password is required!'
-    })
+    }),
+    rememberPassword: Joi.boolean()
   })
 
   const { error } = schema.validate(req.body)

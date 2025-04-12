@@ -10,7 +10,7 @@ module.exports.login = async (req, res) => {
 }
 
 module.exports.loginPost = async (req, res) => {
-  const { email, password } = req.body
+  const { email, password, rememberPassword } = req.body
 
   // Check whether the account exists or not
   const existAccount = await AccountAdmin.findOne({
@@ -52,13 +52,13 @@ module.exports.loginPost = async (req, res) => {
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: '1d' // Token will expire in 1 day
+      expiresIn: rememberPassword ? '30d' : '1d' // Token will be expired in 1 day or 30 days
     }
   )
 
   // Set the token in the cookie
   res.cookie('token', token, {
-    maxAge: 24 * 60 * 60 * 1000, // Token will be saved in the cookie for 1 day
+    maxAge: rememberPassword ? (30 * 24 * 60 * 60 * 1000) : (24 * 60 * 60 * 1000), // Token will be expired in 1 day or 30 days
     httpOnly: true, // Only accessible by the web server
     sameSite: 'strict' // CSRF protection
   })
