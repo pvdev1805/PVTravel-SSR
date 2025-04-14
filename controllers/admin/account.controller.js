@@ -1,7 +1,11 @@
-const AccountAdmin = require('../../models/accounts-admin.model')
-
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+
+const AccountAdmin = require('../../models/accounts-admin.model')
+const ForgotPassword = require('../../models/forgot-password.model')
+
+const generateHelper = require('../../helpers/generate.helper')
+const mailHelper = require('../../helpers/mail.helper')
 
 module.exports.login = async (req, res) => {
   res.render('admin/pages/login', {
@@ -58,7 +62,7 @@ module.exports.loginPost = async (req, res) => {
 
   // Set the token in the cookie
   res.cookie('token', token, {
-    maxAge: rememberPassword ? (30 * 24 * 60 * 60 * 1000) : (24 * 60 * 60 * 1000), // Token will be expired in 1 day or 30 days
+    maxAge: rememberPassword ? 30 * 24 * 60 * 60 * 1000 : 24 * 60 * 60 * 1000, // Token will be expired in 1 day or 30 days
     httpOnly: true, // Only accessible by the web server
     sameSite: 'strict' // CSRF protection
   })
@@ -118,6 +122,59 @@ module.exports.registerInitial = async (req, res) => {
 module.exports.forgotPassword = async (req, res) => {
   res.render('admin/pages/forgot-password', {
     pageTitle: 'Forgot Password'
+  })
+}
+
+module.exports.forgotPasswordPost = async (req, res) => {
+  const { email } = req.body
+
+  // Check whether the email exists or not
+  const existEmail = await AccountAdmin.findOne({
+    email: email
+  })
+
+  if (!existEmail) {
+    res.status(404).json({
+      code: 'error',
+      message: 'Email does not exist in our system!'
+    })
+    return
+  }
+
+  // Check whether the email exists in ForgotPassword collection or not
+  const existEmailInForgotPassword = await ForgotPassword.findOne({
+    email: email
+  })
+
+  if (existEmailInForgotPassword) {
+    res.status(409).json({
+      code: 'error',
+      message: 'Please send your request again after 5 minutes!'
+    })
+    return
+  }
+
+  // Create OTP
+  const otp = generateHelper.generateRandomNumber(6)
+
+  // Save email and OTP to ForgotPassword collection in database, and delete the document after 5 minutes
+  const record = new ForgotPassword({
+    email: email,
+    otp: otp,
+    expiredAt: Date.now() + 5 * 60 * 1000
+  })
+
+  await record.save()
+
+  // Send email automatically to the user
+  const subject = 'OTP to reset your password'
+  const content = `Your OTP is <strong>${otp}</strong>. It will be expired in 5 minutes. Please do not share it with anyone.`
+
+  mailHelper.sendMail(email, subject, content)
+
+  res.status(200).json({
+    code: 'success',
+    message: 'OTP has been sent to your email!'
   })
 }
 
