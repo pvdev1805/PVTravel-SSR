@@ -184,6 +184,51 @@ module.exports.otpPassword = async (req, res) => {
   })
 }
 
+module.exports.otpPasswordPost = async (req, res) => {
+  const { email, otp } = req.body
+
+  const existRecord = await ForgotPassword.findOne({
+    email: email,
+    otp: otp
+  })
+
+  if (!existRecord) {
+    res.status(404).json({
+      code: 'error',
+      message: 'OTP is incorrect!'
+    })
+    return
+  }
+
+  const account = await AccountAdmin.findOne({
+    email: email
+  })
+
+  // Generate JWT token
+  const token = jwt.sign(
+    {
+      id: account._id,
+      email: account.email
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: '1d' // Token will be expired in 1 day
+    }
+  )
+
+  // Set the token in the cookie
+  res.cookie('token', token, {
+    maxAge: 24 * 60 * 60 * 1000, // Token will be expired in 1 day
+    httpOnly: true, // Only accessible by the web server
+    sameSite: 'strict' // CSRF protection
+  })
+
+  res.status(200).json({
+    code: 'success',
+    message: 'Confirm OTP successfully!'
+  })
+}
+
 module.exports.resetPassword = async (req, res) => {
   res.render('admin/pages/reset-password', {
     pageTitle: 'Reset Password'
