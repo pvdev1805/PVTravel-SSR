@@ -235,6 +235,30 @@ module.exports.resetPassword = async (req, res) => {
   })
 }
 
+module.exports.resetPasswordPost = async (req, res) => {
+  const { password } = req.body
+
+  console.log(req.account)
+
+  // Encrypt password using bcrypt
+  const salt = await bcrypt.genSalt(10) // Generate a unique and random salt with 10 cycles of hashing
+  const hashedPassword = await bcrypt.hash(password, salt)
+
+  await AccountAdmin.updateOne(
+    {
+      _id: req.account._id
+    },
+    {
+      password: hashedPassword
+    }
+  )
+
+  res.status(200).json({
+    code: 'success',
+    message: 'Reset password successfully!'
+  })
+}
+
 module.exports.logout = async (req, res) => {
   // Clear the cookie
   res.clearCookie('token')

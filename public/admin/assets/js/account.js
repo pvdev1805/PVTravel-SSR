@@ -289,7 +289,28 @@ if (resetPasswordForm) {
     ])
     .onSuccess((event) => {
       const password = event.target.password.value
-      console.log('New Password:', password)
+
+      const dataFinal = {
+        password: password
+      }
+
+      fetch(`/${pathAdmin}/account/reset-password`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataFinal)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code === 'error') {
+            alert(data.message)
+          }
+
+          if (data.code === 'success') {
+            window.location.href = `/${pathAdmin}/dashboard`
+          }
+        })
     })
 }
 // End JustValidate - Reset Password Form Validation
