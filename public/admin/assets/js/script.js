@@ -164,12 +164,30 @@ if (categoryCreateForm) {
 
       const description = tinymce.get('description').getContent()
 
-      console.log('Category Name:', name)
-      console.log('Parent Category:', parent)
-      console.log('Position:', position)
-      console.log('Status:', status)
-      console.log('Avatar:', avatar)
-      console.log('Description:', description)
+      // Create FormData object to send data to server
+      const formData = new FormData()
+      formData.append('name', name)
+      formData.append('parent', parent)
+      formData.append('position', position)
+      formData.append('status', status)
+      formData.append('avatar', avatar)
+      formData.append('description', description)
+
+      fetch(`/${pathAdmin}/category/create`, {
+        method: 'POST',
+        body: formData
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            console.log(data)
+            // window.location.href = `/${pathAdmin}/category/list`
+          }
+        })
     })
 }
 // End JustValidate - Category Create Form Validation
