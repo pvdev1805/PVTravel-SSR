@@ -11,6 +11,7 @@ const schema = new mongoose.Schema(
     description: String,
     createdBy: String,
     updatedBy: String,
+    status: String,
     slug: {
       type: String,
       slug: 'name',
