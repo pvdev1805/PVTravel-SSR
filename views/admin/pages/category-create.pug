@@ -1,4 +1,5 @@
 extends ../layouts/default.pug
+include ../mixins/options.pug
 
 block main 
   h1.box-title Create Category
@@ -13,9 +14,7 @@ block main
         label(for="parent" class="inner-label") Parent Category
         select(id="parent" name="parent")
           option(value="") -- Select Category --
-          option(value="1") Category 1
-          option(value="2") Category 2
-          option(value="3") Category 3
+          +options(categoryList, 0)
       .inner-group 
         label(for="position" class="inner-label") Position
         input(type="number" id="position" name="position")
