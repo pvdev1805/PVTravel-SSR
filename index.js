@@ -12,6 +12,8 @@ const clientRoutes = require('./routes/client/index.route')
 const variableConfig = require('./config/variable')
 
 const cookieParser = require('cookie-parser')
+const flash = require('express-flash')
+const session = require('express-session')
 
 const app = express()
 
@@ -37,7 +39,11 @@ global.pathAdmin = variableConfig.pathAdmin
 app.use(express.json())
 
 // Use cookieParser middleware to parse cookies
-app.use(cookieParser())
+app.use(cookieParser('3cTqz6lw9W'))
+
+// Display flash messages when loading a page
+app.use(session({ cookie: { maxAge: 60000 } }))
+app.use(flash())
 
 // Set up admin routes
 app.use(`/${variableConfig.pathAdmin}`, adminRoutes)

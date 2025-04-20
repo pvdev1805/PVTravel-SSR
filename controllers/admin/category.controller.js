@@ -37,8 +37,10 @@ module.exports.createPost = async (req, res) => {
   const newRecord = new Category(req.body)
   await newRecord.save()
 
+  req.flash('success', 'Create category successfully!')
+
   res.status(200).json({
-    code: 'success',
-    message: 'Category created successfully'
+    code: 'success'
+    // message: 'Category created successfully!'
   })
 }

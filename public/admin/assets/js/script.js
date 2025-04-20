@@ -725,3 +725,17 @@ if (buttonLogout) {
   })
 }
 // End Logout
+
+// Alert
+const alertTime = document.querySelector('[alert-time]')
+if (alertTime) {
+  let time = alertTime.getAttribute('alert-time')
+  time = time ? parseInt(time) : 4000
+  setTimeout(() => {
+    alertTime.classList.add('alert-fade-out')
+    setTimeout(() => {
+      alertTime.remove()
+    }, 500)
+  }, time)
+}
+// End Alert
