@@ -732,7 +732,7 @@ if (alertTime) {
   let time = alertTime.getAttribute('alert-time')
   time = time ? parseInt(time) : 4000
   setTimeout(() => {
-    alertTime.classList.add('alert-fade-out')
+    alertTime.classList.add('alert-slide-out')
     setTimeout(() => {
       alertTime.remove()
     }, 500)
