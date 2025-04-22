@@ -83,8 +83,22 @@ if (listFilePondImage) {
     FilePond.registerPlugin(FilePondPluginImagePreview)
     FilePond.registerPlugin(FilePondPluginFileValidateType)
 
+    let files = null
+    const elementImageDefault = filePondImage.closest('[image-default]')
+    if (elementImageDefault) {
+      const imageDefault = elementImageDefault.getAttribute('image-default')
+      if (imageDefault) {
+        files = [
+          {
+            source: imageDefault
+          }
+        ]
+      }
+    }
+
     filePond[filePondImage.name] = FilePond.create(filePondImage, {
-      labelIdle: '+'
+      labelIdle: '+',
+      files: files
     })
   })
 }
@@ -190,6 +204,67 @@ if (categoryCreateForm) {
     })
 }
 // End JustValidate - Category Create Form Validation
+
+// JustValidate - Category Edit Form Validation
+const categoryEditForm = document.querySelector('#category-edit-form')
+if (categoryEditForm) {
+  const validator = new JustValidate('#category-edit-form')
+
+  validator
+    .addField('#name', [
+      {
+        rule: 'required',
+        errorMessage: 'Please enter category name!'
+      }
+    ])
+    .onSuccess((event) => {
+      const id = event.target.id.value
+      const name = event.target.name.value
+      const parent = event.target.parent.value
+      const position = event.target.position.value
+      const status = event.target.status.value
+      const avatars = filePond.avatar.getFiles()
+
+      let avatar = null
+      if (avatars.length > 0) {
+        avatar = avatars[0].file
+        const elementImageDefault = event.target.avatar.closest('[image-default]')
+        if (elementImageDefault) {
+          const imageDefault = elementImageDefault.getAttribute('image-default')
+          if (imageDefault.includes(avatar.name)) {
+            avatar = null
+          }
+        }
+      }
+
+      const description = tinymce.get('description').getContent()
+
+      // Create FormData object to send data to server
+      const formData = new FormData()
+      formData.append('name', name)
+      formData.append('parent', parent)
+      formData.append('position', position)
+      formData.append('status', status)
+      formData.append('avatar', avatar)
+      formData.append('description', description)
+
+      fetch(`/${pathAdmin}/category/edit/${id}`, {
+        method: 'PATCH',
+        body: formData
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.href = `/${pathAdmin}/category/edit/${id}`
+          }
+        })
+    })
+}
+// End JustValidate - Category Edit Form Validation
 
 // JustValidate - Tour Create Form Validation
 const tourCreateForm = document.querySelector('#tour-create-form')
