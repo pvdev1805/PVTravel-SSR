@@ -140,3 +140,33 @@ module.exports.editPatch = async (req, res) => {
     })
   }
 }
+
+module.exports.deletePatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    await Category.updateOne(
+      {
+        _id: id,
+        deleted: false
+      },
+      {
+        deleted: true,
+        deletedAt: new Date(),
+        deletedBy: req.account._id
+      }
+    )
+
+    req.flash('success', 'Delete category successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(404).json({
+      code: 'error',
+      message: 'Category ID not found!'
+    })
+  }
+}
