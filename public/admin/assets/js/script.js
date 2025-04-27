@@ -839,3 +839,27 @@ if (listButtonDelete.length > 0) {
   })
 }
 // End Delete Button
+
+// Filter Status
+const filterStatus = document.querySelector('[filter-status]')
+if (filterStatus) {
+  const url = new URL(window.location.href)
+
+  filterStatus.addEventListener('change', () => {
+    const value = filterStatus.value
+    if (value) {
+      url.searchParams.set('status', value)
+    } else {
+      url.searchParams.delete('status')
+    }
+
+    window.location.href = url.href
+  })
+
+  // Display default value of filter status
+  const currentValue = url.searchParams.get('status')
+  if (currentValue) {
+    filterStatus.value = currentValue
+  }
+}
+// End - Filter Status
