@@ -14,10 +14,10 @@ block main
           option(value="active") Active 
           option(value="inactive") Inactive  
       .inner-item
-        select
-          option(value="") Creator 
-          option(value="") John Doe 
-          option(value="") Jane Doe 
+        select(filter-created-by)
+          option(value="") Created By
+          each item in accountAdminList
+            option(value=item.id) #{item.fullName}
       .inner-item.inner-date
         input(type="date" placeholder="From")
         span -

@@ -863,3 +863,27 @@ if (filterStatus) {
   }
 }
 // End - Filter Status
+
+// Filter Created By
+const filterCreatedBy = document.querySelector('[filter-created-by]')
+if (filterCreatedBy) {
+  const url = new URL(window.location.href)
+
+  filterCreatedBy.addEventListener('change', () => {
+    const value = filterCreatedBy.value
+    if (value) {
+      url.searchParams.set('createdBy', value)
+    } else {
+      url.searchParams.delete('createdBy')
+    }
+
+    window.location.href = url.href
+  })
+
+  // Display default value of filter created by
+  const currentValue = url.searchParams.get('createdBy')
+  if (currentValue) {
+    filterCreatedBy.value = currentValue
+  }
+}
+// End Filter Created By

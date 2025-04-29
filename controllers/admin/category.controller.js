@@ -14,6 +14,11 @@ module.exports.list = async (req, res) => {
     find.status = req.query.status
   }
 
+  // Filter by createdBy
+  if (req.query.createdBy) {
+    find.createdBy = req.query.createdBy
+  }
+
   const categoryList = await Category.find(find).sort({
     position: 'desc'
   })
@@ -39,9 +44,13 @@ module.exports.list = async (req, res) => {
     item.updatedAtFormat = moment(item.updatedAt).format('HH:mm - DD/MM/YYYY')
   }
 
+  // Get list account admin for filter
+  const accountAdminList = await AccountAdmin.find({}).select('id fullName')
+
   res.render('admin/pages/category-list', {
     pageTitle: 'Category List',
-    categoryList: categoryList
+    categoryList: categoryList,
+    accountAdminList: accountAdminList
   })
 }
 
