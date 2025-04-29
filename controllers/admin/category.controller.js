@@ -13,11 +13,28 @@ module.exports.list = async (req, res) => {
   if (req.query.status) {
     find.status = req.query.status
   }
+  // End - Filter by status
 
   // Filter by createdBy
   if (req.query.createdBy) {
     find.createdBy = req.query.createdBy
   }
+  // End - Filter by createdBy
+
+  // Filter by startDate and endDate
+  const dateFilter = {}
+  if (req.query.startDate) {
+    const startDate = moment(req.query.startDate).startOf('day').toDate()
+    dateFilter.$gte = startDate
+  }
+  if (req.query.endDate) {
+    const endDate = moment(req.query.endDate).startOf('day').toDate()
+    dateFilter.$lte = endDate
+  }
+  if (Object.keys(dateFilter).length > 0) {
+    find.createdAt = dateFilter
+  }
+  // End - Filter by startDate and endDate
 
   const categoryList = await Category.find(find).sort({
     position: 'desc'
