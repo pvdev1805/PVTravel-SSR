@@ -947,3 +947,63 @@ if (filterReset) {
   })
 }
 // End - Filter Reset
+
+// Check All Checkbox
+const checkAll = document.querySelector('[check-all]')
+if (checkAll) {
+  checkAll.addEventListener('click', () => {
+    const listCheckItem = document.querySelectorAll('[check-item]')
+
+    listCheckItem.forEach((item) => {
+      item.checked = checkAll.checked
+    })
+  })
+}
+// End - Check All Checkbox
+
+// Change Multi
+const changeMulti = document.querySelector('[change-multi]')
+if (changeMulti) {
+  const select = changeMulti.querySelector('select')
+  const button = changeMulti.querySelector('button')
+
+  button.addEventListener('click', () => {
+    const option = select.value
+
+    const listCheckedInput = document.querySelectorAll('[check-item]:checked')
+
+    if (option && listCheckedInput.length > 0) {
+      const ids = []
+      listCheckedInput.forEach((item) => {
+        const id = item.getAttribute('check-item')
+        ids.push(id)
+      })
+
+      const dataFinal = {
+        option: option,
+        ids: ids
+      }
+
+      const dataApi = changeMulti.getAttribute('data-api')
+
+      fetch(dataApi, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataFinal)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.reload()
+          }
+        })
+    }
+  })
+}
+// End - Change Multi

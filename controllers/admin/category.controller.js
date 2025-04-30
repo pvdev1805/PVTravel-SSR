@@ -203,3 +203,49 @@ module.exports.deletePatch = async (req, res) => {
     })
   }
 }
+
+module.exports.changeMultiPatch = async (req, res) => {
+  try {
+    const { option, ids } = req.body
+
+    switch (option) {
+      case 'active':
+      case 'inactive':
+        await Category.updateMany(
+          {
+            _id: { $in: ids }
+          },
+          {
+            status: option
+          }
+        )
+
+        req.flash('success', 'Change status successfully!')
+        break
+      case 'delete':
+        await Category.updateMany(
+          {
+            _id: { $in: ids }
+          },
+          {
+            deleted: true,
+            deletedAt: Date.now(),
+            deletedBy: req.account._id
+          }
+        )
+
+        req.flash('success', 'Delete successfully!')
+        break
+    }
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      code: 'error',
+      message: 'Update failed!'
+    })
+  }
+}
