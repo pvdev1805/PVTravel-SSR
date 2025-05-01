@@ -48,9 +48,32 @@ module.exports.list = async (req, res) => {
   }
   // End - Search
 
-  const categoryList = await Category.find(find).sort({
-    position: 'desc'
-  })
+  // Pagination
+  const limitItems = 5
+  let page = 1
+  if (req.query.page) {
+    const currentPage = parseInt(req.query.page)
+    if (currentPage > 0) {
+      page = currentPage
+    }
+  }
+
+  const totalRecord = await Category.countDocuments(find)
+  const totalPage = Math.ceil(totalRecord / limitItems)
+  const skip = (page - 1) * limitItems
+  const pagination = {
+    skip: skip,
+    totalRecord: totalRecord,
+    totalPage: totalPage
+  }
+  // End Pagination
+
+  const categoryList = await Category.find(find)
+    .sort({
+      position: 'desc'
+    })
+    .limit(limitItems)
+    .skip(skip)
 
   for (const item of categoryList) {
     if (item.createdBy) {
@@ -79,7 +102,8 @@ module.exports.list = async (req, res) => {
   res.render('admin/pages/category-list', {
     pageTitle: 'Category List',
     categoryList: categoryList,
-    accountAdminList: accountAdminList
+    accountAdminList: accountAdminList,
+    pagination: pagination
   })
 }
 

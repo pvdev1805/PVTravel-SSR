@@ -97,9 +97,8 @@ block main
 
   //- Section 7
   section.section-7 
-    span(class="inner-label") Showing 1 - 9 of 78 entries
-    select(class="inner-pagination")
-      option Page 1
-      option Page 2
-      option Page 3
+    span(class="inner-label") Showing #{pagination.skip + 1} - #{pagination.skip + categoryList.length} of #{pagination.totalRecord} entries
+    select(class="inner-pagination" pagination)
+      - for(let i = 1; i <= pagination.totalPage; i++)
+        option(value=i) Page #{i}
   //- End Section 7
