@@ -961,6 +961,24 @@ if (checkAll) {
 }
 // End - Check All Checkbox
 
+// Check Item Checkbox
+const listCheckItem = document.querySelectorAll('[check-item]')
+if (listCheckItem.length > 0) {
+  listCheckItem.forEach((item) => {
+    item.addEventListener('click', () => {
+      const listCheckItemChecked = document.querySelectorAll('[check-item]:checked')
+      const checkAll = document.querySelector('[check-all]')
+
+      if (listCheckItemChecked.length === listCheckItem.length) {
+        checkAll.checked = true
+      } else {
+        checkAll.checked = false
+      }
+    })
+  })
+}
+// End - Check Item Checkbox
+
 // Change Multi
 const changeMulti = document.querySelector('[change-multi]')
 if (changeMulti) {
