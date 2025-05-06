@@ -1,4 +1,5 @@
 extends ../layouts/default.pug
+include ../mixins/options.pug
 
 block main 
   h1.box-title Create Tour
@@ -13,9 +14,7 @@ block main
         label(for="category" class="inner-label") Category
         select(id="category" name="category")
           option(value="") -- Select Category --
-          option(value="1") Category 1
-          option(value="2") Category 2
-          option(value="3") Category 3
+          +options(categoryList)
       .inner-group 
         label(for="position" class="inner-label") Position
         input(type="number" id="position" name="position")
@@ -68,18 +67,10 @@ block main
       .inner-group 
         label(class="inner-label") Tour is available in
         .inner-checkbox-list 
-          .inner-checkbox-item 
-            input(type="checkbox" name="locations" value="Queensland")
-            label Queensland
-          .inner-checkbox-item 
-            input(type="checkbox" name="locations" value="New South Wales")
-            label New South Wales
-          .inner-checkbox-item 
-            input(type="checkbox" name="locations" value="Victoria")
-            label Victoria
-          .inner-checkbox-item 
-            input(type="checkbox" name="locations" value="Tasmania")
-            label Tasmania
+          each item in cityList 
+            .inner-checkbox-item
+              input(type="checkbox" name="locations" value=item.id)
+              label #{item.name}
       .inner-group 
         label(for="time" class="inner-label") Duration 
         input(type="text" id="time" name="time")

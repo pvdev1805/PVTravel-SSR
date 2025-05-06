@@ -336,26 +336,43 @@ if (tourCreateForm) {
       })
       // End Schedules
 
-      console.log('Tour Name:', name)
-      console.log('Category:', category)
-      console.log('Position:', position)
-      console.log('Status:', status)
-      console.log('Avatar:', avatar)
-      console.log('Price Old Adult:', priceAdult)
-      console.log('Price Old Children:', priceChildren)
-      console.log('Price Old Baby:', priceBaby)
-      console.log('Price New Adult:', priceNewAdult)
-      console.log('Price New Children:', priceNewChildren)
-      console.log('Price New Baby:', priceNewBaby)
-      console.log('Stock Adult:', stockAdult)
-      console.log('Stock Children:', stockChildren)
-      console.log('Stock Baby:', stockBaby)
-      console.log('Locations:', locations)
-      console.log('Time:', time)
-      console.log('Vehicle:', vehicle)
-      console.log('Departure Date:', departureDate)
-      console.log('Information:', information)
-      console.log('Schedules:', schedules)
+      // Create FormData object to send data to server
+      const formData = new FormData()
+      formData.append('name', name)
+      formData.append('category', category)
+      formData.append('position', position)
+      formData.append('status', status)
+      formData.append('avatar', avatar)
+      formData.append('priceAdult', priceAdult)
+      formData.append('priceChildren', priceChildren)
+      formData.append('priceBaby', priceBaby)
+      formData.append('priceNewAdult', priceNewAdult)
+      formData.append('priceNewChildren', priceNewChildren)
+      formData.append('priceNewBaby', priceNewBaby)
+      formData.append('stockAdult', stockAdult)
+      formData.append('stockChildren', stockChildren)
+      formData.append('stockBaby', stockBaby)
+      formData.append('locations', JSON.stringify(locations))
+      formData.append('time', time)
+      formData.append('vehicle', vehicle)
+      formData.append('departureDate', departureDate)
+      formData.append('information', information)
+      formData.append('schedules', JSON.stringify(schedules))
+
+      fetch(`/${pathAdmin}/tour/create`, {
+        method: 'POST',
+        body: formData
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.href = `/${pathAdmin}/tour/list`
+          }
+        })
     })
 }
 // End JustValidate - Tour Create Form Validation
