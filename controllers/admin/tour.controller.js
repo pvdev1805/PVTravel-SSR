@@ -33,8 +33,6 @@ module.exports.list = async (req, res) => {
 
     item.createdAtFormat = moment(item.createdAt).format('HH:mm - DD/MM/YYYY')
     item.updatedAtFormat = moment(item.updatedAt).format('HH:mm - DD/MM/YYYY')
-
-    console.log(item)
   }
 
   res.render('admin/pages/tour-list', {

@@ -10,12 +10,30 @@ const schema = new mongoose.Schema(
     position: Number,
     status: String,
     avatar: String,
-    priceAdult: Number,
-    priceChildren: Number,
-    priceBaby: Number,
-    priceNewAdult: Number,
-    priceNewChildren: Number,
-    priceNewBaby: Number,
+    priceAdult: {
+      type: Number,
+      set: (value) => parseFloat(value).toFixed(2)
+    },
+    priceChildren: {
+      type: Number,
+      set: (value) => parseFloat(value).toFixed(2)
+    },
+    priceBaby: {
+      type: Number,
+      set: (value) => parseFloat(value).toFixed(2)
+    },
+    priceNewAdult: {
+      type: Number,
+      set: (value) => parseFloat(value).toFixed(2)
+    },
+    priceNewChildren: {
+      type: Number,
+      set: (value) => parseFloat(value).toFixed(2)
+    },
+    priceNewBaby: {
+      type: Number,
+      set: (value) => parseFloat(value).toFixed(2)
+    },
     stockAdult: Number,
     stockChildren: Number,
     stockBaby: Number,
