@@ -96,3 +96,85 @@ module.exports.trash = async (req, res) => {
     pageTitle: 'Tour Trash'
   })
 }
+
+module.exports.edit = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    const tourDetail = await Tour.findOne({
+      _id: id,
+      deleted: false
+    })
+
+    tourDetail.departureDateFormat = moment(tourDetail.departureDate).format('YYYY-MM-DD')
+
+    const categoryList = await Category.find({
+      deleted: false
+    })
+
+    const categoryTree = categoryHelper.buildCategoryTree(categoryList, '')
+
+    const cityList = await City.find({})
+
+    res.render('admin/pages/tour-edit', {
+      pageTitle: 'Edit Tour',
+      tourDetail: tourDetail,
+      categoryList: categoryTree,
+      cityList: cityList
+    })
+  } catch (error) {
+    res.redirect(`/${pathAdmin}/tour/list`)
+  }
+}
+
+module.exports.editPatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    if (req.body.position) {
+      req.body.position = parseInt(req.body.position)
+    } else {
+      const totalRecord = await Tour.countDocuments({})
+      req.body.position = totalRecord + 1
+    }
+
+    req.body.updatedBy = req.account._id
+    if (req.file) {
+      req.body.avatar = req.file.path
+    } else {
+      delete req.body.avatar
+    }
+
+    req.body.priceAdult = req.body.priceAdult ? parseFloat(req.body.priceAdult) : 0
+    req.body.priceChildren = req.body.priceChildren ? parseFloat(req.body.priceChildren) : 0
+    req.body.priceBaby = req.body.priceBaby ? parseFloat(req.body.priceBaby) : 0
+    req.body.priceNewAdult = req.body.priceNewAdult ? parseFloat(req.body.priceNewAdult) : 0
+    req.body.priceNewChildren = req.body.priceNewChildren ? parseFloat(req.body.priceNewChildren) : 0
+    req.body.priceNewBaby = req.body.priceNewBaby ? parseFloat(req.body.priceNewBaby) : 0
+    req.body.stockAdult = req.body.stockAdult ? parseInt(req.body.stockAdult) : 0
+    req.body.stockChildren = req.body.stockChildren ? parseInt(req.body.stockChildren) : 0
+    req.body.stockBaby = req.body.stockBaby ? parseInt(req.body.stockBaby) : 0
+    req.body.locations = req.body.locations ? JSON.parse(req.body.locations) : []
+    req.body.departureDate = req.body.departureDate ? new Date(req.body.departureDate) : null
+    req.body.schedules = req.body.schedules ? JSON.parse(req.body.schedules) : []
+
+    await Tour.updateOne(
+      {
+        _id: id,
+        deleted: false
+      },
+      req.body
+    )
+
+    req.flash('success', 'Update tour successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: error
+    })
+  }
+}
