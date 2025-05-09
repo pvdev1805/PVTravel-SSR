@@ -178,3 +178,32 @@ module.exports.editPatch = async (req, res) => {
     })
   }
 }
+
+module.exports.deletePatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    await Tour.updateOne(
+      {
+        _id: id,
+        deleted: false
+      },
+      {
+        deleted: true,
+        deletedAt: new Date(),
+        deletedBy: req.account._id
+      }
+    )
+
+    req.flash('success', 'Delete tour successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: error
+    })
+  }
+}
