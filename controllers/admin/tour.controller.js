@@ -92,8 +92,29 @@ module.exports.createPost = async (req, res) => {
 }
 
 module.exports.trash = async (req, res) => {
+  const find = {
+    deleted: true
+  }
+
+  const tourList = await Tour.find(find).sort({
+    position: 'desc'
+  })
+
+  for (const item of tourList) {
+    if (item.deletedBy) {
+      const infoAccountDeleted = await AccountAdmin.findOne({
+        _id: item.deletedBy
+      })
+
+      item.deletedByFullName = infoAccountDeleted.fullName
+    }
+
+    item.deletedAtFormat = moment(item.deletedAt).format('HH:mm - DD/MM/YYYY')
+  }
+
   res.render('admin/pages/tour-trash', {
-    pageTitle: 'Tour Trash'
+    pageTitle: 'Tour Trash',
+    tourList: tourList
   })
 }
 

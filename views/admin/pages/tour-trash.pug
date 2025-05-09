@@ -34,64 +34,37 @@ block main
             th Availability
             th(class="inner-center") Position
             th(class="inner-center") Status
-            th Created By
-            th Updated By
+            th Deleted By
             th Actions
         tbody
-          tr 
-            td(class="inner-center")
-              input(type="checkbox" class="inner-check")
-            td Tour Gold Coast
-            td 
-              img(src="/admin/assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
-            td 
-              div Adult: $200
-              div Child: $100
-              div Infant: $50
-            td 
-              div Adult: 10
-              div Child: 20
-              div Infant: 5
-            td(class="inner-center") 1
-            td(class="inner-center")
-              .badge.badge-green Active
-            td 
-              div John Doe 
-              div.inner-time 16:30 - 20/07/2025
-            td 
-              div John Doe 
-              div.inner-time 10:30 - 22/07/2025
-            td
-              .inner-buttons 
-                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
-                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
-          tr 
-            td(class="inner-center")
-              input(type="checkbox" class="inner-check")
-            td Tour Gold Coast
-            td 
-              img(src="/admin/assets/images/tour-1.jpeg" alt="Category 1" class="inner-avatar")
-            td 
-              div Adult: $200
-              div Child: $100
-              div Infant: $50
-            td 
-              div Adult: 10
-              div Child: 20
-              div Infant: 5
-            td(class="inner-center") 2
-            td(class="inner-center")
-              .badge.badge-red Inactive
-            td 
-              div John Doe 
-              div.inner-time 16:30 - 20/07/2025
-            td 
-              div Jane Doe 
-              div.inner-time 10:30 - 22/07/2025
-            td
-              .inner-buttons 
-                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
-                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+          each item in tourList   
+            tr 
+              td(class="inner-center")
+                input(type="checkbox" class="inner-check")
+              td #{item.name}
+              td 
+                img(src=item.avatar alt=item.name class="inner-avatar")
+              td 
+                div Adult: $#{item.priceNewAdult > 0 ? item.priceNewAdult.toLocaleString("en-AU") : item.priceAdult.toLocaleString("en-AU")}
+                div Child: $#{item.priceNewChildren > 0 ? item.priceNewChildren.toLocaleString("en-AU") : item.priceChildren.toLocaleString("en-AU")}
+                div Infant: $#{item.priceNewBaby > 0 ? item.priceNewBaby.toLocaleString("en-AU") : item.priceBaby.toLocaleString("en-AU")}
+              td 
+                div Adult: #{item.stockAdult}
+                div Child: #{item.stockChildren}
+                div Infant: #{item.stockBaby}
+              td(class="inner-center") #{item.position}
+              td(class="inner-center")
+                if(item.status == 'active')
+                  .badge.badge-green Active
+                else if(item.status == 'inactive')
+                  .badge.badge-red Inactive
+              td 
+                div #{item.deletedByFullName} 
+                div.inner-time #{item.deletedAtFormat}
+              td
+                .inner-buttons 
+                  button(class="inner-undo") <i class="fa-solid fa-rotate-left"></i>
+                  button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
   //- End Section 6
 
   //- Section 7
