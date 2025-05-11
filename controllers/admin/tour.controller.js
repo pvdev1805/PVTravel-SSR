@@ -260,3 +260,24 @@ module.exports.undoPatch = async (req, res) => {
     })
   }
 }
+
+module.exports.deleteDestroyPatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    await Tour.deleteOne({
+      _id: id
+    })
+
+    req.flash('success', 'Delete tour permanently successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: error
+    })
+  }
+}
