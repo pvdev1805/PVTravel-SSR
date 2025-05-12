@@ -588,20 +588,51 @@ if (settingWebsiteInfoForm) {
       let logo = null
       if (logos.length > 0) {
         logo = logos[0].file
+        const elementImageDefault = event.target.logo.closest('[image-default]')
+        if (elementImageDefault) {
+          const imageDefault = elementImageDefault.getAttribute('image-default')
+          if (imageDefault.includes(logo.name)) {
+            logo = null
+          }
+        }
       }
 
       const favicons = filePond.favicon.getFiles()
       let favicon = null
       if (favicons.length > 0) {
         favicon = favicons[0].file
+        const elementImageDefault = event.target.favicon.closest('[image-default]')
+        if (elementImageDefault) {
+          const imageDefault = elementImageDefault.getAttribute('image-default')
+          if (imageDefault.includes(favicon.name)) {
+            favicon = null
+          }
+        }
       }
 
-      console.log('Website Name:', websiteName)
-      console.log('Phone:', phone)
-      console.log('Email:', email)
-      console.log('Address:', address)
-      console.log('Logo:', logo)
-      console.log('Favicon:', favicon)
+      // Create FormData object to send data to server
+      const formData = new FormData()
+      formData.append('websiteName', websiteName)
+      formData.append('phone', phone)
+      formData.append('email', email)
+      formData.append('address', address)
+      formData.append('logo', logo)
+      formData.append('favicon', favicon)
+
+      fetch(`/${pathAdmin}/setting/website-info`, {
+        method: 'PATCH',
+        body: formData
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.reload()
+          }
+        })
     })
 }
 // End JustValidate - Setting Website Info Form Validation
