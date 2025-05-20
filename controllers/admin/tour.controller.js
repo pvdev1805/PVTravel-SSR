@@ -18,6 +18,12 @@ module.exports.list = async (req, res) => {
   }
   // End - Filter by status
 
+  // Filter by creator
+  if (req.query.createdBy) {
+    find.createdBy = req.query.createdBy
+  }
+  // End - Filter by creator
+
   const tourList = await Tour.find(find).sort({
     position: 'desc'
   })
@@ -41,9 +47,14 @@ module.exports.list = async (req, res) => {
     item.updatedAtFormat = moment(item.updatedAt).format('HH:mm - DD/MM/YYYY')
   }
 
+  // Get Account Admin list
+  const accountAdminList = await AccountAdmin.find({}).select('id fullName')
+  // End - Get Account Admin list
+
   res.render('admin/pages/tour-list', {
     pageTitle: 'Tour List',
-    tourList: tourList
+    tourList: tourList,
+    accountAdminList: accountAdminList
   })
 }
 
