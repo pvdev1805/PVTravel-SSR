@@ -12,6 +12,12 @@ module.exports.list = async (req, res) => {
     deleted: false
   }
 
+  // Filter by status
+  if (req.query.status) {
+    find.status = req.query.status
+  }
+  // End - Filter by status
+
   const tourList = await Tour.find(find).sort({
     position: 'desc'
   })

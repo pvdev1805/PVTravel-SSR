@@ -9,13 +9,15 @@ block main
       .inner-item.inner-label
         <i class="fa-solid fa-filter"></i> Filter
       .inner-item
-        select
-          option(value="") Status 
-          option(value="") Active 
-          option(value="") Inactive  
+        select(
+          filter-status
+        )
+          option(value="") -- Status -- 
+          option(value="active") Active 
+          option(value="inactive") Inactive  
       .inner-item
         select
-          option(value="") Creator 
+          option(value="") Creator
           option(value="") John Doe 
           option(value="") Jane Doe 
       .inner-item.inner-date
