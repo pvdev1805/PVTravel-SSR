@@ -39,9 +39,32 @@ module.exports.list = async (req, res) => {
   }
   // End - Filter by startDate and endDate
 
-  const tourList = await Tour.find(find).sort({
-    position: 'desc'
-  })
+  // Pagination
+  const limitItems = 5
+  let page = 1
+  if (req.query.page) {
+    const currentPage = parseInt(req.query.page)
+    if (currentPage > 0) {
+      page = currentPage
+    }
+  }
+
+  const totalRecord = await Tour.countDocuments(find)
+  const totalPage = Math.ceil(totalRecord / limitItems)
+  const skip = (page - 1) * limitItems
+  const pagination = {
+    skip: skip,
+    totalRecord: totalRecord,
+    totalPage: totalPage
+  }
+  // End - Pagination
+
+  const tourList = await Tour.find(find)
+    .sort({
+      position: 'desc'
+    })
+    .limit(limitItems)
+    .skip(skip)
 
   for (const item of tourList) {
     if (item.createdBy) {
@@ -69,7 +92,8 @@ module.exports.list = async (req, res) => {
   res.render('admin/pages/tour-list', {
     pageTitle: 'Tour List',
     tourList: tourList,
-    accountAdminList: accountAdminList
+    accountAdminList: accountAdminList,
+    pagination: pagination
   })
 }
 
