@@ -41,6 +41,55 @@ module.exports.list = async (req, res) => {
   })
 }
 
+module.exports.changeMultiPatch = async (req, res) => {
+  try {
+    const { ids, option } = req.body
+
+    switch (option) {
+      case 'active':
+      case 'inactive':
+        await Tour.updateMany(
+          {
+            _id: {
+              $in: ids
+            }
+          },
+          {
+            status: option
+          }
+        )
+
+        req.flash('success', 'Change status tour(s) successfully!')
+        break
+      case 'delete':
+        await Tour.updateMany(
+          {
+            _id: {
+              $in: ids
+            }
+          },
+          {
+            deleted: true,
+            deletedAt: new Date(),
+            deletedBy: req.account._id
+          }
+        )
+
+        req.flash('success', 'Delete tour(s) successfully!')
+        break
+    }
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Error: Failed to process the request!'
+    })
+  }
+}
+
 module.exports.create = async (req, res) => {
   const categoryList = await Category.find({
     deleted: false

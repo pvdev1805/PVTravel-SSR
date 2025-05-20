@@ -12,6 +12,8 @@ const tourController = require('../../controllers/admin/tour.controller')
 
 router.get('/list', tourController.list)
 
+router.patch('/change-multi', tourController.changeMultiPatch)
+
 router.get('/create', tourController.create)
 
 router.post('/create', upload.single('avatar'), tourValidate.createPost, tourController.createPost)
