@@ -1,4 +1,5 @@
 const moment = require('moment')
+const slugify = require('slugify')
 
 const Category = require('../../models/category.model')
 const City = require('../../models/city.model')
@@ -38,6 +39,16 @@ module.exports.list = async (req, res) => {
     find.createdAt = dateFilter
   }
   // End - Filter by startDate and endDate
+
+  // Search
+  if (req.query.keyword) {
+    const keyword = slugify(req.query.keyword, {
+      lower: true
+    })
+    const keywordRegex = new RegExp(keyword)
+    find.slug = keywordRegex
+  }
+  // End - Search
 
   // Pagination
   const limitItems = 5
