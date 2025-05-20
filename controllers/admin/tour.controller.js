@@ -24,6 +24,21 @@ module.exports.list = async (req, res) => {
   }
   // End - Filter by creator
 
+  // Filter by startDate and endDate
+  const dateFilter = {}
+  if (req.query.startDate) {
+    const startDate = moment(req.query.startDate).startOf('day').toDate()
+    dateFilter.$gte = startDate
+  }
+  if (req.query.endDate) {
+    const endDate = moment(req.query.endDate).startOf('day').toDate()
+    dateFilter.$lte = endDate
+  }
+  if (Object.keys(dateFilter).length > 0) {
+    find.createdAt = dateFilter
+  }
+  // End - Filter by startDate and endDate
+
   const tourList = await Tour.find(find).sort({
     position: 'desc'
   })
