@@ -118,6 +118,53 @@ module.exports.trash = async (req, res) => {
   })
 }
 
+module.exports.trashChangeMultiPatch = async (req, res) => {
+  try {
+    const { ids, option } = req.body
+
+    switch (option) {
+      case 'undo':
+        await Tour.updateMany(
+          {
+            _id: {
+              $in: ids
+            }
+          },
+          {
+            $set: {
+              deleted: false
+            },
+            $unset: {
+              deletedAt: '',
+              deletedBy: ''
+            }
+          }
+        )
+
+        req.flash('success', 'Restore tour successfully!')
+        break
+      case 'delete-destroy':
+        await Tour.deleteMany({
+          _id: {
+            $in: ids
+          }
+        })
+
+        req.flash('success', 'Delete tour(s) permanently successfully!')
+        break
+    }
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Error: Failed to process the request!'
+    })
+  }
+}
+
 module.exports.edit = async (req, res) => {
   try {
     const id = req.params.id

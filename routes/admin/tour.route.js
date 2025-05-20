@@ -18,6 +18,8 @@ router.post('/create', upload.single('avatar'), tourValidate.createPost, tourCon
 
 router.get('/trash', tourController.trash)
 
+router.patch('/trash/change-multi', tourController.trashChangeMultiPatch)
+
 router.get('/edit/:id', tourController.edit)
 
 router.patch('/edit/:id', upload.single('avatar'), tourValidate.createPost, tourController.editPatch)

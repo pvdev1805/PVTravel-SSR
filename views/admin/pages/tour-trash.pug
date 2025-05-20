@@ -6,12 +6,15 @@ block main
   //- Section 5
   section.section-5 
     .inner-wrap 
-      .inner-change-status
+      .inner-change-status(
+        change-multi
+        data-api=`/${pathAdmin}/tour/trash/change-multi`
+      )
         .inner-item
           select
             option(value="") -- Actions --
-            option(value="") Restore
-            option(value="") Delete Permanently 
+            option(value="undo") Restore
+            option(value="delete-destroy") Delete Permanently 
         .inner-item
           button Apply 
       
@@ -27,7 +30,7 @@ block main
         thead 
           tr 
             th(class="inner-center")
-              input(type="checkbox" class="inner-check")
+              input(type="checkbox" class="inner-check" check-all)
             th Tour Name
             th Thumbnail
             th Price
@@ -44,7 +47,7 @@ block main
             each item in tourList   
               tr 
                 td(class="inner-center")
-                  input(type="checkbox" class="inner-check")
+                  input(type="checkbox" class="inner-check" check-item=item.id)
                 td #{item.name}
                 td 
                   img(src=item.avatar alt=item.name class="inner-avatar")
