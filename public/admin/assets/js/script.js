@@ -783,9 +783,29 @@ if (settingRoleCreateForm) {
       })
       // End Permissions
 
-      console.log('Role Name:', name)
-      console.log('Description:', description)
-      console.log('Permissions:', permissions)
+      const dataFinal = {
+        name: name,
+        description: description,
+        permissions: permissions
+      }
+
+      fetch(`/${pathAdmin}/setting/role/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataFinal)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.href = `/${pathAdmin}/setting/role/list`
+          }
+        })
     })
 }
 // End JustValidate - Setting Role Create Form Validation

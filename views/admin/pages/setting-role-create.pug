@@ -14,22 +14,11 @@ block main
         input(type="text" id="description" name="description")
       .inner-group 
         label(class="inner-label" for="phone") Permission
-        .inner-checkbox-list 
-          .inner-checkbox-item 
-            input(type="checkbox" name="permissions" value="read-dashboard")
-            label Read - Dashboard
-          .inner-checkbox-item 
-            input(type="checkbox" name="permissions" value="read-category")
-            label Read - Category
-          .inner-checkbox-item 
-            input(type="checkbox" name="permissions" value="create-category")
-            label Create - Category
-          .inner-checkbox-item 
-            input(type="checkbox" name="permissions" value="edit-category")
-            label Edit - Category
-          .inner-checkbox-item 
-            input(type="checkbox" name="permissions" value="delete-category")
-            label Delete - Category
+        .inner-checkbox-list
+          each item in permissionList 
+            .inner-checkbox-item
+              input(type="checkbox" name="permissions" value=item.value)
+              label #{item.label} 
       .inner-button.inner-two-col 
         button Create 
     .inner-back 

@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
+const settingValidate = require('../../validates/admin/setting.validate')
+
 const settingController = require('../../controllers/admin/setting.controller')
 
 const multer = require('multer')
@@ -29,5 +31,7 @@ router.get('/account-admin/create', settingController.accountAdminCreate)
 router.get('/role/list', settingController.roleList)
 
 router.get('/role/create', settingController.roleCreate)
+
+router.post('/role/create', settingValidate.roleCreatePost, settingController.roleCreatePost)
 
 module.exports = router
