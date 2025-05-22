@@ -12,7 +12,7 @@ const schema = new mongoose.Schema(
       default: false
     },
     deletedBy: String,
-    deletedAr: Date
+    deletedAt: Date
   },
   {
     timestamps: true

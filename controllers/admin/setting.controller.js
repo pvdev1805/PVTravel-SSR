@@ -107,3 +107,32 @@ module.exports.roleCreatePost = async (req, res) => {
     code: 'success'
   })
 }
+
+module.exports.roleDeletePatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    await Role.updateOne(
+      {
+        _id: id
+      },
+      {
+        deleted: true,
+        deletedAt: Date.now(),
+        deletedBy: req.account._id
+      }
+    )
+
+    req.flash('success', 'Delete role successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      code: 'error',
+      message: 'Role does not exist or has been deleted'
+    })
+  }
+}

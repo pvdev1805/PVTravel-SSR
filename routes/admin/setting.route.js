@@ -34,4 +34,6 @@ router.get('/role/create', settingController.roleCreate)
 
 router.post('/role/create', settingValidate.roleCreatePost, settingController.roleCreatePost)
 
+router.patch('/role/delete/:id', settingController.roleDeletePatch)
+
 module.exports = router
