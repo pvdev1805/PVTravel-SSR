@@ -18,16 +18,15 @@ block main
       .inner-group
         label(class="inner-label" for="role") Role
         select(id="role" name="role")
-          option(value="") -- Select Role --
-          option(value="Admin") Admin
-          option(value="Tour Manager") Tour Manager
-          option(value="Order Manager") Order Manager
+          each item in roleList 
+            option(value=item.id) #{item.name}
       .inner-group
         label(class="inner-label" for="positionCompany") Position 
         input(type="text" id="positionCompany" name="positionCompany")
       .inner-group 
         label(class="inner-label" for="status") Status 
         select(id="status" name="status")
+          option(value="initial") Initial
           option(value="active") Active
           option(value="inactive") Inactive
       .inner-group

@@ -1,5 +1,8 @@
+const bcrypt = require('bcryptjs')
+
 const SettingWebsiteInfo = require('../../models/setting-website-info.model')
 const Role = require('../../models/role.model')
+const AccountAdmin = require('../../models/account-admin.model')
 
 const permissionConfig = require('../../config/permission')
 
@@ -70,9 +73,53 @@ module.exports.accountAdminList = async (req, res) => {
 }
 
 module.exports.accountAdminCreate = async (req, res) => {
-  res.render('admin/pages/setting-account-admin-create', {
-    pageTitle: 'Create Admin Account'
+  const roleList = await Role.find({
+    deleted: false
   })
+
+  res.render('admin/pages/setting-account-admin-create', {
+    pageTitle: 'Create Admin Account',
+    roleList: roleList
+  })
+}
+
+module.exports.accountAdminCreatePost = async (req, res) => {
+  try {
+    req.body.createdBy = req.account._id
+    req.body.updatedBy = req.account._id
+    req.body.avatar = req.file ? req.file.path : ''
+
+    const existAccount = await AccountAdmin.findOne({
+      email: req.body.email
+    })
+
+    if (existAccount) {
+      res.status(409).json({
+        code: 'error',
+        message: 'Email already exists!'
+      })
+      return
+    }
+
+    // Encrypt password using bcrypt
+    const salt = await bcrypt.genSalt(10) // Generate a unique and random salt with 10 cycles of hashing
+    req.body.password = await bcrypt.hash(req.body.password, salt) // Hash the password with the salt
+
+    const newAccount = new AccountAdmin(req.body)
+    await newAccount.save()
+
+    req.flash('success', 'Create admin account successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      code: 'error',
+      message: 'Failed to create admin account'
+    })
+  }
 }
 
 module.exports.roleList = async (req, res) => {

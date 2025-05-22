@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const AccountAdmin = require('../../models/accounts-admin.model')
+const AccountAdmin = require('../../models/account-admin.model')
 
 module.exports.verifyToken = async (req, res, next) => {
   try {

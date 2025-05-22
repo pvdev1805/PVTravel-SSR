@@ -1,7 +1,7 @@
 const moment = require('moment')
 const slugify = require('slugify')
 const Category = require('../../models/category.model')
-const AccountAdmin = require('../../models/accounts-admin.model')
+const AccountAdmin = require('../../models/account-admin.model')
 
 const categoryHelper = require('../../helpers/category.helper')
 

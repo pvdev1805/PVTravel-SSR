@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const AccountAdmin = require('../../models/accounts-admin.model')
+const AccountAdmin = require('../../models/account-admin.model')
 const ForgotPassword = require('../../models/forgot-password.model')
 
 const generateHelper = require('../../helpers/generate.helper')
