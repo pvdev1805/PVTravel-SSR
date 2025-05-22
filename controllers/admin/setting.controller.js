@@ -117,22 +117,18 @@ module.exports.roleEdit = async (req, res) => {
       deleted: false
     })
 
-    const permissionList = permissionConfig.permissionList
-    const rolePermissionList = roleDetail.permissions
-    const permissionListWithChecked = permissionList.map((permission) => {
-      const isChecked = rolePermissionList.includes(permission.value)
-      return {
-        ...permission,
-        checked: isChecked
-      }
-    })
-
     res.render('admin/pages/setting-role-edit', {
       pageTitle: 'Edit Role',
       roleDetail: roleDetail,
-      permissionList: permissionListWithChecked
+      permissionList: permissionConfig.permissionList
     })
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Role does not exist or has been deleted'
+    })
+    res.redirect(`/${pathAdmin}/setting/role/list`)
+  }
 }
 
 module.exports.roleEditPatch = async (req, res) => {
@@ -160,6 +156,7 @@ module.exports.roleEditPatch = async (req, res) => {
       code: 'error',
       message: 'Role does not exist or has been deleted'
     })
+    res.redirect(`/${pathAdmin}/setting/role/list`)
   }
 }
 

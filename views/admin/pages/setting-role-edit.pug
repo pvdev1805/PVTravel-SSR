@@ -15,11 +15,16 @@ block main
         label(class="inner-label" for="description") Description
         input(type="text" id="description" name="description" value=roleDetail.description)
       .inner-group 
-        label(class="inner-label" for="phone") Permission
+        label(class="inner-label") Permission
         .inner-checkbox-list
           each item in permissionList 
             .inner-checkbox-item
-              input(type="checkbox" name="permissions" checked=item.checked value=item.value)
+              input(
+                type="checkbox" 
+                name="permissions" 
+                checked=roleDetail.permissions.includes(item.value) 
+                value=item.value
+              )
               label #{item.label} 
       .inner-button.inner-two-col 
         button Save
