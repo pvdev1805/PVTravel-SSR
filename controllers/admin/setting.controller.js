@@ -108,6 +108,61 @@ module.exports.roleCreatePost = async (req, res) => {
   })
 }
 
+module.exports.roleEdit = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    const roleDetail = await Role.findOne({
+      _id: id,
+      deleted: false
+    })
+
+    const permissionList = permissionConfig.permissionList
+    const rolePermissionList = roleDetail.permissions
+    const permissionListWithChecked = permissionList.map((permission) => {
+      const isChecked = rolePermissionList.includes(permission.value)
+      return {
+        ...permission,
+        checked: isChecked
+      }
+    })
+
+    res.render('admin/pages/setting-role-edit', {
+      pageTitle: 'Edit Role',
+      roleDetail: roleDetail,
+      permissionList: permissionListWithChecked
+    })
+  } catch (error) {}
+}
+
+module.exports.roleEditPatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    req.body.updatedBy = req.account._id
+
+    await Role.updateOne(
+      {
+        _id: id,
+        deleted: false
+      },
+      req.body
+    )
+
+    req.flash('success', 'Update role successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      code: 'error',
+      message: 'Role does not exist or has been deleted'
+    })
+  }
+}
+
 module.exports.roleDeletePatch = async (req, res) => {
   try {
     const id = req.params.id

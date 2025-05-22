@@ -810,6 +810,59 @@ if (settingRoleCreateForm) {
 }
 // End JustValidate - Setting Role Create Form Validation
 
+// JustValidate - Setting Role Edit Form Validation
+const settingRoleEditForm = document.querySelector('#setting-role-edit-form')
+if (settingRoleEditForm) {
+  const validator = new JustValidate('#setting-role-edit-form')
+
+  validator
+    .addField('#name', [
+      {
+        rule: 'required',
+        errorMessage: 'Role name is required!'
+      }
+    ])
+    .onSuccess((event) => {
+      const id = event.target.id.value
+      const name = event.target.name.value
+      const description = event.target.description.value
+
+      const permissions = []
+
+      // Permissions
+      const listElementPermission = settingRoleEditForm.querySelectorAll(`input[name="permissions"]:checked`)
+      listElementPermission.forEach((input) => {
+        permissions.push(input.value)
+      })
+      // End Permissions
+
+      const dataFinal = {
+        name: name,
+        description: description,
+        permissions: permissions
+      }
+
+      fetch(`/${pathAdmin}/setting/role/edit/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataFinal)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.reload()
+          }
+        })
+    })
+}
+// End JustValidate - Setting Role Edit Form Validation
+
 // JustValidate - Profile Edit Form Validation
 const profileEditForm = document.querySelector('#profile-edit-form')
 if (profileEditForm) {

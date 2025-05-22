@@ -1,0 +1,28 @@
+extends ../layouts/default.pug
+
+block main 
+  h1.box-title Edit Role
+  
+  //- Section 8
+  section.section-8 
+    form#setting-role-edit-form
+      .inner-group(style="display:none")
+        input(type="text" id="id" name="id" value=roleDetail.id)
+      .inner-group 
+        label(class="inner-label" for="name") Role Name
+        input(type="text" id="name" name="name" value=roleDetail.name)
+      .inner-group 
+        label(class="inner-label" for="description") Description
+        input(type="text" id="description" name="description" value=roleDetail.description)
+      .inner-group 
+        label(class="inner-label" for="phone") Permission
+        .inner-checkbox-list
+          each item in permissionList 
+            .inner-checkbox-item
+              input(type="checkbox" name="permissions" checked=item.checked value=item.value)
+              label #{item.label} 
+      .inner-button.inner-two-col 
+        button Save
+    .inner-back 
+      a(href=`/${pathAdmin}/setting/role/list`) Back to Role List
+  //- End Section 8
