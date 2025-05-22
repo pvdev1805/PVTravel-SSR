@@ -235,3 +235,36 @@ module.exports.roleDeletePatch = async (req, res) => {
     })
   }
 }
+
+module.exports.roleChangeMultiPatch = async (req, res) => {
+  try {
+    const { ids, option } = req.body
+
+    switch (option) {
+      case 'delete':
+        await Role.updateMany(
+          {
+            _id: { $in: ids }
+          },
+          {
+            deleted: true,
+            deletedAt: Date.now(),
+            deletedBy: req.account._id
+          }
+        )
+
+        req.flash('success', 'Delete role successfully!')
+
+        break
+    }
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Failed to delete role!'
+    })
+  }
+}

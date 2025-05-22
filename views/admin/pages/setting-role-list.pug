@@ -6,11 +6,14 @@ block main
   //- Section 5
   section.section-5 
     .inner-wrap 
-      .inner-change-status
+      .inner-change-status(
+        change-multi
+        data-api=`/${pathAdmin}/setting/role/change-multi`
+      )
         .inner-item
           select
             option(value="") -- Actions --
-            option(value="") Delete 
+            option(value="delete") Delete 
         .inner-item
           button Apply 
       
@@ -29,7 +32,7 @@ block main
         thead 
           tr 
             th(class="inner-center")
-              input(type="checkbox" class="inner-check")
+              input(type="checkbox" class="inner-check" check-all)
             th Role Name
             th Description
             th Actions
@@ -41,7 +44,7 @@ block main
             each item in roleList 
               tr 
                 td(class="inner-center")
-                  input(type="checkbox" class="inner-check")
+                  input(type="checkbox" class="inner-check" check-item=item.id)
                 td #{item.name}
                 td #{item.description}
                 td

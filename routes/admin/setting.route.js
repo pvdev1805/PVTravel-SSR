@@ -42,4 +42,6 @@ router.patch('/role/edit/:id', settingValidate.roleCreatePost, settingController
 
 router.patch('/role/delete/:id', settingController.roleDeletePatch)
 
+router.patch('/role/change-multi', settingController.roleChangeMultiPatch)
+
 module.exports = router
