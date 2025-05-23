@@ -141,6 +141,74 @@ module.exports.accountAdminCreatePost = async (req, res) => {
   }
 }
 
+module.exports.accountAdminEdit = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    const accountAdminDetail = await AccountAdmin.findOne({
+      _id: id,
+      deleted: false
+    })
+
+    const roleList = await Role.find({
+      deleted: false
+    })
+
+    res.render('admin/pages/setting-account-admin-edit', {
+      pageTitle: 'Edit Admin Account',
+      accountAdminDetail: accountAdminDetail,
+      roleList: roleList
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Admin account does not exist or has been deleted'
+    })
+
+    res.redirect(`/${pathAdmin}/setting/account-admin/list`)
+  }
+}
+
+module.exports.accountAdminEditPatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    req.body.updatedBy = req.account._id
+
+    if (req.file) {
+      req.body.avatar = req.file.path
+    } else {
+      delete req.body.avatar
+    }
+
+    // Encrypt password using bcrypt
+    if (req.body.password) {
+      const salt = bcrypt.genSalt(10) // Generate a unique and random salt with 10 cycles of hashing
+      req.body.password = await bcrypt.hash(req.body.password, salt) // Hash the password with the salt
+    }
+
+    await AccountAdmin.updateOne(
+      {
+        _id: id,
+        deleted: false
+      },
+      req.body
+    )
+
+    req.flash('success', 'Update admin account successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Admin account does not exist or has been deleted'
+    })
+    res.redirect(`/${pathAdmin}/setting/account-admin/list`)
+  }
+}
+
 module.exports.roleList = async (req, res) => {
   const roleList = await Role.find({
     deleted: false

@@ -773,7 +773,130 @@ if (settingAccountAdminCreateForm) {
         })
     })
 }
-// End JustValidate - Setting Account AdminCreate Form Validation
+// End JustValidate - Setting Account Admin Create Form Validation
+
+// JustValidate - Setting Account Admin Edit Form Validation
+const settingAccountAdminEditForm = document.querySelector('#setting-account-admin-edit-form')
+if (settingAccountAdminEditForm) {
+  const validator = new JustValidate('#setting-account-admin-edit-form')
+
+  validator
+    .addField(`#fullName`, [
+      {
+        rule: 'required',
+        errorMessage: 'Full name is required!'
+      },
+      {
+        rule: 'minLength',
+        value: 5,
+        errorMessage: 'Full name must be at least 5 characters!'
+      },
+      {
+        rule: 'maxLength',
+        value: 50,
+        errorMessage: 'Full name must not exceed 50 characters!'
+      }
+    ])
+    .addField(`#email`, [
+      {
+        rule: 'required',
+        errorMessage: 'Email is required!'
+      },
+      {
+        rule: 'email',
+        errorMessage: 'Email is invalid!'
+      }
+    ])
+    .addField(`#phone`, [
+      {
+        rule: 'required',
+        errorMessage: 'Phone is required!'
+      },
+      {
+        rule: 'customRegexp',
+        value: /^(61|0)[2-578]\d{8}$/g,
+        errorMessage: 'Phone number is invalid!'
+      }
+    ])
+    .addField('#positionCompany', [
+      {
+        rule: 'required',
+        errorMessage: 'Position in company is required!'
+      }
+    ])
+    .addField('#password', [
+      {
+        validator: (value) => (value ? value.length >= 8 : true),
+        errorMessage: 'Password must be at least 8 characters!'
+      },
+      {
+        validator: (value) => (value ? /[A-Z]/.test(value) : true),
+        errorMessage: 'Password must contain at least one uppercase letter!'
+      },
+      {
+        validator: (value) => (value ? /[a-z]/.test(value) : true),
+        errorMessage: 'Password must contain at least one lowercase letter!'
+      },
+      {
+        validator: (value) => (value ? /[0-9]/.test(value) : true),
+        errorMessage: 'Password must contain at least one number!'
+      },
+      {
+        validator: (value) => (value ? /[@$!%*?&]/.test(value) : true),
+        errorMessage: 'Password must contain at least one special character!'
+      }
+    ])
+    .onSuccess((event) => {
+      const id = event.target.id.value
+      const fullName = event.target.fullName.value
+      const email = event.target.email.value
+      const phone = event.target.phone.value
+      const role = event.target.role.value
+      const positionCompany = event.target.positionCompany.value
+      const status = event.target.status.value
+      const password = event.target.password.value
+
+      const avatars = filePond.avatar.getFiles()
+      let avatar = null
+      if (avatars.length > 0) {
+        avatar = avatars[0].file
+        const elementImageDefault = event.target.avatar.closest('[image-default]')
+        if (elementImageDefault) {
+          const imageDefault = elementImageDefault.getAttribute('image-default')
+          if (imageDefault.includes(avatar.name)) {
+            avatar = null
+          }
+        }
+      }
+
+      // Create FormData object to send data to server
+      const formData = new FormData()
+      formData.append('fullName', fullName)
+      formData.append('email', email)
+      formData.append('phone', phone)
+      formData.append('role', role)
+      formData.append('positionCompany', positionCompany)
+      formData.append('status', status)
+      formData.append('password', password)
+      formData.append('avatar', avatar)
+
+      fetch(`/${pathAdmin}/setting/account-admin/edit/${id}`, {
+        method: 'PATCH',
+        body: formData
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.reload()
+          }
+        })
+    })
+}
+// End JustValidate - Setting Account Admin Edit Form Validation
 
 // JustValidate - Setting Role Create Form Validation
 const settingRoleCreateForm = document.querySelector('#setting-role-create-form')
