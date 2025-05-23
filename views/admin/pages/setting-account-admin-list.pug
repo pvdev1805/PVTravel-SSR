@@ -65,22 +65,40 @@ block main
             th Status
             th Actions
         tbody
-          tr 
-            td(class="inner-center")
-              input(type="checkbox" class="inner-check")
-            td John Doe
-            td(class="inner-center") 
-              img(src="/admin/assets/images/avatar.png" alt="User 1" class="inner-avatar")
-            td johndoe@gmail.com
-            td 0123456789
-            td Admin
-            td President
-            td
-              .badge.badge-green Active
-            td
-              .inner-buttons 
-                button(class="inner-edit") <i class="fa-regular fa-pen-to-square"></i>
-                button(class="inner-delete") <i class="fa-regular fa-trash-can"></i>
+          if(accountAdminList.length == 0)
+            tr 
+              td(class="inner-center" colspan="8") No accounts found
+          else 
+            each item in accountAdminList
+              tr 
+                td(class="inner-center")
+                  input(type="checkbox" class="inner-check")
+                td #{item.fullName}
+                td(class="inner-center") 
+                  img(src=item.avatar alt=item.fullName class="inner-avatar")
+                td #{item.email}
+                td #{item.phone}
+                td #{item.roleName}
+                td #{item.positionCompany}
+                td
+                  if(item.status == "active")
+                    .badge.badge-green Active
+                  else if(item.status == "inactive")
+                    .badge.badge-red Inactive
+                  else if(item.status == "initial")
+                    .badge.badge-orange Initial
+                td
+                  .inner-buttons 
+                    a(
+                      class="inner-edit"
+                      href=`/${pathAdmin}/setting/account-admin/edit/${item.id}`
+                    ) <i class="fa-regular fa-pen-to-square"></i>
+                    button(
+                      class="inner-delete"
+                      button-delete
+                      data-api=`/${pathAdmin}/setting/account-admin/delete/${item.id}`
+                    ) <i class="fa-regular fa-trash-can"></i>
+          
   //- End Section 6
 
   //- Section 7
