@@ -211,6 +211,34 @@ module.exports.accountAdminEditPatch = async (req, res) => {
   }
 }
 
+module.exports.accountAdminDeletePatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    await AccountAdmin.updateOne(
+      {
+        _id: id
+      },
+      {
+        deleted: true,
+        deletedAt: Date.now(),
+        deletedBy: req.account._id
+      }
+    )
+
+    req.flash('success', 'Delete admin account successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Admin account does not exist or has been deleted'
+    })
+  }
+}
+
 module.exports.roleList = async (req, res) => {
   const roleList = await Role.find({
     deleted: false
