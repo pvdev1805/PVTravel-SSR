@@ -185,6 +185,8 @@ module.exports.accountAdminEditPatch = async (req, res) => {
     if (req.body.password) {
       const salt = bcrypt.genSalt(10) // Generate a unique and random salt with 10 cycles of hashing
       req.body.password = await bcrypt.hash(req.body.password, salt) // Hash the password with the salt
+    } else {
+      delete req.body.password
     }
 
     await AccountAdmin.updateOne(
