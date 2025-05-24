@@ -1069,24 +1069,44 @@ if (profileEditForm) {
       const fullName = event.target.fullName.value
       const email = event.target.email.value
       const phone = event.target.phone.value
-      const positionCompany = event.target.positionCompany.value
-      const role = event.target.role.value
 
       const avatars = filePond.avatar.getFiles()
       let avatar = null
       if (avatars.length > 0) {
         avatar = avatars[0].file
+        const elementImageDefault = event.target.avatar.closest('[image-default]')
+        if (elementImageDefault) {
+          const imageDefault = elementImageDefault.getAttribute('image-default')
+          if (imageDefault.includes(avatar.name)) {
+            avatar = null
+          }
+        }
       }
 
-      console.log('Full Name:', fullName)
-      console.log('Email:', email)
-      console.log('Phone:', phone)
-      console.log('Position in Company:', positionCompany)
-      console.log('Role:', role)
-      console.log('Avatar:', avatar)
+      // Create FormData object to send data to server
+      const formData = new FormData()
+      formData.append('fullName', fullName)
+      formData.append('email', email)
+      formData.append('phone', phone)
+      formData.append('avatar', avatar)
+
+      fetch(`/${pathAdmin}/profile/edit`, {
+        method: 'PATCH',
+        body: formData
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.reload()
+          }
+        })
     })
 }
-// JustValidate - Profile Edit Form Validation
+// End JustValidate - Profile Edit Form Validation
 
 // JustValidate - Profile Change Password Form Validation
 const profileChangePasswordForm = document.querySelector('#profile-change-password-form')
