@@ -9,10 +9,10 @@ block main
       .inner-item.inner-label
         <i class="fa-solid fa-filter"></i> Filter
       .inner-item
-        select
+        select(filter-status)
           option(value="") Status 
-          option(value="") Active 
-          option(value="") Inactive  
+          option(value="active") Active 
+          option(value="inactive") Inactive
       .inner-item.inner-date
         input(type="date" placeholder="From")
         span -

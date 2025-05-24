@@ -67,9 +67,17 @@ module.exports.websiteInfoPatch = async (req, res) => {
 }
 
 module.exports.accountAdminList = async (req, res) => {
-  const accountAdminList = await AccountAdmin.find({
+  const find = {
     deleted: false
-  }).sort({
+  }
+
+  // Filter by status
+  if (req.query.status) {
+    find.status = req.query.status
+  }
+  // End - Filter by status
+
+  const accountAdminList = await AccountAdmin.find(find).sort({
     createdAt: 'desc'
   })
 
