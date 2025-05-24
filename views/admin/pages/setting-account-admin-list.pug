@@ -18,11 +18,12 @@ block main
         span -
         input(type="date" filter-end-date) 
       .inner-item 
-        select
+        select(filter-role)
           option(value="") Role
-          option(value="") Admin
-          option(value="") Tour Manager 
-          option(value="") Order Manager
+          each item in roleList 
+            option(
+              value=item.id
+            ) #{item.name}
       .inner-item.inner-reset 
         <i class="fa-solid fa-rotate-left"></i> Clear Filter
   //- End Section 4

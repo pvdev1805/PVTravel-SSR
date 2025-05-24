@@ -1355,6 +1355,29 @@ if (filterEndDate) {
 }
 // End - Filter End Date
 
+// Filter Role
+const filterRole = document.querySelector('[filter-role]')
+if (filterRole) {
+  const url = new URL(window.location.href)
+
+  filterRole.addEventListener('change', () => {
+    const value = filterRole.value
+    if (value) {
+      url.searchParams.set('role', value)
+    } else {
+      url.searchParams.delete('role')
+    }
+    window.location.href = url.href
+  })
+
+  // Display default value of filter role
+  const currentValue = url.searchParams.get('role')
+  if (currentValue) {
+    filterRole.value = currentValue
+  }
+}
+// End - Filter Role
+
 // Filter Reset
 const filterReset = document.querySelector('[filter-reset]')
 if (filterReset) {

@@ -72,6 +72,10 @@ module.exports.accountAdminList = async (req, res) => {
     deleted: false
   }
 
+  const roleList = await Role.find({
+    deleted: false
+  })
+
   // Filter by status
   if (req.query.status) {
     find.status = req.query.status
@@ -93,6 +97,12 @@ module.exports.accountAdminList = async (req, res) => {
   }
   // End - Filter by createdAt
 
+  // Filter by role
+  if (req.query.role) {
+    find.role = req.query.role
+  }
+  // End - Filter by role
+
   const accountAdminList = await AccountAdmin.find(find).sort({
     createdAt: 'desc'
   })
@@ -111,7 +121,8 @@ module.exports.accountAdminList = async (req, res) => {
 
   res.render('admin/pages/setting-account-admin-list', {
     pageTitle: 'Admin Account List',
-    accountAdminList: accountAdminList
+    accountAdminList: accountAdminList,
+    roleList: roleList
   })
 }
 
