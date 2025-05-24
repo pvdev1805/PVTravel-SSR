@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs')
+const moment = require('moment')
 
 const SettingWebsiteInfo = require('../../models/setting-website-info.model')
 const Role = require('../../models/role.model')
@@ -76,6 +77,21 @@ module.exports.accountAdminList = async (req, res) => {
     find.status = req.query.status
   }
   // End - Filter by status
+
+  // Filter by createdAt
+  const dateFilter = {}
+  if (req.query.startDate) {
+    const startDate = moment(req.query.startDate).startOf('day').toDate()
+    dateFilter.$gte = startDate
+  }
+  if (req.query.endDate) {
+    const endDate = moment(req.query.endDate).startOf('day').toDate()
+    dateFilter.$lte = endDate
+  }
+  if (Object.keys(dateFilter).length > 0) {
+    find.createdAt = dateFilter
+  }
+  // End - Filter by createdAt
 
   const accountAdminList = await AccountAdmin.find(find).sort({
     createdAt: 'desc'
