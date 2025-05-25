@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const moment = require('moment')
+const slugify = require('slugify')
 
 const SettingWebsiteInfo = require('../../models/setting-website-info.model')
 const Role = require('../../models/role.model')
@@ -102,6 +103,16 @@ module.exports.accountAdminList = async (req, res) => {
     find.role = req.query.role
   }
   // End - Filter by role
+
+  // Filter by keyword - Search
+  if (req.query.keyword) {
+    const keyword = slugify(req.query.keyword, {
+      lower: true
+    })
+    const keywordRegex = new RegExp(keyword)
+    find.slug = keywordRegex
+  }
+  // End - Filter by keyword - Search
 
   const accountAdminList = await AccountAdmin.find(find).sort({
     createdAt: 'desc'
