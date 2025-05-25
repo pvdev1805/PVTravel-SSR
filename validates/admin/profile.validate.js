@@ -37,3 +37,52 @@ module.exports.editPatch = (req, res, next) => {
 
   next()
 }
+
+module.exports.changePasswordPatch = (req, res, next) => {
+  const schema = Joi.object({
+    password: Joi.string()
+      .required()
+      .min(8)
+      .custom((value, helpers) => {
+        if (!/[A-Z]/.test(value)) {
+          return helpers.error('password.uppercase')
+        }
+        if (!/[a-z]/.test(value)) {
+          return helpers.error('password.lowercase')
+        }
+        if (!/\d/.test(value)) {
+          return helpers.error('password.number')
+        }
+        if (!/[@$!%*?&]/.test(value)) {
+          return helpers.error('password.special')
+        }
+        return value
+      })
+      .messages({
+        'string.empty': 'Password is required!',
+        'string.min': 'Password must be at least 8 characters!',
+        'password.uppercase': 'Password must contain at least one uppercase letter!',
+        'password.lowercase': 'Password must contain at least one lowercase letter!',
+        'password.number': 'Password must contain at least one digit!',
+        'password.special': 'Password must contain at least one special character!'
+      }),
+    confirmPassword: Joi.string().required().valid(Joi.ref('password')).messages({
+      'string.empty': 'Confirm password is required!',
+      'any.only': 'Confirm password must match the password!'
+    })
+  })
+
+  const { error } = schema.validate(req.body)
+
+  if (error) {
+    const errorMessage = error.details[0].message
+
+    res.status(400).json({
+      code: 'error',
+      message: errorMessage
+    })
+    return
+  }
+
+  next()
+}

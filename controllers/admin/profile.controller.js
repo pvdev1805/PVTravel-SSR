@@ -1,3 +1,5 @@
+const bcrypt = require('bcryptjs')
+
 const AccountAdmin = require('../../models/account-admin.model')
 const Role = require('../../models/role.model')
 
@@ -57,4 +59,35 @@ module.exports.changePassword = async (req, res) => {
   res.render('admin/pages/profile-change-password', {
     pageTitle: 'Change Password'
   })
+}
+
+module.exports.changePasswordPatch = async (req, res) => {
+  try {
+    const id = req.account._id
+
+    req.body.updatedBy = req.account._id
+
+    // Encrypt password using bcrypt
+    const salt = await bcrypt.genSalt(10) // Generate a unique and random salt with 10 cycles of hashing
+    req.body.password = await bcrypt.hash(req.body.password, salt) // Hash the password with the generated salt
+
+    await AccountAdmin.updateOne(
+      {
+        _id: id,
+        deleted: false
+      },
+      req.body
+    )
+
+    req.flash('success', 'Password changed successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: error.message || 'An error occurred while changing the password.'
+    })
+  }
 }
