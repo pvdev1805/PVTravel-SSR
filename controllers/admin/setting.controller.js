@@ -274,6 +274,50 @@ module.exports.accountAdminDeletePatch = async (req, res) => {
   }
 }
 
+module.exports.accountAdminChangeMultiPatch = async (req, res) => {
+  try {
+    const { ids, option } = req.body
+
+    switch (option) {
+      case 'active':
+      case 'inactive':
+        await AccountAdmin.updateMany(
+          {
+            _id: { $in: ids }
+          },
+          {
+            status: option
+          }
+        )
+        req.flash('success', 'Update admin account status successfully!')
+        break
+      case 'delete':
+        await AccountAdmin.updateMany(
+          {
+            _id: { $in: ids }
+          },
+          {
+            deleted: true,
+            deletedAt: Date.now(),
+            deletedBy: req.account._id
+          }
+        )
+        req.flash('success', 'Delete admin account successfully!')
+        break
+    }
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      code: 'error',
+      message: 'Failed to update admin account!'
+    })
+  }
+}
+
 module.exports.roleList = async (req, res) => {
   const roleList = await Role.find({
     deleted: false
