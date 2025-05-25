@@ -1155,9 +1155,11 @@ if (profileChangePasswordForm) {
     ])
     .onSuccess((event) => {
       const password = event.target.password.value
+      const confirmPassword = event.target.confirmPassword.value
 
       const dataFinal = {
-        password: password
+        password: password,
+        confirmPassword: confirmPassword
       }
 
       fetch(`/${pathAdmin}/profile/change-password`, {
