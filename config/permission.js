@@ -36,6 +36,10 @@ module.exports.permissionList = [
     value: 'tour-delete'
   },
   {
+    label: 'View Tour Trash',
+    value: 'tourTrash-view'
+  },
+  {
     label: 'View Order',
     value: 'order-view'
   },
@@ -66,5 +70,37 @@ module.exports.permissionList = [
   {
     label: 'Delete User',
     value: 'user-delete'
+  },
+  {
+    label: 'View Contact',
+    value: 'contact-view'
+  },
+  {
+    label: 'Create Contact',
+    value: 'contact-create'
+  },
+  {
+    label: 'Edit Contact',
+    value: 'contact-edit'
+  },
+  {
+    label: 'Delete Contact',
+    value: 'contact-delete'
+  },
+  {
+    label: 'View Setting',
+    value: 'setting-view'
+  },
+  {
+    label: 'Create Setting',
+    value: 'setting-create'
+  },
+  {
+    label: 'Edit Setting',
+    value: 'setting-edit'
+  },
+  {
+    label: 'Delete Setting',
+    value: 'setting-delete'
   }
 ]

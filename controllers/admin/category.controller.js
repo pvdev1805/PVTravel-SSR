@@ -121,27 +121,34 @@ module.exports.create = async (req, res) => {
 }
 
 module.exports.createPost = async (req, res) => {
-  if (req.body.position) {
-    req.body.position = parseInt(req.body.position)
+  if (req.role.permissions.includes('category-create')) {
+    if (req.body.position) {
+      req.body.position = parseInt(req.body.position)
+    } else {
+      const totalRecord = await Category.countDocuments({})
+      req.body.position = totalRecord + 1
+    }
+
+    req.body.createdBy = req.account._id
+    req.body.updatedBy = req.account._id
+
+    req.body.avatar = req.file ? req.file.path : ''
+
+    const newRecord = new Category(req.body)
+    await newRecord.save()
+
+    req.flash('success', 'Create category successfully!')
+
+    res.status(200).json({
+      code: 'success'
+      // message: 'Category created successfully!'
+    })
   } else {
-    const totalRecord = await Category.countDocuments({})
-    req.body.position = totalRecord + 1
+    res.status(403).json({
+      code: 'error',
+      message: 'You do not have permission to create category!'
+    })
   }
-
-  req.body.createdBy = req.account._id
-  req.body.updatedBy = req.account._id
-
-  req.body.avatar = req.file ? req.file.path : ''
-
-  const newRecord = new Category(req.body)
-  await newRecord.save()
-
-  req.flash('success', 'Create category successfully!')
-
-  res.status(200).json({
-    code: 'success'
-    // message: 'Category created successfully!'
-  })
 }
 
 module.exports.edit = async (req, res) => {
@@ -171,36 +178,43 @@ module.exports.edit = async (req, res) => {
 
 module.exports.editPatch = async (req, res) => {
   try {
-    const id = req.params.id
+    if (req.role.permissions.includes('category-edit')) {
+      const id = req.params.id
 
-    if (req.body.position) {
-      req.body.position = parseInt(req.body.position)
+      if (req.body.position) {
+        req.body.position = parseInt(req.body.position)
+      } else {
+        const totalRecord = await Category.countDocuments({})
+        req.body.position = totalRecord + 1
+      }
+
+      req.body.updatedBy = req.account._id
+
+      if (req.file) {
+        req.body.avatar = req.file.path
+      } else {
+        delete req.body.avatar
+      }
+
+      await Category.updateOne(
+        {
+          _id: id,
+          deleted: false
+        },
+        req.body
+      )
+
+      req.flash('success', 'Update category successfully!')
+
+      res.status(200).json({
+        code: 'success'
+      })
     } else {
-      const totalRecord = await Category.countDocuments({})
-      req.body.position = totalRecord + 1
+      res.status(403).json({
+        code: 'error',
+        message: 'You do not have permission to edit category!'
+      })
     }
-
-    req.body.updatedBy = req.account._id
-
-    if (req.file) {
-      req.body.avatar = req.file.path
-    } else {
-      delete req.body.avatar
-    }
-
-    await Category.updateOne(
-      {
-        _id: id,
-        deleted: false
-      },
-      req.body
-    )
-
-    req.flash('success', 'Update category successfully!')
-
-    res.status(200).json({
-      code: 'success'
-    })
   } catch (error) {
     console.log(error)
     res.status(404).json({
@@ -212,25 +226,32 @@ module.exports.editPatch = async (req, res) => {
 
 module.exports.deletePatch = async (req, res) => {
   try {
-    const id = req.params.id
+    if (req.role.permissions.includes('category-delete')) {
+      const id = req.params.id
 
-    await Category.updateOne(
-      {
-        _id: id,
-        deleted: false
-      },
-      {
-        deleted: true,
-        deletedAt: new Date(),
-        deletedBy: req.account._id
-      }
-    )
+      await Category.updateOne(
+        {
+          _id: id,
+          deleted: false
+        },
+        {
+          deleted: true,
+          deletedAt: new Date(),
+          deletedBy: req.account._id
+        }
+      )
 
-    req.flash('success', 'Delete category successfully!')
+      req.flash('success', 'Delete category successfully!')
 
-    res.status(200).json({
-      code: 'success'
-    })
+      res.status(200).json({
+        code: 'success'
+      })
+    } else {
+      res.status(403).json({
+        code: 'error',
+        message: 'You do not have permission to delete category!'
+      })
+    }
   } catch (error) {
     console.log(error)
     res.status(404).json({
@@ -242,6 +263,13 @@ module.exports.deletePatch = async (req, res) => {
 
 module.exports.changeMultiPatch = async (req, res) => {
   try {
+    if (!req.role.permissions.includes('category-edit')) {
+      res.status(403).json({
+        code: 'error',
+        message: 'You do not have permission to change category status!'
+      })
+      return
+    }
     const { option, ids } = req.body
 
     switch (option) {
@@ -259,6 +287,13 @@ module.exports.changeMultiPatch = async (req, res) => {
         req.flash('success', 'Change status successfully!')
         break
       case 'delete':
+        if (!req.role.permissions.includes('category-delete')) {
+          res.status(403).json({
+            code: 'error',
+            message: 'You do not have permission to delete category!'
+          })
+          return
+        }
         await Category.updateMany(
           {
             _id: { $in: ids }

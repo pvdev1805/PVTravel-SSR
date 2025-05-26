@@ -1,23 +1,30 @@
 nav.sider 
   ul.inner-menu 
-    li
-      a(href=`/${pathAdmin}/dashboard`) <i class="fa-solid fa-gauge-high"></i> Dashboard 
-    li
-      a(href=`/${pathAdmin}/category/list`) <i class="fa-solid fa-table-list"></i> Category Management
-    li
-      a(href=`/${pathAdmin}/tour/list`) <i class="fa-solid fa-box"></i> Tour Management
-    li
-      a(href=`/${pathAdmin}/order/list`) <i class="fa-solid fa-list-check"></i> Order Management
-    li
-      a(href=`/${pathAdmin}/user/list`) <i class="fa-solid fa-user"></i> User Management
-    li
-      a(href=`/${pathAdmin}/contact/list`) <i class="fa-solid fa-user-group"></i> Contact Information
+    if(account.permissions.includes("dashboard-view"))
+      li
+        a(href=`/${pathAdmin}/dashboard`) <i class="fa-solid fa-gauge-high"></i> Dashboard 
+    if(account.permissions.includes("category-view"))
+      li
+        a(href=`/${pathAdmin}/category/list`) <i class="fa-solid fa-table-list"></i> Category Management
+    if(account.permissions.includes("tour-view"))
+      li
+        a(href=`/${pathAdmin}/tour/list`) <i class="fa-solid fa-box"></i> Tour Management
+    if(account.permissions.includes("order-view"))
+      li
+        a(href=`/${pathAdmin}/order/list`) <i class="fa-solid fa-list-check"></i> Order Management
+    if(account.permissions.includes("user-view"))
+      li
+        a(href=`/${pathAdmin}/user/list`) <i class="fa-solid fa-user"></i> User Management
+    if(account.permissions.includes("contact-view"))
+      li
+        a(href=`/${pathAdmin}/contact/list`) <i class="fa-solid fa-user-group"></i> Contact Information
 
   hr
 
   ul.inner-menu 
-    li 
-      a(href=`/${pathAdmin}/setting/list`) <i class="fa-solid fa-gear"></i> Settings
+    if(account.permissions.includes("setting-view"))
+      li 
+        a(href=`/${pathAdmin}/setting/list`) <i class="fa-solid fa-gear"></i> Settings
     li 
       a(href=`/${pathAdmin}/profile/edit`) <i class="fa-solid fa-user-gear"></i> User Profile
     li

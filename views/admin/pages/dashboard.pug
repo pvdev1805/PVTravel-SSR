@@ -1,149 +1,150 @@
 extends ../layouts/default.pug
 
-block main 
-  h1.box-title Dashboard
+block main
+  if(account.permissions.includes("dashboard-view"))
+    h1.box-title Dashboard
 
-  //- Section 1
-  section.section-1 
-    .inner-item 
-      .inner-icon 
-        img(src="/admin/assets/images/icon-users.svg" alt="Users")
-      .inner-content 
-        .inner-title Users
-        .inner-number 1,200
-    .inner-item 
-      .inner-icon 
-        img(src="/admin/assets/images/icon-orders.svg" alt="Orders")
-      .inner-content 
-        .inner-title Orders
-        .inner-number 3,600
-    .inner-item 
-      .inner-icon 
-        img(src="/admin/assets/images/icon-revenue.svg" alt="Revenue")
-      .inner-content 
-        .inner-title Revenue
-        .inner-number $20,000
-  //- End Section 1
+    //- Section 1
+    section.section-1 
+      .inner-item 
+        .inner-icon 
+          img(src="/admin/assets/images/icon-users.svg" alt="Users")
+        .inner-content 
+          .inner-title Users
+          .inner-number 1,200
+      .inner-item 
+        .inner-icon 
+          img(src="/admin/assets/images/icon-orders.svg" alt="Orders")
+        .inner-content 
+          .inner-title Orders
+          .inner-number 3,600
+      .inner-item 
+        .inner-icon 
+          img(src="/admin/assets/images/icon-revenue.svg" alt="Revenue")
+        .inner-content 
+          .inner-title Revenue
+          .inner-number $20,000
+    //- End Section 1
 
-  //- Section 2
-  section.section-2 
-    .inner-head 
-      h2.inner-title Revenue Chart
-      .inner-filter 
-        input(
-          type="month"
-          name=""
-        )
-    .inner-chart
-      canvas(id="revenue-chart")
-  //- End Section 2
+    //- Section 2
+    section.section-2 
+      .inner-head 
+        h2.inner-title Revenue Chart
+        .inner-filter 
+          input(
+            type="month"
+            name=""
+          )
+      .inner-chart
+        canvas(id="revenue-chart")
+    //- End Section 2
 
-  //- Section 3
-  section.section-3 
-    h2.inner-title Recent Orders
-    .table-1 
-      table
-        thead 
-          tr 
-            th Order ID 
-            th Customer Information 
-            th Tour List 
-            th Payment 
-            th Status
-            th.inner-text-right Order Date
-          
-        tbody
-          tr 
-            td 
-              .inner-code PVPSU001 
-            td 
-              div Name: John Smith 
-              div Phone: 0123456789
-              div Note: Test 
-            td
-              .inner-list 
-                .inner-item 
-                  .inner-image 
-                    img(src="/admin/assets/images/tour-1.jpeg" alt="Tour Paris")
-                  .inner-content 
-                    .inner-name Tour Paris
-                    .inner-quantity Adult: 3 x $150.00
-                    .inner-quantity Child: 2 x $50.00
-                    .inner-quantity Infant: 2 x $20.00
-            td 
-              div Total: $590.00
-              div Discount: $90.00
-              div Coupon Code: PARISMAX
-              div Checkout: $500.00 
-              div Payment Method: Credit Card
-              div Payment Status: Completed
-            td 
-              .badge.badge-orange Initiated
-              //- .badge.badge-green Completed
-              //- .badge.badge-red Cancelled
-            td.inner-text-right 
-              div 16:20
-              div 01/01/2024
-          tr 
-            td 
-              .inner-code PVPSU001 
-            td 
-              div Name: John Smith 
-              div Phone: 0123456789
-              div Note: Test 
-            td
-              .inner-list 
-                .inner-item 
-                  .inner-image 
-                    img(src="/admin/assets/images/tour-1.jpeg" alt="Tour Paris")
-                  .inner-content 
-                    .inner-name Tour Paris
-                    .inner-quantity Adult: 3 x $150.00
-                    .inner-quantity Child: 2 x $50.00
-                    .inner-quantity Infant: 2 x $20.00
-            td 
-              div Total: $590.00
-              div Discount: $90.00
-              div Coupon Code: PARISMAX
-              div Checkout: $500.00 
-              div Payment Method: Credit Card
-              div Payment Status: Completed
-            td 
-              .badge.badge-orange Initiated
-              //- .badge.badge-green Completed
-              //- .badge.badge-red Cancelled
-            td.inner-text-right 
-              div 16:20
-              div 01/01/2024 
-          tr 
-            td 
-              .inner-code PVPSU001 
-            td 
-              div Name: John Smith 
-              div Phone: 0123456789
-              div Note: Test 
-            td
-              .inner-list 
-                .inner-item 
-                  .inner-image 
-                    img(src="/admin/assets/images/tour-1.jpeg" alt="Tour Paris")
-                  .inner-content 
-                    .inner-name Tour Paris
-                    .inner-quantity Adult: 3 x $150.00
-                    .inner-quantity Child: 2 x $50.00
-                    .inner-quantity Infant: 2 x $20.00
-            td 
-              div Total: $590.00
-              div Discount: $90.00
-              div Coupon Code: PARISMAX
-              div Checkout: $500.00 
-              div Payment Method: Credit Card
-              div Payment Status: Completed
-            td 
-              .badge.badge-orange Initiated
-              //- .badge.badge-green Completed
-              //- .badge.badge-red Cancelled
-            td.inner-text-right 
-              div 16:20
-              div 01/01/2024 
-  //- End Section 3
+    //- Section 3
+    section.section-3 
+      h2.inner-title Recent Orders
+      .table-1 
+        table
+          thead 
+            tr 
+              th Order ID 
+              th Customer Information 
+              th Tour List 
+              th Payment 
+              th Status
+              th.inner-text-right Order Date
+            
+          tbody
+            tr 
+              td 
+                .inner-code PVPSU001 
+              td 
+                div Name: John Smith 
+                div Phone: 0123456789
+                div Note: Test 
+              td
+                .inner-list 
+                  .inner-item 
+                    .inner-image 
+                      img(src="/admin/assets/images/tour-1.jpeg" alt="Tour Paris")
+                    .inner-content 
+                      .inner-name Tour Paris
+                      .inner-quantity Adult: 3 x $150.00
+                      .inner-quantity Child: 2 x $50.00
+                      .inner-quantity Infant: 2 x $20.00
+              td 
+                div Total: $590.00
+                div Discount: $90.00
+                div Coupon Code: PARISMAX
+                div Checkout: $500.00 
+                div Payment Method: Credit Card
+                div Payment Status: Completed
+              td 
+                .badge.badge-orange Initiated
+                //- .badge.badge-green Completed
+                //- .badge.badge-red Cancelled
+              td.inner-text-right 
+                div 16:20
+                div 01/01/2024
+            tr 
+              td 
+                .inner-code PVPSU001 
+              td 
+                div Name: John Smith 
+                div Phone: 0123456789
+                div Note: Test 
+              td
+                .inner-list 
+                  .inner-item 
+                    .inner-image 
+                      img(src="/admin/assets/images/tour-1.jpeg" alt="Tour Paris")
+                    .inner-content 
+                      .inner-name Tour Paris
+                      .inner-quantity Adult: 3 x $150.00
+                      .inner-quantity Child: 2 x $50.00
+                      .inner-quantity Infant: 2 x $20.00
+              td 
+                div Total: $590.00
+                div Discount: $90.00
+                div Coupon Code: PARISMAX
+                div Checkout: $500.00 
+                div Payment Method: Credit Card
+                div Payment Status: Completed
+              td 
+                .badge.badge-orange Initiated
+                //- .badge.badge-green Completed
+                //- .badge.badge-red Cancelled
+              td.inner-text-right 
+                div 16:20
+                div 01/01/2024 
+            tr 
+              td 
+                .inner-code PVPSU001 
+              td 
+                div Name: John Smith 
+                div Phone: 0123456789
+                div Note: Test 
+              td
+                .inner-list 
+                  .inner-item 
+                    .inner-image 
+                      img(src="/admin/assets/images/tour-1.jpeg" alt="Tour Paris")
+                    .inner-content 
+                      .inner-name Tour Paris
+                      .inner-quantity Adult: 3 x $150.00
+                      .inner-quantity Child: 2 x $50.00
+                      .inner-quantity Infant: 2 x $20.00
+              td 
+                div Total: $590.00
+                div Discount: $90.00
+                div Coupon Code: PARISMAX
+                div Checkout: $500.00 
+                div Payment Method: Credit Card
+                div Payment Status: Completed
+              td 
+                .badge.badge-orange Initiated
+                //- .badge.badge-green Completed
+                //- .badge.badge-red Cancelled
+              td.inner-text-right 
+                div 16:20
+                div 01/01/2024 
+    //- End Section 3

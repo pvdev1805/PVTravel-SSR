@@ -2,37 +2,38 @@ extends ../layouts/default.pug
 include ../mixins/options.pug
 
 block main 
-  h1.box-title Create Category
+  if(account.permissions.includes("category-create"))
+    h1.box-title Create Category
 
-  //- Section 8
-  section.section-8 
-    form#category-create-form
-      .inner-group
-        label(for="name" class="inner-label") Category Name
-        input(type="text" id="name" name="name")
-      .inner-group 
-        label(for="parent" class="inner-label") Parent Category
-        select(id="parent" name="parent")
-          option(value="") -- Select Category --
-          +options(categoryList, 0)
-      .inner-group 
-        label(for="position" class="inner-label") Position
-        input(type="number" id="position" name="position")
-      .inner-group 
-        label(for="status" class="inner-label") Status
-        select(id="status" name="status")
-          option(value="") -- Select Status --
-          option(value="active") Active
-          option(value="inactive") Inactive
-      .inner-group.inner-two-col
-        label(for="avatar" class="inner-label") Avatar
-        div(class="inner-upload-image")
-          input(type="file" id="avatar" name="avatar" accept="image/*" filepond-image)
-      .inner-group.inner-two-col 
-        label(for="description" class="inner-label") Description
-        textarea(id="description" name="description" textarea-mce)
-      .inner-button.inner-two-col 
-        button Create
-    .inner-back 
-      a(href=`/${pathAdmin}/category/list`) Back to Category List 
-  //- End Section 8
+    //- Section 8
+    section.section-8 
+      form#category-create-form
+        .inner-group
+          label(for="name" class="inner-label") Category Name
+          input(type="text" id="name" name="name")
+        .inner-group 
+          label(for="parent" class="inner-label") Parent Category
+          select(id="parent" name="parent")
+            option(value="") -- Select Category --
+            +options(categoryList, 0)
+        .inner-group 
+          label(for="position" class="inner-label") Position
+          input(type="number" id="position" name="position")
+        .inner-group 
+          label(for="status" class="inner-label") Status
+          select(id="status" name="status")
+            option(value="") -- Select Status --
+            option(value="active") Active
+            option(value="inactive") Inactive
+        .inner-group.inner-two-col
+          label(for="avatar" class="inner-label") Avatar
+          div(class="inner-upload-image")
+            input(type="file" id="avatar" name="avatar" accept="image/*" filepond-image)
+        .inner-group.inner-two-col 
+          label(for="description" class="inner-label") Description
+          textarea(id="description" name="description" textarea-mce)
+        .inner-button.inner-two-col 
+          button Create
+      .inner-back 
+        a(href=`/${pathAdmin}/category/list`) Back to Category List 
+    //- End Section 8

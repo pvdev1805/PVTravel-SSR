@@ -1,104 +1,110 @@
 extends ../layouts/default.pug
 
-block main 
-  h1.box-title Category List
+block main
+  if(account.permissions.includes("category-view")) 
+    h1.box-title Category List
 
-  //- Section 4
-  section.section-4 
-    .inner-wrap 
-      .inner-item.inner-label
-        <i class="fa-solid fa-filter"></i> Filter
-      .inner-item
-        select(filter-status)
-          option(value="") Status 
-          option(value="active") Active 
-          option(value="inactive") Inactive  
-      .inner-item
-        select(filter-created-by)
-          option(value="") Created By
-          each item in accountAdminList
-            option(value=item.id) #{item.fullName}
-      .inner-item.inner-date
-        input(type="date" placeholder="From" filter-start-date)
-        span -
-        input(type="date" placeholder="To" filter-end-date) 
-      .inner-item.inner-reset(filter-reset) 
-        <i class="fa-solid fa-rotate-left"></i> Clear Filter
-  //- End Section 4
-
-  //- Section 5
-  section.section-5 
-    .inner-wrap 
-      .inner-change-status(
-        change-multi
-        data-api=`/${pathAdmin}/category/change-multi`
-      )
+    //- Section 4
+    section.section-4 
+      .inner-wrap 
+        .inner-item.inner-label
+          <i class="fa-solid fa-filter"></i> Filter
         .inner-item
-          select
-            option(value="") -- Actions --
+          select(filter-status)
+            option(value="") Status 
             option(value="active") Active 
-            option(value="inactive") Inactive 
-            option(value="delete") Delete 
+            option(value="inactive") Inactive  
         .inner-item
-          button Apply 
-      
-      .inner-search
-        <i class="fa-solid fa-magnifying-glass"></i>
-        input(type="text" placeholder="Search" search)
-      
-      .inner-button-create 
-        a(href=`/${pathAdmin}/category/create`)  <i class="fa-solid fa-plus"></i> Create Category
-  //- End Section 5
+          select(filter-created-by)
+            option(value="") Created By
+            each item in accountAdminList
+              option(value=item.id) #{item.fullName}
+        .inner-item.inner-date
+          input(type="date" placeholder="From" filter-start-date)
+          span -
+          input(type="date" placeholder="To" filter-end-date) 
+        .inner-item.inner-reset(filter-reset) 
+          <i class="fa-solid fa-rotate-left"></i> Clear Filter
+    //- End Section 4
 
-  //- Section 6
-  section.section-6 
-    .table-2 
-      table 
-        thead 
-          tr 
-            th(class="inner-center")
-              input(type="checkbox" class="inner-check" check-all)
-            th Category Name
-            th Thumbnail
-            th(class="inner-center") Position
-            th(class="inner-center") Status
-            th Created By
-            th Updated By
-            th Actions
-        tbody
-          each item in categoryList  
+    //- Section 5
+    section.section-5 
+      .inner-wrap 
+        .inner-change-status(
+          change-multi
+          data-api=`/${pathAdmin}/category/change-multi`
+        )
+          .inner-item
+            select
+              option(value="") -- Actions --
+              if(account.permissions.includes("category-edit"))
+                option(value="active") Active 
+                option(value="inactive") Inactive
+              if(account.permissions.includes("category-delete")) 
+                option(value="delete") Delete 
+          .inner-item
+            button Apply 
+        
+        .inner-search
+          <i class="fa-solid fa-magnifying-glass"></i>
+          input(type="text" placeholder="Search" search)
+        
+        if(account.permissions.includes("category-create"))
+          .inner-button-create 
+            a(href=`/${pathAdmin}/category/create`)  <i class="fa-solid fa-plus"></i> Create Category
+    //- End Section 5
+
+    //- Section 6
+    section.section-6 
+      .table-2 
+        table 
+          thead 
             tr 
-              td(class="inner-center")
-                input(type="checkbox" class="inner-check" check-item=item.id)
-              td #{item.name}
-              td 
-                img(src=item.avatar alt=item.name class="inner-avatar")
-              td(class="inner-center") #{item.position}
-              td(class="inner-center")
-                if(item.status == "active")
-                  .badge.badge-green Active
-                else if(item.status == "inactive")
-                  .badge.badge-red Inactive
-              td 
-                div #{item.createdByFullName} 
-                div.inner-time #{item.createdAtFormat}
-              td 
-                div #{item.updatedByFullName} 
-                div.inner-time #{item.updatedAtFormat}
-              td
-                .inner-buttons 
-                  a(class="inner-edit" href=`/${pathAdmin}/category/edit/${item.id}`) <i class="fa-regular fa-pen-to-square"></i>
-                  button(
-                    class="inner-delete"
-                    button-delete
-                    data-api=`/${pathAdmin}/category/delete/${item.id}`
-                  ) <i class="fa-regular fa-trash-can"></i>
-  //- End Section 6
+              th(class="inner-center")
+                input(type="checkbox" class="inner-check" check-all)
+              th Category Name
+              th Thumbnail
+              th(class="inner-center") Position
+              th(class="inner-center") Status
+              th Created By
+              th Updated By
+              th Actions
+          tbody
+            each item in categoryList  
+              tr 
+                td(class="inner-center")
+                  input(type="checkbox" class="inner-check" check-item=item.id)
+                td #{item.name}
+                td 
+                  img(src=item.avatar alt=item.name class="inner-avatar")
+                td(class="inner-center") #{item.position}
+                td(class="inner-center")
+                  if(item.status == "active")
+                    .badge.badge-green Active
+                  else if(item.status == "inactive")
+                    .badge.badge-red Inactive
+                td 
+                  div #{item.createdByFullName} 
+                  div.inner-time #{item.createdAtFormat}
+                td 
+                  div #{item.updatedByFullName} 
+                  div.inner-time #{item.updatedAtFormat}
+                td
+                  .inner-buttons
+                    if(account.permissions.includes("category-edit")) 
+                      a(class="inner-edit" href=`/${pathAdmin}/category/edit/${item.id}`) <i class="fa-regular fa-pen-to-square"></i>
+                    if(account.permissions.includes("category-delete"))
+                      button(
+                        class="inner-delete"
+                        button-delete
+                        data-api=`/${pathAdmin}/category/delete/${item.id}`
+                      ) <i class="fa-regular fa-trash-can"></i>
+    //- End Section 6
 
-  //- Section 7
-  section.section-7 
-    span(class="inner-label") Showing #{pagination.skip + 1} - #{pagination.skip + categoryList.length} of #{pagination.totalRecord} entries
-    select(class="inner-pagination" pagination)
-      - for(let i = 1; i <= pagination.totalPage; i++)
-        option(value=i) Page #{i}
-  //- End Section 7
+    //- Section 7
+    section.section-7 
+      span(class="inner-label") Showing #{pagination.skip + 1} - #{pagination.skip + categoryList.length} of #{pagination.totalRecord} entries
+      select(class="inner-pagination" pagination)
+        - for(let i = 1; i <= pagination.totalPage; i++)
+          option(value=i) Page #{i}
+    //- End Section 7
