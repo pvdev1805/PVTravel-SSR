@@ -22,43 +22,26 @@ header.header
       button.inner-menu-mobile
         i.fa-solid.fa-bars
       .inner-logo
-        a(href="index.html")
+        a(href="/")
           img(
-            alt="PV.TRAVEL" 
-            src="/assets/images/logo.svg"
+            alt=settingWebsiteInfo.websiteName
+            src=settingWebsiteInfo.logo
             )
+          .inner-logo-text
+            | #{settingWebsiteInfo.websiteName}
       nav.inner-menu
         ul
           li
-            a.active(href="index.html") Home
-          li
-            a(href="#") Domestic Tours
-            i.fa-solid.fa-caret-down
-            ul
-              li
-                a(href="#") New South Wales
-              li
-                a(href="#") Victoria
-              li
-                a(href="#") Queensland
-              li
-                a(href="#") South Australia
-              li
-                a(href="#") Western Australia
-              li
-                a(href="#") Tasmania
-          li
-            a(href="#") International Tours
-            i.fa-solid.fa-caret-down
-            ul
-              li
-                a(href="#") Asian Tour
-              li
-                a(href="#") European Tour
-              li
-                a(href="#") American Tour
-              li
-                a(href="#") African Tour
+            a.active(href="/") Home
+          each item in categoryList 
+            li 
+              a(href=`/category/${item.slug}`) #{item.name}
+              i.fa-solid.fa-caret-down
+              if(item.children)
+                ul 
+                  each itemChild in item.children
+                    li 
+                      a(href=`/category/${itemChild.slug}`) #{itemChild.name}
           li
             a(href="#") News
           li
@@ -67,7 +50,7 @@ header.header
         .inner-overlay
         // End Hidden Overlay
       .inner-cart
-        a(href="#")
+        a(href="/cart")
           img(
             alt="Cart" 
             src="/assets/images/icon-cart.svg"

@@ -106,6 +106,19 @@ img {
   width: auto;
 }
 
+.header .inner-logo a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.header .inner-logo a .inner-logo-text {
+  color: var(--primary-color);
+  font-size: 24px;
+  font-weight: 600;
+}
+
 .header .inner-menu > ul {
   display: flex;
   padding: 0;
