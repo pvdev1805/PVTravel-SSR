@@ -134,7 +134,7 @@ block main
             | PVTravel offers special tours for 2025. Book now to get the best
             |   price.
           .inner-clock-title Ending in
-          .inner-clock-number(clock-expire="2025-07-30T20:00:00")
+          .inner-clock-number(clock-expire=promotionDetail.promotionExpiredDate)
             .inner-item
               .inner-number 00
               .inner-label Days
@@ -150,7 +150,7 @@ block main
           .inner-discount-title Discount up to
           .inner-discount-price
             span.inner-unit $
-            | 399.00
+            | #{promotionDetail.maxDiscountAmount.toLocaleString("en-AU")}
         .inner-list
           .swiper.swiper-section-2
             .swiper-wrapper

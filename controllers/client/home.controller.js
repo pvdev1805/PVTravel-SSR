@@ -1,5 +1,6 @@
 const moment = require('moment')
 const Tour = require('../../models/tour.model')
+const Promotion = require('../../models/promotion.model')
 
 module.exports.home = async (req, res) => {
   // Section 2
@@ -17,10 +18,16 @@ module.exports.home = async (req, res) => {
     tour.discount = parseInt(((tour.priceAdult - tour.priceNewAdult) / tour.priceAdult) * 100)
     tour.departureDateFormat = moment(tour.departureDate).format('DD/MM/YYYY')
   })
+
+  const promotionDetail = await Promotion.findOne({})
+  if (promotionDetail) {
+    promotionDetail.maxDiscountAmount = parseFloat(promotionDetail.maxDiscountAmount).toFixed(2)
+  }
   // End - Section 2
 
   res.render('client/pages/home', {
     pageTitle: 'Homepage',
-    tourListSection2: tourListSection2
+    tourListSection2: tourListSection2,
+    promotionDetail: promotionDetail
   })
 }

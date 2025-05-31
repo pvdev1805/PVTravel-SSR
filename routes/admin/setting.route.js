@@ -62,4 +62,10 @@ router.patch('/role/delete/:id', settingController.roleDeletePatch)
 
 router.patch('/role/change-multi', settingController.roleChangeMultiPatch)
 
+router.get('/ui/list', settingController.uiList)
+
+router.get('/ui/promotion', settingController.promotion)
+
+router.patch('/ui/promotion', settingValidate.promotionPatch, settingController.promotionPatch)
+
 module.exports = router

@@ -7,6 +7,7 @@ const Role = require('../../models/role.model')
 const AccountAdmin = require('../../models/account-admin.model')
 
 const permissionConfig = require('../../config/permission')
+const Promotion = require('../../models/promotion.model')
 
 module.exports.list = async (req, res) => {
   res.render('admin/pages/setting-list', {
@@ -495,6 +496,62 @@ module.exports.roleChangeMultiPatch = async (req, res) => {
     res.status(500).json({
       code: 'error',
       message: 'Failed to delete role!'
+    })
+  }
+}
+
+module.exports.uiList = async (req, res) => {
+  res.render('admin/pages/setting-ui-list', {
+    pageTitle: 'UI Management'
+  })
+}
+
+module.exports.promotion = async (req, res) => {
+  const promotionDetail = await Promotion.findOne({})
+
+  if (promotionDetail) {
+    const formattedDate = moment(promotionDetail.promotionExpiredDate).format('YYYY-MM-DD')
+    promotionDetail.formattedDate = formattedDate
+  }
+
+  res.render('admin/pages/setting-promotion', {
+    pageTitle: 'Promotion',
+    promotionDetail: promotionDetail
+  })
+}
+
+module.exports.promotionPatch = async (req, res) => {
+  try {
+    const promotion = await Promotion.findOne({})
+
+    if (!promotion) {
+      req.body.createdBy = req.account._id
+      req.body.updatedBy = req.account._id
+
+      req.body.maxDiscountAmount = parseFloat(req.body.maxDiscountAmount).toFixed(2)
+
+      const newPromotion = new Promotion(req.body)
+      await newPromotion.save()
+    } else {
+      req.body.maxDiscountAmount = parseFloat(req.body.maxDiscountAmount).toFixed(2)
+      req.body.updatedBy = req.account._id
+      await Promotion.updateOne(
+        {
+          _id: promotion._id
+        },
+        req.body
+      )
+    }
+
+    req.flash('success', 'Update promotion successfully!')
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({
+      code: 'error',
+      message: 'Failed to update promotion!'
     })
   }
 }

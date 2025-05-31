@@ -1183,6 +1183,71 @@ if (profileChangePasswordForm) {
 }
 // End JustValidate - Profile Change Password Form Validation
 
+// JustValidate - Setting UI Promotion Form Validation
+const settingPromotionForm = document.querySelector('#setting-promotion-form')
+if (settingPromotionForm) {
+  const validator = new JustValidate('#setting-promotion-form')
+
+  validator
+    .addField('#promotionName', [
+      {
+        rule: 'required',
+        errorMessage: 'Promotion name is required!'
+      }
+    ])
+    .addField('#promotionExpiredDate', [
+      {
+        rule: 'required',
+        errorMessage: 'Promotion expired date is required!'
+      }
+    ])
+    .addField('#maxDiscountAmount', [
+      {
+        rule: 'required',
+        errorMessage: 'Max discount amount is required!'
+      },
+      {
+        rule: 'number',
+        errorMessage: 'Max discount amount must be a number!'
+      },
+      {
+        rule: 'minNumber',
+        value: 0,
+        errorMessage: 'Max discount amount must be greater than or equal to 0!'
+      }
+    ])
+    .onSuccess((event) => {
+      const promotionName = event.target.promotionName.value
+      const promotionExpiredDate = event.target.promotionExpiredDate.value
+      const maxDiscountAmount = event.target.maxDiscountAmount.value
+
+      const dataFinal = {
+        promotionName: promotionName,
+        promotionExpiredDate: promotionExpiredDate,
+        maxDiscountAmount: maxDiscountAmount
+      }
+
+      fetch(`/${pathAdmin}/setting/ui/promotion`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataFinal)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.reload()
+          }
+        })
+    })
+}
+// End JustValidate - Setting UI Promotion Form Validation
+
 // Sider
 const sider = document.querySelector('.sider')
 if (sider) {

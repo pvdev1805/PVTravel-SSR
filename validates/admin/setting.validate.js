@@ -171,3 +171,34 @@ module.exports.accountAdminEditPatch = (req, res, next) => {
 
   next()
 }
+
+module.exports.promotionPatch = (req, res, next) => {
+  const schema = Joi.object({
+    promotionName: Joi.string().required().messages({
+      'string.empty': 'Promotion name is required!'
+    }),
+    promotionExpiredDate: Joi.date().required().messages({
+      'date.base': 'Promotion expired date is required!',
+      'date.format': 'Promotion expired date must be a valid date!'
+    }),
+    maxDiscountAmount: Joi.number().required().messages({
+      'number.base': 'Max discount amount is required!',
+      'number.min': 'Max discount amount must be greater than or equal to 0!'
+    })
+  })
+
+  const { error } = schema.validate(req.body)
+
+  if (error) {
+    console.log('Error in promotion validation:')
+    const errorMessage = error.details[0].message
+
+    res.status(400).json({
+      code: 'error',
+      message: errorMessage
+    })
+    return
+  }
+
+  next()
+}

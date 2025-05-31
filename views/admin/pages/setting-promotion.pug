@@ -1,0 +1,22 @@
+extends ../layouts/default.pug
+
+block main 
+  h1.box-title Promotion
+  
+  //- Section 8
+  section.section-8 
+    form#setting-promotion-form
+      .inner-group 
+        label(class="inner-label" for="promotionName") Promotion Name
+        input(type="text" id="promotionName" name="promotionName" value=(promotionDetail ? promotionDetail.promotionName : ""))
+      .inner-group 
+        label(class="inner-label" for="promotionExpiredDate") Promotion Expired Date
+        input(type="date" id="promotionExpiredDate" name="promotionExpiredDate" value=(promotionDetail ? promotionDetail.formattedDate : ""))
+      .inner-group 
+        label(class="inner-label" for="maxDiscountAmount") Max Discount Amount
+        input(type="text" id="maxDiscountAmount" name="maxDiscountAmount" value=(promotionDetail ? promotionDetail.maxDiscountAmount : ""))
+      .inner-button.inner-two-col 
+        button Update 
+    .inner-back 
+      a(href=`/${pathAdmin}/setting/list`) Back to Settings
+  //- End Section 8

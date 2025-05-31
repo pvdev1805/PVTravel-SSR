@@ -1,7 +1,7 @@
 extends ../layouts/default.pug
 
 block main
-  h1.box-title Settings 
+  h1.box-title Settings
 
   //- Section 9
   section.section-9 
@@ -14,4 +14,7 @@ block main
     a(href=`/${pathAdmin}/setting/role/list` class="inner-item")
       .inner-icon <i class="fa-solid fa-user-gear"></i>
       .inner-text Role Management
+    a(href=`/${pathAdmin}/setting/ui/list` class="inner-item")
+      .inner-icon <i class="fa-solid fa-palette"></i>
+      .inner-text UI Management
   //- End Section 9
