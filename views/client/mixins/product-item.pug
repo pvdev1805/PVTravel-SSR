@@ -1,7 +1,7 @@
 mixin product-item(item)
   .product-item
     .inner-image
-      a(href=item.slug)
+      a(href=`/tour/detail/${item.slug}`)
         img(
           alt=item.name 
           src=item.avatar
@@ -11,33 +11,33 @@ mixin product-item(item)
       | -#{item.discount}% OFF
     .inner-content
       h3.inner-title
-        a(href="item.slug") #{item.name}
+        a(href=`/tour/detail/${item.slug}`) #{item.name}
       .inner-prices
         if(item.discount > 0)
           .inner-price-old
             span.inner-unit $
-            | #{item.priceOld.toLocaleString("en-AU", {minimumFractionDigits: 2})}
+            | #{item.priceAdult.toLocaleString("en-AU")}
         .inner-price-new
           span.inner-unit $
-          | #{item.priceNew.toLocaleString("en-AU", {minimumFractionDigits: 2})}
+          | #{item.priceNewAdult.toLocaleString("en-AU")}
       .inner-desc
-        .inner-desc-item
-          | Tour ID:
-          b #{item.code}
+        //- .inner-desc-item
+        //-   | Tour ID:
+        //-   b #{item.code}
         .inner-desc-item
           | Departure Date:
-          b #{item.departureDate}
+          b #{item.departureDateFormat}
         .inner-desc-item
           | Duration:
           b #{item.time}
       .inner-meta
-        .inner-rating
-          .inner-stars
-            - for(let i = 1; i <= item.ratingStars; i++)
-              i.fa-solid.fa-star
-            - for(let j = item.ratingStars + 1; j <= 5; j++)
-              i.fa-regular.fa-star
-          .inner-number (#{item.ratingTotal})
+        //- .inner-rating
+        //-   .inner-stars
+        //-     - for(let i = 1; i <= item.ratingStars; i++)
+        //-       i.fa-solid.fa-star
+        //-     - for(let j = item.ratingStars + 1; j <= 5; j++)
+        //-       i.fa-regular.fa-star
+        //-   .inner-number (#{item.ratingTotal})
         .inner-stock
           .inner-label Available Spots:
-          .inner-number #{item.stock}
+          .inner-number #{item.stockAdult}
