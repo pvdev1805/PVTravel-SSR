@@ -220,52 +220,6 @@ block main
   // End Section 3
   
   // Section 4
-  -
-    var productListSection4 = [
-      {
-        avatar: "/assets/images/product-1.jpg",
-        slug: '#',
-        discount: 30,
-        name: "New South Wales - 4D3N",
-        priceOld: 899.00,
-        priceNew: 700.00,
-        code: "123456780",
-        departureDate: "01/08/2025",
-        time: "4 Days 3 Nights",
-        ratingStars: 5,
-        ratingTotal: 30,
-        stock: 10
-      },
-      {
-        avatar: "/assets/images/product-2.jpg",
-        slug: '#',
-        discount: 30,
-        name: "Victoria - 3D2N",
-        priceOld: 799.00,
-        priceNew: 709.00,
-        code: "123456781",
-        departureDate: "01/08/2025",
-        time: "3 Days 2 Nights",
-        ratingStars: 4,
-        ratingTotal: 20,
-        stock: 9
-      },
-      {
-        avatar: "/assets/images/product-3.jpg",
-        slug: '#',
-        discount: 30,
-        name: "Queensland - 4D3N",
-        priceOld: 859.00,
-        priceNew: 749.00,
-        code: "123456782",
-        departureDate: "01/08/2025",
-        time: "4 Days 3 Nights",
-        ratingStars: 5,
-        ratingTotal: 30,
-        stock: 11
-      }
-    ]
-
   section.section-4
     .container
       h2.box-title(
@@ -277,8 +231,8 @@ block main
         data-aos-duration="800" 
         data-aos="fade-up"
         )
-        each item in productListSection4
-          //- +product-item(item)
+        each item in tourListSection4
+          +product-item(item)
       .inner-button(
         data-aos-delay="150" 
         data-aos-duration="800" 
