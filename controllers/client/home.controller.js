@@ -61,10 +61,44 @@ module.exports.home = async (req, res) => {
   }
   // End - Section 4 - Domestic Tours
 
+  // Section 6 - International Tours
+  const internationalTour = await Category.findOne({
+    name: 'International Tours'
+  })
+  const internationalTourId = internationalTour.id
+  const listInternationalCategory = [internationalTourId]
+
+  const listInternationalSubCategory = await Category.find({
+    parent: internationalTourId,
+    deleted: false,
+    status: 'active'
+  })
+
+  listInternationalSubCategory.forEach((subCategory) => {
+    listInternationalCategory.push(subCategory.id)
+  })
+
+  const tourListSection6 = await Tour.find({
+    category: { $in: listInternationalCategory },
+    deleted: false,
+    status: 'active'
+  })
+    .sort({
+      position: 'desc'
+    })
+    .limit(8)
+
+  for (const tour of tourListSection6) {
+    tour.discount = parseInt(((tour.priceAdult - tour.priceNewAdult) / tour.priceAdult) * 100)
+    tour.departureDateFormat = moment(tour.departureDate).format('DD/MM/YYYY')
+  }
+  // End - Section 6 - International Tours
+
   res.render('client/pages/home', {
     pageTitle: 'Homepage',
     tourListSection2: tourListSection2,
     tourListSection4: tourListSection4,
+    tourListSection6: tourListSection6,
     promotionDetail: promotionDetail
   })
 }
