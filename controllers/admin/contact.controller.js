@@ -73,3 +73,56 @@ module.exports.trash = async (req, res) => {
     contactList: contactList
   })
 }
+
+module.exports.undoPatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    await Contact.updateOne(
+      {
+        _id: id
+      },
+      {
+        $set: {
+          deleted: false
+        },
+        $unset: {
+          deletedBy: '',
+          deletedAt: ''
+        }
+      }
+    )
+
+    req.flash('success', 'Contact has been restored successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Error: Failed to restore contact!'
+    })
+  }
+}
+
+module.exports.deleteDestroyPatch = async (req, res) => {
+  try {
+    const id = req.params.id
+
+    await Contact.deleteOne({
+      _id: id
+    })
+
+    req.flash('success', 'Contact has been deleted permanently!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Error: Failed to delete contact permanently!'
+    })
+  }
+}

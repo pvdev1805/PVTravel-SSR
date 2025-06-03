@@ -32,26 +32,30 @@ block main
             th Deleted By
             th(class="inner-center") Actions
         tbody
-          each item in contactList
+          if(contactList.length == 0)
             tr 
-              td(class="inner-center")
-                input(type="checkbox" class="inner-check")
-              td #{item.email}
-              td
-                div #{item.deletedByFullName} 
-                div.inner-time #{item.deletedAtFormat}
-              td.inner-center
-                .inner-buttons 
-                  button(
-                    class="inner-undo"
-                    button-undo
-                    data-api=`/${pathAdmin}/contact/undo/${item.id}`
-                  ) <i class="fa-solid fa-rotate-left"></i>
-                  button(
-                    class="inner-delete"
-                    button-delete
-                    data-api=`/${pathAdmin}/contact/delete-destroy/${item.id}`
-                  ) <i class="fa-regular fa-trash-can"></i>
+              td(class="inner-center" colspan="4") No contacts found in the trash
+          else
+            each item in contactList
+              tr 
+                td(class="inner-center")
+                  input(type="checkbox" class="inner-check")
+                td #{item.email}
+                td
+                  div #{item.deletedByFullName} 
+                  div.inner-time #{item.deletedAtFormat}
+                td.inner-center
+                  .inner-buttons 
+                    button(
+                      class="inner-undo"
+                      button-undo
+                      data-api=`/${pathAdmin}/contact/undo/${item.id}`
+                    ) <i class="fa-solid fa-rotate-left"></i>
+                    button(
+                      class="inner-delete"
+                      button-delete
+                      data-api=`/${pathAdmin}/contact/delete-destroy/${item.id}`
+                    ) <i class="fa-regular fa-trash-can"></i>
   //- End Section 6
 
   //- Section 7
