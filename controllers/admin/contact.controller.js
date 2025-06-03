@@ -19,3 +19,32 @@ module.exports.list = async (req, res) => {
     contactList: contactList
   })
 }
+
+module.exports.deletePath = async (req, res) => {
+  try {
+    const { id } = req.params
+
+    await Contact.updateOne(
+      {
+        _id: id,
+        deleted: false
+      },
+      {
+        deleted: true,
+        deletedBy: req.account.id,
+        deletedAt: new Date()
+      }
+    )
+
+    req.flash('success', 'Contact has been deleted successfully!')
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Error: Failed to delete contact!'
+    })
+  }
+}
