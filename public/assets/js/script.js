@@ -314,7 +314,28 @@ if (emailForm) {
     ])
     .onSuccess((event) => {
       const email = event.target.email.value
-      console.log(email)
+
+      const dataFinal = {
+        email: email
+      }
+
+      fetch('/contact/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataFinal)
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.code == 'error') {
+            alert(data.message)
+          }
+
+          if (data.code == 'success') {
+            window.location.reload()
+          }
+        })
     })
 }
 // End JustValidate - Email Form
@@ -418,3 +439,17 @@ if (orderForm) {
   })
 }
 // End JustValidate - Order Form
+
+// Alert
+const alertTime = document.querySelector('[alert-time]')
+if (alertTime) {
+  let time = alertTime.getAttribute('alert-time')
+  time = time ? parseInt(time) : 4000
+  setTimeout(() => {
+    alertTime.classList.add('alert-slide-out')
+    setTimeout(() => {
+      alertTime.remove()
+    }, 500)
+  }, time)
+}
+// End Alert

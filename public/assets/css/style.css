@@ -3038,3 +3038,28 @@ img {
 }
 /* End Responsive Section 12 */
 /* End Section 12 */
+
+/* Alert */
+.alert {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 999;
+  background-color: #ddd;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+.alert-success {
+  background-color: #a3e0a3;
+}
+
+.alert-slide-out {
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
+  transform: translateX(100%);
+  opacity: 0;
+}
+/* End Alert */
