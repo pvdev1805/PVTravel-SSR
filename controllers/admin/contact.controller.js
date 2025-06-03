@@ -74,6 +74,49 @@ module.exports.trash = async (req, res) => {
   })
 }
 
+module.exports.trashChangeMultiPatch = async (req, res) => {
+  try {
+    const { ids, option } = req.body
+
+    switch (option) {
+      case 'undo':
+        await Contact.updateMany(
+          {
+            _id: { $in: ids }
+          },
+          {
+            $set: {
+              deleted: false
+            },
+            $unset: {
+              deletedBy: '',
+              deletedAt: ''
+            }
+          }
+        )
+
+        req.flash('success', 'Contacts have been restored successfully!')
+        break
+      case 'delete-destroy':
+        await Contact.deleteMany({
+          _id: { $in: ids }
+        })
+
+        req.flash('success', 'Contacts have been deleted permanently!')
+        break
+    }
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Error: Failed to process requests!'
+    })
+  }
+}
+
 module.exports.undoPatch = async (req, res) => {
   try {
     const id = req.params.id
