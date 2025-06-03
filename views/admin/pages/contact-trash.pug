@@ -1,20 +1,7 @@
 extends ../layouts/default.pug
 
 block main 
-  h1.box-title Contact List
-
-  //- Section 4
-  section.section-4 
-    .inner-wrap 
-      .inner-item.inner-label
-        <i class="fa-solid fa-filter"></i> Filter
-      .inner-item.inner-date
-        input(type="date" placeholder="From")
-        span -
-        input(type="date" placeholder="To") 
-      .inner-item.inner-reset 
-        <i class="fa-solid fa-rotate-left"></i> Clear Filter
-  //- End Section 4
+  h1.box-title Contact Trash
 
   //- Section 5
   section.section-5 
@@ -23,15 +10,14 @@ block main
         .inner-item
           select
             option(value="") -- Actions --
-            option(value="") Delete
+            option(value="") Restore
+            option(value="") Delete Permanently
         .inner-item
           button Apply 
       
       .inner-search
         <i class="fa-solid fa-magnifying-glass"></i>
         input(type="text" placeholder="Search")
-      .inner-button-delete 
-        a(href=`/${pathAdmin}/contact/trash`) <i class="fa-solid fa-trash"></i> Trash
   //- End Section 5
 
   //- Section 6
@@ -43,7 +29,7 @@ block main
             th(class="inner-center")
               input(type="checkbox" class="inner-check")
             th Email
-            th Created At
+            th Deleted By
             th(class="inner-center") Actions
         tbody
           each item in contactList
@@ -51,13 +37,20 @@ block main
               td(class="inner-center")
                 input(type="checkbox" class="inner-check")
               td #{item.email}
-              td #{item.createdAtFormat}
-              td(class="inner-center")
+              td
+                div #{item.deletedByFullName} 
+                div.inner-time #{item.deletedAtFormat}
+              td.inner-center
                 .inner-buttons 
+                  button(
+                    class="inner-undo"
+                    button-undo
+                    data-api=`/${pathAdmin}/contact/undo/${item.id}`
+                  ) <i class="fa-solid fa-rotate-left"></i>
                   button(
                     class="inner-delete"
                     button-delete
-                    data-api=`/${pathAdmin}/contact/delete/${item.id}`
+                    data-api=`/${pathAdmin}/contact/delete-destroy/${item.id}`
                   ) <i class="fa-regular fa-trash-can"></i>
   //- End Section 6
 

@@ -1,5 +1,6 @@
 const moment = require('moment')
 const Contact = require('../../models/contact.model')
+const AccountAdmin = require('../../models/account-admin.model')
 
 module.exports.list = async (req, res) => {
   const find = {
@@ -47,4 +48,28 @@ module.exports.deletePath = async (req, res) => {
       message: 'Error: Failed to delete contact!'
     })
   }
+}
+
+module.exports.trash = async (req, res) => {
+  const find = {
+    deleted: true
+  }
+
+  const contactList = await Contact.find(find).sort({
+    deletedAt: 'desc'
+  })
+
+  for (const item of contactList) {
+    const infoAccountDeleted = await AccountAdmin.findOne({
+      _id: item.deletedBy
+    })
+    item.deletedByFullName = infoAccountDeleted.fullName
+
+    item.deletedAtFormat = moment(item.deletedAt).format('HH:mm - DD/MM/YYYY')
+  }
+
+  res.render('admin/pages/contact-trash', {
+    pageTitle: 'Contact Trash',
+    contactList: contactList
+  })
 }
