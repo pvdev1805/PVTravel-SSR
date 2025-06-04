@@ -55,9 +55,41 @@ module.exports.trash = async (req, res) => {
     deleted: true
   }
 
-  const contactList = await Contact.find(find).sort({
-    deletedAt: 'desc'
-  })
+  // Search by keyword
+  if (req.query.keyword) {
+    const { keyword } = req.query
+    const keywordRegex = new RegExp(keyword, 'i')
+
+    find.email = keywordRegex
+  }
+  // End - Search by keyword
+
+  // Pagination
+  const limitItems = 4
+  let page = 1
+  if (req.query.page) {
+    const currentPage = parseInt(req.query.page)
+    if (currentPage > 0) {
+      page = currentPage
+    }
+  }
+
+  const totalRecord = await Contact.countDocuments(find)
+  const totalPage = Math.ceil(totalRecord / limitItems)
+  const skip = (page - 1) * limitItems
+  const pagination = {
+    skip: skip,
+    totalRecord: totalRecord,
+    totalPage: totalPage
+  }
+  // End - Pagination
+
+  const contactList = await Contact.find(find)
+    .sort({
+      deletedAt: 'desc'
+    })
+    .limit(limitItems)
+    .skip(skip)
 
   for (const item of contactList) {
     const infoAccountDeleted = await AccountAdmin.findOne({
@@ -70,7 +102,8 @@ module.exports.trash = async (req, res) => {
 
   res.render('admin/pages/contact-trash', {
     pageTitle: 'Contact Trash',
-    contactList: contactList
+    contactList: contactList,
+    pagination: pagination
   })
 }
 
