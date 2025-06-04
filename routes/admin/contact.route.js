@@ -5,7 +5,9 @@ const contactController = require('../../controllers/admin/contact.controller')
 
 router.get('/list', contactController.list)
 
-router.patch('/delete/:id', contactController.deletePath)
+router.patch('/delete/:id', contactController.deletePatch)
+
+router.patch('/change-multi', contactController.changeMultiPatch)
 
 router.get('/trash', contactController.trash)
 

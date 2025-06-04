@@ -7,9 +7,55 @@ module.exports.list = async (req, res) => {
     deleted: false
   }
 
-  const contactList = await Contact.find(find).sort({
-    createdAt: 'desc'
-  })
+  // Filter by createdAt
+  const dateFilter = {}
+  if (req.query.startDate) {
+    const startDate = moment(req.query.startDate).startOf('day').toDate()
+    dateFilter.$gte = startDate
+  }
+  if (req.query.endDate) {
+    const endDate = moment(req.query.endDate).startOf('day').toDate()
+    dateFilter.$lte = endDate
+  }
+  if (Object.keys(dateFilter).length > 0) {
+    find.createdAt = dateFilter
+  }
+  // End - Filter by createdAt
+
+  // Search by keyword
+  if (req.query.keyword) {
+    const keyword = req.query.keyword
+    const keywordRegex = new RegExp(keyword, 'i')
+
+    find.email = keywordRegex
+  }
+  // End - Search by keyword
+
+  // Pagination
+  const limitItems = 4
+  let page = 1
+  if (req.query.page) {
+    const currentPage = parseInt(req.query.page)
+    if (currentPage > 0) {
+      page = currentPage
+    }
+  }
+  const totalRecord = await Contact.countDocuments(find)
+  const totalPage = Math.ceil(totalRecord / limitItems)
+  const skip = (page - 1) * limitItems
+  const pagination = {
+    skip: skip,
+    totalRecord: totalRecord,
+    totalPage: totalPage
+  }
+  // End - Pagination
+
+  const contactList = await Contact.find(find)
+    .sort({
+      createdAt: 'desc'
+    })
+    .limit(limitItems)
+    .skip(skip)
 
   contactList.forEach((item) => {
     item.createdAtFormat = moment(item.createdAt).format('HH:mm - DD/MM/YYYY')
@@ -17,11 +63,12 @@ module.exports.list = async (req, res) => {
 
   res.render('admin/pages/contact-list', {
     pageTitle: 'Contact List',
-    contactList: contactList
+    contactList: contactList,
+    pagination: pagination
   })
 }
 
-module.exports.deletePath = async (req, res) => {
+module.exports.deletePatch = async (req, res) => {
   try {
     const { id } = req.params
 
@@ -46,6 +93,39 @@ module.exports.deletePath = async (req, res) => {
     res.status(500).json({
       code: 'error',
       message: 'Error: Failed to delete contact!'
+    })
+  }
+}
+
+module.exports.changeMultiPatch = async (req, res) => {
+  try {
+    const { ids, option } = req.body
+
+    switch (option) {
+      case 'delete':
+        await Contact.updateMany(
+          {
+            _id: { $in: ids },
+            deleted: false
+          },
+          {
+            deleted: true,
+            deletedBy: req.account.id,
+            deletedAt: new Date()
+          }
+        )
+
+        req.flash('success', 'Contacts have been deleted successfully!')
+        break
+    }
+
+    res.status(200).json({
+      code: 'success'
+    })
+  } catch (error) {
+    res.status(500).json({
+      code: 'error',
+      message: 'Error: Failed to process requests!'
     })
   }
 }

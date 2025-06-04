@@ -9,27 +9,30 @@ block main
       .inner-item.inner-label
         <i class="fa-solid fa-filter"></i> Filter
       .inner-item.inner-date
-        input(type="date" placeholder="From")
+        input(type="date" filter-start-date)
         span -
-        input(type="date" placeholder="To") 
-      .inner-item.inner-reset 
+        input(type="date" filter-end-date) 
+      .inner-item.inner-reset(filter-reset)
         <i class="fa-solid fa-rotate-left"></i> Clear Filter
   //- End Section 4
 
   //- Section 5
   section.section-5 
     .inner-wrap 
-      .inner-change-status
+      .inner-change-status(
+        change-multi
+        data-api=`/${pathAdmin}/contact/change-multi`
+      )
         .inner-item
           select
             option(value="") -- Actions --
-            option(value="") Delete
+            option(value="delete") Delete
         .inner-item
           button Apply 
       
       .inner-search
         <i class="fa-solid fa-magnifying-glass"></i>
-        input(type="text" placeholder="Search")
+        input(type="text" placeholder="Search" search)
       .inner-button-delete 
         a(href=`/${pathAdmin}/contact/trash`) <i class="fa-solid fa-trash"></i> Trash
   //- End Section 5
@@ -41,7 +44,7 @@ block main
         thead 
           tr 
             th(class="inner-center")
-              input(type="checkbox" class="inner-check")
+              input(type="checkbox" class="inner-check" check-all)
             th Email
             th Created At
             th(class="inner-center") Actions
@@ -49,7 +52,7 @@ block main
           each item in contactList
             tr 
               td(class="inner-center")
-                input(type="checkbox" class="inner-check")
+                input(type="checkbox" class="inner-check" check-item=item.id)
               td #{item.email}
               td #{item.createdAtFormat}
               td(class="inner-center")
@@ -63,9 +66,8 @@ block main
 
   //- Section 7
   section.section-7 
-    span(class="inner-label") Showing 1 - 9 of 78 entries
-    select(class="inner-pagination")
-      option Page 1
-      option Page 2
-      option Page 3
+    span(class="inner-label") Showing #{pagination.skip + 1} - #{pagination.skip + contactList.length} of #{pagination.totalRecord} entries
+    select(class="inner-pagination" pagination)
+      - for(let i = 1; i <= pagination.totalPage; i++)
+        option(value=i) Page #{i}
   //- End Section 7
