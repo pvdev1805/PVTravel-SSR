@@ -4,22 +4,6 @@ include ../mixins/product-item.pug
 
 block main
   //- Box Breadcrumb
-  -
-    var breadcrumb = {
-      image: "/assets/images/banner-6.jpg",
-      title: "International Tour",
-      list: [
-        {
-          link: "/",
-          title: "Home"
-        },
-        {
-          link: "/tours",
-          title: "International Tours"
-        }
-      ]
-    }
-
   +box-breadcrumb(breadcrumb)
   //- End Box Breadcrumb
 
@@ -173,7 +157,7 @@ block main
               i.fa-solid.fa-filter
           .inner-list-tour
             each item in productListSection9
-              +product-item(item)
+              //- +product-item(item)
           // Box Pagination
           .box-pagination
             button
