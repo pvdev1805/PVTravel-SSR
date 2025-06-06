@@ -2,6 +2,7 @@ const moment = require('moment')
 
 const Category = require('../../models/category.model')
 const Tour = require('../../models/tour.model')
+const City = require('../../models/city.model')
 
 module.exports.list = async (req, res) => {
   // Get Category by slug
@@ -90,10 +91,15 @@ module.exports.list = async (req, res) => {
   }
   // End - Tour List
 
+  // City List
+  const cityList = await City.find({})
+  // End - City List
+
   res.render('client/pages/tour-list', {
     pageTitle: 'Tour List',
     breadcrumb: breadcrumb,
     category: category,
-    tourListSection9: tourListSection9
+    tourListSection9: tourListSection9,
+    cityList: cityList
   })
 }

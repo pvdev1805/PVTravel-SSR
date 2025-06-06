@@ -62,23 +62,22 @@ block main
               i.fa-solid.fa-filter
             .inner-body
               .inner-group
-                label.inner-label(for="") Departure
-                select(name="")
+                label.inner-label(for="locationFrom") Departure
+                select(name="locationFrom" id="locationFrom")
                   option(value="") -- Select Departure --
-                  option(value="") Perth
-                  option(value="") Sydney
-                  option(value="") Melbourne
+                  each item in cityList
+                    option(value=item.id) #{item.name}
               .inner-group
-                label.inner-label(for="") Destination
-                select(name="")
+                label.inner-label(for="locationTo") Destination
+                select(name="locationTo" id="locationTo")
                   option(value="") -- Select Destination --
-                  option(value="") Perth
-                  option(value="") Sydney
-                  option(value="") Melbourne
+                  each item in cityList
+                    option(value=item.name) #{item.name}
               .inner-group
-                label.inner-label(for="") Departure Date
+                label.inner-label(for="departureDate") Departure Date
                 input(
-                  name="" 
+                  name="departureDate"
+                  id="departureDate" 
                   type="date"
                   )
               .inner-group
@@ -88,31 +87,31 @@ block main
                     span Adult:
                     input(
                       value="0" 
-                      name="" 
+                      name="stockAdult" 
                       type="number"
                       )
                   .inner-input-item
                     span Child:
                     input(
                       value="0" 
-                      name="" 
+                      name="stockChildren" 
                       type="number"
                       )
                   .inner-input-item
                     span Infant:
                     input(
                       value="0" 
-                      name="" 
+                      name="stockBaby" 
                       type="number"
                       )
               .inner-group
-                label.inner-label(for="") Price Range ($)
-                select(name="")
+                label.inner-label(for="priceRange") Price Range ($)
+                select(name="priceRange" id="priceRange")
                   option(value="") -- Select Price Range --
-                  option(value="") Under $300
-                  option(value="") $300 - $500
-                  option(value="") $500 - $700
-                  option(value="") Over $700
+                  option(value="0-300") Under $300
+                  option(value="300-500") $300 - $500
+                  option(value="500-700") $500 - $700
+                  option(value="700-1000000000") Over $700
               .inner-group
                 button.inner-button Apply
           .inner-overlay
