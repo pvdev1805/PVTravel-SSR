@@ -1,3 +1,5 @@
+const moment = require('moment')
+
 const Category = require('../../models/category.model')
 
 module.exports.list = async (req, res) => {
@@ -54,8 +56,42 @@ module.exports.list = async (req, res) => {
 
   // End - Breadcrumb
 
+  // Tour List
+  const allCategoryChildren = []
+
+  const getCategoryChildren = async (parentId) => {
+    const childs = await Category.find({
+      parent: parentId,
+      deleted: false,
+      status: 'active'
+    })
+
+    for (const child of childs) {
+      allCategoryChildren.push(child)
+
+      await getCategoryChildren(child.id)
+    }
+  }
+
+  await getCategoryChildren(category.id)
+
+  const tourListSection9 = await Tour.find({
+    category: { $in: [category.id, ...allCategoryChildren] },
+    deleted: false,
+    status: 'active'
+  }).sort({
+    position: 'desc'
+  })
+
+  for (const tour of tourListSection9) {
+    tour.departureDateFormat = moment(tour.departureDate).format('DD/MM/YYYY')
+  }
+  // End - Tour List
+
   res.render('client/pages/tour-list', {
     pageTitle: 'Tour List',
-    breadcrumb: breadcrumb
+    breadcrumb: breadcrumb,
+    category: category,
+    tourListSection9: tourListSection9
   })
 }

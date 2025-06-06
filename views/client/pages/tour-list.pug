@@ -119,20 +119,9 @@ block main
           // End Box Filter
         .inner-right
           .inner-info
-            h2.inner-title International Tours
+            h2.inner-title #{category.name}
             .inner-desc
-              | Asia Traveling: Asia is the largest continent in the world by a
-              |   considerable margin, and it is rich in natural resources, such
-              |   as petroleum, forests, fish, water, rice, copper and silver.
-              |   Manufacturing in Asia has traditionally been strongest in East
-              |   and Southeast Asia, particularly in China, Taiwan, South Korea,
-              |   Japan, India, the Philippines, and Singapore. Asia is the
-              |   largest continent in the world by a considerable margin, and it
-              |   is rich in natural resources, such as petroleum, forests, fish,
-              |   water, rice, copper and silver. Manufacturing in Asia has
-              |   traditionally been strongest in East and Southeast Asia,
-              |   particularly in China, Taiwan, South Korea, Japan, India, the
-              |   Philippines, and Singapore.
+              | #{category.description}
           .inner-info-2
             .inner-sort
               .inner-label Sort by:
@@ -151,13 +140,13 @@ block main
                   i.fa-solid.fa-eye
             .inner-count-record
               | All:
-              b 101 Tours
+              b #{tourListSection9.length} Tours
             button.inner-filter-mobile
               span.inner-title Filter
               i.fa-solid.fa-filter
           .inner-list-tour
-            each item in productListSection9
-              //- +product-item(item)
+            each item in tourListSection9
+              +product-item(item)
           // Box Pagination
           .box-pagination
             button
