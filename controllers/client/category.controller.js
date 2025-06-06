@@ -1,6 +1,7 @@
 const moment = require('moment')
 
 const Category = require('../../models/category.model')
+const Tour = require('../../models/tour.model')
 
 module.exports.list = async (req, res) => {
   // Get Category by slug
@@ -84,6 +85,7 @@ module.exports.list = async (req, res) => {
   })
 
   for (const tour of tourListSection9) {
+    tour.discount = parseInt(((tour.priceAdult - tour.priceNewAdult) / tour.priceAdult) * 100)
     tour.departureDateFormat = moment(tour.departureDate).format('DD/MM/YYYY')
   }
   // End - Tour List
