@@ -485,3 +485,57 @@ if (boxFilter) {
   })
 }
 // End - Box Filter
+
+// Form Search
+const formSearch = document.querySelector('[form-search]')
+if (formSearch) {
+  const url = new URL(`${window.location.origin}/search`)
+
+  formSearch.addEventListener('submit', (event) => {
+    event.preventDefault()
+
+    // Destination
+    const locationTo = formSearch.locationTo.value
+    if (locationTo) {
+      url.searchParams.set('locationTo', locationTo)
+    } else {
+      url.searchParams.delete('locationTo')
+    }
+    // End - Destination
+
+    // Stock Quantity
+    const stockAdult = parseInt(formSearch.querySelector(`[stock-adult]`).innerHTML)
+    if (stockAdult > 0) {
+      url.searchParams.set('stockAdult', stockAdult)
+    } else {
+      url.searchParams.delete('stockAdult')
+    }
+
+    const stockChildren = parseInt(formSearch.querySelector(`[stock-children]`).innerHTML)
+    if (stockChildren > 0) {
+      url.searchParams.set('stockChildren', stockChildren)
+    } else {
+      url.searchParams.delete('stockChildren')
+    }
+
+    const stockBaby = parseInt(formSearch.querySelector(`[stock-baby]`).innerHTML)
+    if (stockBaby > 0) {
+      url.searchParams.set('stockBaby', stockBaby)
+    } else {
+      url.searchParams.delete('stockBaby')
+    }
+    // End - Stock Quantity
+
+    // Departure Date
+    const departureDate = formSearch.departureDate.value
+    if (departureDate) {
+      url.searchParams.set('departureDate', departureDate)
+    } else {
+      url.searchParams.delete('departureDate')
+    }
+    // End - Departure Date
+
+    window.location.href = url.href
+  })
+}
+// End - Form Search

@@ -26,6 +26,7 @@ block main
           data-aos-duration="800" 
           data-aos="fade-up" 
           action=""
+          form-search
           )
           .inner-box.inner-address
             .inner-input-group
@@ -36,6 +37,7 @@ block main
               input.inner-input(
                 placeholder="Where do you want to go?" 
                 type="text"
+                name="locationTo"
                 )
               i.fa-solid.fa-angle-down.inner-down
             .inner-suggest
@@ -87,19 +89,19 @@ block main
                 .inner-label Adult
                 .inner-count
                   span.inner-down -
-                  span.inner-number 1
+                  span.inner-number(stock-adult) 1
                   span.inner-up +
               .inner-item
                 .inner-label Child
                 .inner-count
                   span.inner-down -
-                  span.inner-number 0
+                  span.inner-number(stock-children) 0
                   span.inner-up +
               .inner-item
                 .inner-label Infant
                 .inner-count
                   span.inner-down -
-                  span.inner-number 0
+                  span.inner-number(stock-baby) 0
                   span.inner-up +
           .inner-box.inner-calendar
             .inner-input-group
@@ -109,9 +111,9 @@ block main
                 )
               input.inner-input(
                 placeholder="Departure Date" 
-                type="text"
+                type="date"
+                name="departureDate"
                 )
-              i.fa-solid.fa-angle-down.inner-down
           button.inner-button
             i.fa-solid.fa-magnifying-glass
             | Search
