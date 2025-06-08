@@ -481,7 +481,7 @@ if (boxFilter) {
       }
     })
 
-    // window.location.href = url.href
+    window.location.href = url.href
   })
 }
 // End - Box Filter
