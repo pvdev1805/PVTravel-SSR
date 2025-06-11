@@ -3,30 +3,6 @@ include ../mixins/box-breadcrumb.pug
 
 block main 
   //- Box Breadcrumb
-  -
-    var breadcrumb = {
-      image: "/assets/images/banner-7.jpg",
-      title: "Tour Sunshine Coast - Brisbane - Gold Coast 4D3N",
-      list: [
-        {
-          link: "/",
-          title: "Home"
-        },
-        {
-          link: "/tours",
-          title: "Domestic Tours"
-        },
-        {
-          link: "/tours",
-          title: "Queensland"
-        },
-        {
-          link: "/tours/detail",
-          title: "Tour Sunshine Coast - Brisbane - Gold Coast 4D3N"
-        }
-      ]
-    }
-
   +box-breadcrumb(breadcrumb)
   //- End Box Breadcrumb
 
