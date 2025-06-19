@@ -10,6 +10,7 @@ const schema = new mongoose.Schema(
     position: Number,
     status: String,
     avatar: String,
+    images: Array,
     priceAdult: {
       type: Number,
       set: (value) => parseFloat(value).toFixed(2)

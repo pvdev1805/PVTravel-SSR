@@ -183,7 +183,13 @@ module.exports.createPost = async (req, res) => {
 
   req.body.createdBy = req.account._id
   req.body.updatedBy = req.account._id
-  req.body.avatar = req.file ? req.file.path : ''
+
+  if (req.files && req.files.avatar && req.files.avatar.length > 0) {
+    req.body.avatar = req.files.avatar[0].path
+  } else {
+    req.body.avatar = ''
+  }
+
   req.body.priceAdult = req.body.priceAdult ? parseFloat(req.body.priceAdult).toFixed(2) : 0
   req.body.priceChildren = req.body.priceChildren ? parseFloat(req.body.priceChildren).toFixed(2) : 0
   req.body.priceBaby = req.body.priceBaby ? parseFloat(req.body.priceBaby).toFixed(2) : 0
@@ -196,6 +202,12 @@ module.exports.createPost = async (req, res) => {
   req.body.locations = req.body.locations ? JSON.parse(req.body.locations) : []
   req.body.departureDate = req.body.departureDate ? new Date(req.body.departureDate) : null
   req.body.schedules = req.body.schedules ? JSON.parse(req.body.schedules) : []
+
+  if (req.files && req.files.images && req.files.images.length > 0) {
+    req.body.images = req.files.images.map((file) => file.path)
+  } else {
+    delete req.body.images
+  }
 
   const newRecord = new Tour(req.body)
   await newRecord.save()
@@ -323,8 +335,8 @@ module.exports.editPatch = async (req, res) => {
     }
 
     req.body.updatedBy = req.account._id
-    if (req.file) {
-      req.body.avatar = req.file.path
+    if (req.files && req.files.avatar && req.files.avatar.length > 0) {
+      req.body.avatar = req.files.avatar[0].path
     } else {
       delete req.body.avatar
     }
@@ -341,6 +353,12 @@ module.exports.editPatch = async (req, res) => {
     req.body.locations = req.body.locations ? JSON.parse(req.body.locations) : []
     req.body.departureDate = req.body.departureDate ? new Date(req.body.departureDate) : null
     req.body.schedules = req.body.schedules ? JSON.parse(req.body.schedules) : []
+
+    if (req.files && req.files.images && req.files.images.length > 0) {
+      req.body.images = req.files.images.map((file) => file.path)
+    } else {
+      delete req.body.images
+    }
 
     await Tour.updateOne(
       {

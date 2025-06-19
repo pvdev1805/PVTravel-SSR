@@ -15,47 +15,25 @@ block main
             .inner-images-main
               .swiper.swiper-box-images-main
                 .swiper-wrapper
-                  .swiper-slide
-                    .inner-image
-                      img(
-                        alt="Beach in Sunshine Coast" 
-                        src="/assets/images/banner-8.jpeg"
-                        )
-                  .swiper-slide
-                    .inner-image
-                      img(
-                        alt="Playground in Sunshine Coast" 
-                        src="/assets/images/banner-9.jpeg"
-                        )
-                  .swiper-slide
-                    .inner-image
-                      img(
-                        alt="Playground in Brisbane" 
-                        src="/assets/images/banner-10.jpeg"
-                        )
-                  .swiper-slide
-                    .inner-image
-                      img(
-                        alt="Sight in Brisbane" 
-                        src="/assets/images/banner-11.jpeg"
-                        )
-                  .swiper-slide
-                    .inner-image
-                      img(
-                        alt="Beach in Gold Coast" 
-                        src="/assets/images/banner-12.jpeg"
-                        )
+                  each image in tourDetail.images
+                    .swiper-slide
+                      .inner-image
+                        img(
+                          alt=""
+                          src=image
+                          )
                 .swiper-button-next
                 .swiper-button-prev
             .inner-images-thumb
               .swiper.swiper-box-images-thumb
                 .swiper-wrapper
-                  .swiper-slide
-                    .inner-image
-                      img(
-                        alt="Beach in Sunshine Coast" 
-                        src="/assets/images/banner-8.jpeg"
-                        )
+                  each image in tourDetail.images
+                    .swiper-slide
+                      .inner-image
+                        img(
+                          alt=""
+                          src=image
+                          )
                   .swiper-slide
                     .inner-image
                       img(

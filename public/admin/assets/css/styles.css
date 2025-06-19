@@ -1483,6 +1483,11 @@ a {
   cursor: pointer;
 }
 
+.section-8 form .inner-upload-image-multi .filepond--root {
+  width: 300px;
+  max-height: 600px;
+}
+
 /* Responsive Section 8 */
 @media screen and (max-width: 767.98px) {
   .section-8 {

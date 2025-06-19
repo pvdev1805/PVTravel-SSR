@@ -67,7 +67,8 @@ module.exports.detail = async (req, res) => {
 
     res.render('client/pages/tour-detail', {
       pageTitle: 'Tour Detail',
-      breadcrumb: breadcrumb
+      breadcrumb: breadcrumb,
+      tourDetail: tourDetail
     })
   } else {
     res.redirect('/')
